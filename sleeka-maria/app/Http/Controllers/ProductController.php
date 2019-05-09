@@ -44,7 +44,10 @@ class ProductController extends Controller
             'description' => 'required|string',
             'shipment_price' => 'nullable|integer',
             'price' => 'required|integer',
-            'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000'
+            'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000'
+
 
         ]);
 
@@ -56,12 +59,30 @@ class ProductController extends Controller
             $image_url = Cloudder::show(Cloudder::getPublicId());
         }
 
+        if($request->hasFile('side_view')){
+            $side_view = $request->file('side_view')->getRealPath();
+
+            Cloudder::upload($side_view, null);
+
+            $side_url = Cloudder::show(Cloudder::getPublicId());
+        }
+
+        if($request->hasFile('front_view')){
+            $image = $request->file('front_view')->getRealPath();
+
+            Cloudder::upload($image, null);
+
+            $front_url = Cloudder::show(Cloudder::getPublicId());
+        }
+
         $product = new Product([
             'product_name' => $request->product_name,
             'description' => $request->description,
             'price' => $request->price * 100,
             'shipment_price' => $request->shipment_price * 100,
-            'image_url' => $image_url
+            'image_url' => $image_url,
+            'side_url' => $side_url,
+            'front_url' => $front_url
         ]);
         $product->save();
         return $product;
