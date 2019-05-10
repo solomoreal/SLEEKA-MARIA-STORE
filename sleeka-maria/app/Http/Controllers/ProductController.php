@@ -68,9 +68,9 @@ class ProductController extends Controller
         }
 
         if($request->hasFile('front_view')){
-            $image = $request->file('front_view')->getRealPath();
+            $front_view = $request->file('front_view')->getRealPath();
 
-            Cloudder::upload($image, null);
+            Cloudder::upload($front_view, null);
 
             $front_url = Cloudder::show(Cloudder::getPublicId());
         }
@@ -125,7 +125,10 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|integer',
             'image' => 'nullable|string',
-            'shipment_fee' => 'nullable|integer'
+            'shipment_fee' => 'nullable|integer',
+            'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000'
+
         ]);
 
         if($request->hasFile('image')){
@@ -135,8 +138,24 @@ class ProductController extends Controller
 
             $image_url = Cloudder::show(Cloudder::getPublicId());
         }
+
+        if($request->hasFile('side_view')){
+            $side_view = $request->file('side_view')->getRealPath();
+
+            Cloudder::upload($side_view, null);
+
+            $side_url = Cloudder::show(Cloudder::getPublicId());
+        }
+
+        if($request->hasFile('front_view')){
+            $front_view = $request->file('front_view')->getRealPath();
+
+            Cloudder::upload($front_view, null);
+
+            $front_url = Cloudder::show(Cloudder::getPublicId());
+        }
         
-    
+    //simply delete the former image before updating it with the new one on the server to save space
         if($request->hasFile('image')){
             $url_id = $product->image_url;
             $url_arr = explode("/",$url_id);
@@ -145,6 +164,25 @@ class ProductController extends Controller
             $publicId = $url_last_id[0];
             Cloudder::destroyImage($publicId);
             $product->image_url = $image_url;
+        }
+        if($request->hasFile('side_view')){
+            $url_id = $product->side_url;
+            $url_arr = explode("/",$url_id);
+            $url_last = count($url_arr)-1;
+            $url_last_id = explode(".", $url_arr[$url_last]);
+            $publicId = $url_last_id[0];
+            Cloudder::destroyImage($publicId);
+            $product->side_url = $side_url;
+        }
+
+        if($request->hasFile('front_view')){
+            $url_id = $product->front_url;
+            $url_arr = explode("/",$url_id);
+            $url_last = count($url_arr)-1;
+            $url_last_id = explode(".", $url_arr[$url_last]);
+            $publicId = $url_last_id[0];
+            Cloudder::destroyImage($publicId);
+            $product->front_url = $front_url;
         }
         $product_all = $request->all();
         $product->fill($product_all)->update();
@@ -161,12 +199,29 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        //extracts the public id for image_url and use it to delete the image from cloudinary server 
         $url_id = $product->image_url;
         $url_arr = explode("/",$url_id);
         $url_last = count($url_arr)-1;
         $url_last_id = explode(".", $url_arr[$url_last]);
         $publicId = $url_last_id[0];
         Cloudder::destroyImage($publicId);
+        //extracts the public id for side_url and use it to delete the image from cloudinary server
+        $url_id = $product->side_url;
+        $url_arr = explode("/",$url_id);
+        $url_last = count($url_arr)-1;
+        $url_last_id = explode(".", $url_arr[$url_last]);
+        $publicId = $url_last_id[0];
+        Cloudder::destroyImage($publicId);
+        //extracts the public id for front_url and use it to delete the image from cloudinary server
+        $url_id = $product->front_url;
+        $url_arr = explode("/",$url_id);
+        $url_last = count($url_arr)-1;
+        $url_last_id = explode(".", $url_arr[$url_last]);
+        $publicId = $url_last_id[0];
+        Cloudder::destroyImage($publicId);
+
+        //deletes the particular record from the database
         $product->delete();
         return $product;
     }
