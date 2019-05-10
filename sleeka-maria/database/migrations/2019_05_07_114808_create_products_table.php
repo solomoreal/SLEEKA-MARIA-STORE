@@ -20,6 +20,10 @@ class CreateProductsTable extends Migration
             $table->integer('shipment_price')->nullable();
             $table->text('image_url');
             $table->text('description');
+            //$table->integer('colour_id')->unsigned()->nullable();
+            //$table->foreign('colour_id')->references('id')->on('colours')->onDelete('cascade');
+            //$table->integer('category_id')->unsigned()->nullable();
+            //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
