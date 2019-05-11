@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Arvo|Roboto');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 14px;
+}
+
+hr {
+    color: #40283E;
+}
+
+header nav {
+    background-color: #0D0D0D;
+}
+header .navbar-brand {
+    font-weight: bold;
+    color: #F2958D;
+    font-family: 'Arvo', serif;
+}
+
+div.dropdown-menu {
+    background-color: #0D0D0D;
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-item{
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-item:hover{
+    color: #F2958D;
+}
+
+.navbar i {
+    color: #fff;
+}
+
+header nav a{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #fff;
+}
+header nav a:hover {
+    color: #F2958D;
+}
+
+header .fa-shopping-cart {
+    color: #fff;
+    font-size: 0.8rem;
+}
+header .fa-shopping-cart {
+    color: #F2958D;
+}
+
+header span {
+    padding-left: 6px;
+    font-size: 0.8rem;
+}
+
+header ul li .login {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+header ul li .login:hover {
+    font-size: 0.9rem;
+    color: #F2958D;
+}
+header ul li .btn-outline-signup {
+    font-size: 0.8rem;
+    border: solid 1px #F2958D;
+    color: #ccc;
+}
+
+header ul li .btn-outline-signup:hover {
+    border: none;
+    background: #F2958D;
+    color: #fff;
+}
+
+.input-group {
+    width: 100%;
+}
+
+form .form-control {
+    display: block;
+}
+
+form .form-inline{
+    position: absolute;
+    right: 0;
+}
+
+form .input-group-text{
+    background-color: #F2958D;
+    border: none;
+}
+
+form input[type="text"] {
+    border-radius: 20px;
+    font-size: 1rem;
+    background: #0D0D0D;
+}
+
+
+.carousel-item{
+    height: 500px;
+} 
+.carousel-item img{
+    height: 500px;
+}
+ .carousel-caption h3 {
+    color: #0D0D0D;
+    font-weight: bold;
+ }
+
+ .btn-outline-inf {
+     border: solid 1px #8C2E26;
+     color: #000;
+ }
+ .btn-outline-inf:hover {
+    background: #8C2E26;
+    border: solid 1px #8C2E26;
+    color: #fff;
+}
+
+.featured-product .carousel-item{
+    height: 300px;
+} 
+.featured-product .carousel-item img{
+    height: 400px;
+}
+ .carousel-caption h3 {
+    color: #0D0D0D;
+    font-weight: bold;
+ }
+
+/*Featured Collection
+================================*/
+.featured-product .featured-title h2{
+    margin-top: 5rem;
+    font-size: 1.5rem;
+}
+.featured-product a {
+    color: #0D0D0D;
+    text-decoration: none;
+}
+
+.product-card {
+    width: 40vh;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 6px -3px #ebe9e9;
+}
+.product-card img {
+    height: 300px;
+}
+.product-card img:hover{
+    opacity: 0.5;
+}
+
+.product-card .product-text{
+    line-height: 1.5rem;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+.product-text .product-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.product-card del {
+    color: #ff0000;
+}
+
+
+.footer {
+    height: 50vh;
+    background: #0D0D0D;
+}
+
+
+
+
+
+
+@media only screen and (max-width : 992px) {
+    .featured-product .featured-title {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+    .featured-product .featured-title {
+        font-size: 1rem;
+    }
+}
