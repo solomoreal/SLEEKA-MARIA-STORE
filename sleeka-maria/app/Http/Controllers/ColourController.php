@@ -14,7 +14,8 @@ class ColourController extends Controller
      */
     public function index()
     {
-        //
+        $colours = Colour::all();
+        return $colours;
     }
 
     /**
@@ -35,7 +36,15 @@ class ColourController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'colour_name' => 'required|string'
+        ]);
+
+        $colour = new Colour();
+        $colour->colour_name = $request->colour_name;
+        $colour->save();
+        return $colour;
+
     }
 
     /**
@@ -57,7 +66,7 @@ class ColourController extends Controller
      */
     public function edit(Colour $colour)
     {
-        //
+        return $colour;
     }
 
     /**
@@ -69,7 +78,13 @@ class ColourController extends Controller
      */
     public function update(Request $request, Colour $colour)
     {
-        //
+        $this->validate($request, [
+            'colour_name' => 'required|string'
+        ]);
+
+        $colour->colour_name = $request->colour_name;
+        $colour->updatr();
+        return $colour;
     }
 
     /**
@@ -80,6 +95,7 @@ class ColourController extends Controller
      */
     public function destroy(Colour $colour)
     {
-        //
+        $colour->delete();
+        return $colour;
     }
 }
