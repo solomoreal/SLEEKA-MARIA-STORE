@@ -1,12 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" href="#">SLEEKA-MARIA</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle"
+                        aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- <span class="navbar-toggler-icon"></span> -->
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbartoggle">
+                        <ul class="navbar-nav m-auto text-center">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Kids frames</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Adult frames</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Wrist Watches</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Foot wears</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Nigeria Tailored wears</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Cars</a>
+                                </div>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Contact us</a>
+                            </li> -->
+                            <li><a class="nav-link" href="shop.html"><i class="fas fa-shopping-cart"></i><span
+                                        class="cart">Cart(1)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link login" href="#">login<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-outline-signup" href="#">signup<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for products"
+                                    aria-label="Search" aria-describedby="basic-addon1">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="col s12 content-area">
+            <div class="row">
+                <div id="sr-prev" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="20000">
+                            <img src="./img/img1.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-sm-block">
+                                <h3>Up to 25% off women jackets!l</h3>
+                                <a href="#" class="btn btn-outline-inf">SHOP NOW!!</a>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-interval="2000">
+                            <img src="./img/img.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-sm-block">
+                                <h3>Up to 25% off women jackets!l</h3>
+                                <a href="#" class="btn btn-outline-inf">SHOP NOW!!</a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/img2.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-sm-block">
+                                <h3>Up to 25% off women jackets!l</h3>
+                                <a href="#" class="btn btn-outline-inf">SHOP NOW!!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-product">
+                <div class="featured-title container">
+                    <h2>Featured Collections</h2>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Wrist Watches-->
+            <div class="featured-product">
+                <div class="featured-title container">
+                    <h2>Wrist Watches</h2>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/wrist1.0.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Geneva Full Steel Unisex Wristwatch - Gold/ Blue
+                                            </p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/watch1/1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Keep Moving Lion Head Gold Steel Men's Wrist Watch
+                                                -full Gold</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/watch1/2.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">FNGEEN Luxury Studded Unisex Bracelet Wristwatch
+                                                With Date - Black</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img//watches/watch1/rea.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Yuhas Bracelet Watch For Women- Brown</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer Wears-->
+            <div class="featured-product">
+                <div class="featured-title">
+                    <h2>Foots Wears</h2>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/footwears/1 (2).jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Fashion Foot Wear</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/footwears/1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">BB Foot Wears Men Casual Loafers Shoe</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/footwears/1 (2).jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Fashion Foot Wear</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/watches/footwears/1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Men Casual Loafers Shoe</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Tailored Wears-->
+            <div class="featured-product">
+                <div class="featured-title container">
+                    <h2>Nigeria tailored wears</h2>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Cars Section-->
+            <div class="featured-product">
+                <div class="featured-title container">
+                    <h2>Cars</h2>
+                    <hr>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="container">
+                                <a href="">
+                                    <div href="#" class="product-card">
+                                        <img src="img/img1.jpg" width="100%" height="100%">
+                                        <div class="product-text">
+                                            <p class="product-title">Big Glases</p>
+                                            <del>$199.99</del>
+                                            <p class="price">$299.99</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footer">
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
