@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subcategory;
 use Illuminate\Http\Request;
+use App\Category;
 
 class SubcategoryController extends Controller
 {
@@ -14,7 +15,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = Subcategory::latest();
+        return $subcategories;
     }
 
     /**
@@ -35,7 +37,18 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'subcategory_name' => 'required',
+            'category_id' => 'required'|'integer'
+        ]);
+
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $subcategory = new Subcategory();
+        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->category_id = $category_id;
+        $category->subcategories()->save($subcategory);
+        return $subcategory;
     }
 
     /**
@@ -46,7 +59,7 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        //
+        return $subcategory;
     }
 
     /**
@@ -57,7 +70,7 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        //
+        return $subcategory;
     }
 
     /**
@@ -69,7 +82,17 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, Subcategory $subcategory)
     {
-        //
+        $this->validate($request, [
+            'subcategory_name' => 'required',
+            'category_id' => 'required'|'integer'
+        ]);
+
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->category_id = $category_id;
+        $category->subcategories()->update($subcategory);
+        return $subcategory;
     }
 
     /**
@@ -80,6 +103,7 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        $subcategory->delete();
+        return $subcategory;
     }
 }
