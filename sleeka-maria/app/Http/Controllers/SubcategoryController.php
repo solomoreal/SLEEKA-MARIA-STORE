@@ -15,7 +15,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::latest();
+        $subcategories = Subcategory::latest()->get();
         return $subcategories;
     }
 
@@ -37,10 +37,12 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        
+        $this->validate($request,[
             'subcategory_name' => 'required',
-            'category_id' => 'required'|'integer'
+            'category_id' => 'required|integer'
         ]);
+        
 
         $category_id = $request->category_id;
         $category = Category::findOrFail($category_id);

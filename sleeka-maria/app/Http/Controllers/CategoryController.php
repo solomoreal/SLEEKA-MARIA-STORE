@@ -40,10 +40,11 @@ class CategoryController extends Controller
         $this->validate($request,[
             'category_name' => 'required|string'
         ]);
-        $subcategory = $request->subcategory_id ? Subcategory::findOrFail($request->subcategory_id) : null;
+        
         $category = new Category();
-        $category->category_name = $request->category_name;
-        $category->subcategories()->associate($subcategory);
+        $category->category_name = $request->category_name; 
+        $category->save();
+        return $category;
 
     }
 
