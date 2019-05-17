@@ -37,45 +37,123 @@
                 </div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="orders.html">
-                            <i class="ni ni-cart text-blue"></i>View Orders
+                        <a class="nav-link" href="index.html">
+                            <i class="ni ni-shop text-blue"></i>Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-tag text-blue"></i>Categories
+                        <a class="nav-link active" href="#collapseOrders" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOrders">
+                            <i class="ni ni-delivery-fast text-blue"></i>Orders
                         </a>
                     </li>
+                    <div class="collapse container" id="collapseOrders">
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                New Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="paid_order.html">
+                                Paid On Delivery
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pending_orders.html">
+                                Pending Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rejected_orders.html">
+                                Rejected Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cancelled_orders.html">
+                                Cancelled Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="completed_orders.html">
+                                Completed Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="all_orders.html">
+                                All Orders
+                            </a>
+                        </li>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-send text-blue"></i> Upload Item
+                        <a class="nav-link" href="#collapseProducts" data-toggle="collapse" aria-expanded="false" aria-controls="collapseProducts">
+                            <i class="ni ni-bag-17 text-blue"></i>Products
                         </a>
                     </li>
+                    <div class="collapse container" id="collapseProducts">
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                All Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                Add Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                Sub-Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                Colors
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                Shipping
+                            </a>
+                        </li>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-palette text-blue"></i> Add Color
+                        <a class="nav-link" href="#collapseAdmin" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAdmin">
+                            <i class="ni ni-circle-08 text-blue"></i> Manage Admins
                         </a>
                     </li>
+                    <div class="collapse container" id="collapseAdmin">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                Add New Admin
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                Edit Admins
+                            </a>
+                        </li>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-delivery-fast text-blue"></i> Manage Shipping
+                        <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
+                            <i class="ni ni-single-02 text-blue"></i>Customers
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-collection text-blue"></i> View Items
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-circle-08 text-blue"></i> Create New Admin
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-single-02 text-blue"></i> Manage Users
-                        </a>
-                    </li>
+                    <div class="collapse container" id="collapseCustomers">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                Reviews
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                View Customers
+                            </a>
+                        </li>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link" href="">
                             <i class="ni ni-button-power text-blue"></i>Log Out
@@ -150,6 +228,7 @@
                       <h4 class="card-title">Order ID: #122344 <br>
                         Item: SunGlass <br>
                         Color: Black <br>
+                        Size: Small <br>    
                         Quantity: 3 <br>
                         Order Address: Alakahia, Port Harcourt <br>
                         Price Per Item: #1,000 <br>
