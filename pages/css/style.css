@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Roboto');
 @import url('https://fonts.googleapis.com/css?family=Arvo|Roboto');
-@import url("https://fonts.googleapis.com/css?family=Kaushan+Script");
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script")
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 14px;
+
     box-sizing: border-box;
     background: #fff9f9;
 }
@@ -34,13 +35,13 @@ hr {
     border: solid 1px #807d7d;
 }
 
-
 header nav {
     background-color: #0D0D0D;
 }
 header .navbar-brand {
     font-weight: bold;
     color: #F2958D;
+
     font-family: "Kaushan Script", cursive;
 }
 
@@ -104,12 +105,14 @@ header ul li .btn-outline-signup:hover {
     transition: all 0.5 s ease-in-out;
 }
 
+
+
 .input-group {
     width: 100%;
 }
 
 .input-group .form-control {
-    display: block;
+
 }
 
 form .form-inline{
@@ -123,6 +126,7 @@ form .input-group-text{
 
 form input[type="text"] {
     font-size: 0.8rem;
+
     background-color: #0D0D0D;
     border: solid 1px #F2958D;
     color: #fff;
@@ -131,6 +135,7 @@ form input[type="text"] {
 
 .carousel-item{
     height: 500px;
+
     font-family: "Kaushan Script", cursive;
 } 
 .carousel-item img{
@@ -142,6 +147,7 @@ form input[type="text"] {
  }
 
  .btn-outline-inf {
+
      border: solid 2px #0D0D0D;
      padding: 5 20px;
      color: #000;
@@ -166,6 +172,12 @@ form input[type="text"] {
   background: #0D0D0D;
   color: #F2958D;
   transition: all 0.9s ease-in-out;
+ }
+ .btn-outline-inf:hover {
+    background: #8C2E26;
+    border: solid 1px #8C2E26;
+    color: #fff;
+
 }
 
 .featured-product .carousel-item{
@@ -176,6 +188,7 @@ form input[type="text"] {
 }
  .carousel-caption h3 {
     font-family: "Kaushan Script", cursive;
+
     color: #0D0D0D;
     font-weight: bold;
  }
@@ -185,6 +198,7 @@ form input[type="text"] {
 .featured-product .featured-title h2{
     margin-top: 5rem;
     font-size: 1.5rem;
+
     font-weight: bold;
 }
 .featured-product a {
@@ -193,6 +207,7 @@ form input[type="text"] {
 }
 
 .product-card {
+
     position: relative;
     margin-bottom: 3rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -428,6 +443,54 @@ footer button.btn {
 
 footer input[type="text"]{
     outline: none;
+=======
+    width: 40vh;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 6px -3px #ebe9e9;
+}
+.product-card img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+.product-card img:hover{
+    opacity: 0.5;
+}
+
+.product-card .product-text{
+    line-height: 1.5rem;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+.product-text .product-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.product-card del {
+    color: #ff0000;
+}
+
+/* News Letter
+=========================================*/
+.newsletter input {
+    width: 70%;
+    padding: 6px;
+    padding-bottom: 9px;
+    outline: none;
+    background: #ccc;
+    border: none;
+}
+.newsletter button {
+    padding: 10px;
+    width: 20%;
+    background: #0D0D0D;
+    color: #fff;
+    border: none;
+
 }
 
 /* Products Ads Card
@@ -448,6 +511,7 @@ footer input[type="text"]{
 ======================================*/
 
 .bg-footer{
+
     margin-top: 2rem;
     min-height: 30vh;
     color: #0000ff;
@@ -462,6 +526,7 @@ footer input[type="text"]{
     margin-top: px;
     color: #0D0D0D;
     padding: 10px;
+
     padding-left: 3rem;
 }
 
@@ -516,6 +581,7 @@ footer h5 {
 
 
 
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media only screen and (max-width: 575.98px) { 
     .input-group .form-control {
@@ -551,5 +617,34 @@ footer h5 {
     .input-group .form-control {
         display:;
         width: 21rem;
+=======
+footer .company {
+  color: #d8bd63;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  width: 30vw;
+}
+
+footer span img{
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+
+
+
+
+
+@media only screen and (max-width : 992px) {
+    .featured-product .featured-title {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+    .featured-product .featured-title {
+        font-size: 1rem;
+
     }
 }

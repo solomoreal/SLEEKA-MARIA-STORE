@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sleeka Maria | Dashboard</title>
+    <title>Sleeka Maria | Dashboard-Orders</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
     <link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">
@@ -38,18 +38,18 @@
                 </div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">
+                        <a class="nav-link" href="index.html">
                             <i class="ni ni-shop text-blue"></i>Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#collapseOrders" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOrders">
+                        <a class="nav-link active" href="#collapseOrders" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOrders">
                             <i class="ni ni-delivery-fast text-blue"></i>Orders
                         </a>
                     </li>
                     <div class="collapse container" id="collapseOrders">
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.html">
+                            <a class="nav-link active" href="orders.html">
                                 New Orders
                             </a>
                         </li>
@@ -168,7 +168,7 @@
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                 <div class="container-fluid">
-                    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Home</a>
+                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">New Orders</a>
                     <!-- User -->
                     <ul class="navbar-nav align-items-center d-none d-md-flex">
                         <li class="nav-item dropdown">
@@ -213,198 +213,190 @@
                 </div>
             </nav>
             <div class="header bg-gradient-primary pt-md-7">
-                <div class="h4 mb-0 text-white text-uppercase text-center font-weight-bold">
-                    <p>Good Day, Jessica.
-                        <br>This is what is happening in your Store right now</p>
-                </div>
             </div>
             <div class="container">
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Todays Sale</h5>
-                                    <span class="h2 font-weight-bold mb-0">#350,897</span>
+                <div class="row align-items-center mt-3 bg-dark">
+                    <div class="col">
+                        <h3 class="mb-0 text-white">Recent Orders</h3>
+                    </div>
+                    <div class="col text-right">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Filter
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
+                                <a class="dropdown-item" href="#">Pending</a>
+                                <a class="dropdown-item" href="#">Delivered</a>
+                                <a class="dropdown-item" href="#">Cancelled</a>
+                                <a class="dropdown-item" href="#">Regected</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price Per Item</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Date</th>
 
-                                    <i class="ni ni-sound-wave float-right icon icon-shape bg-danger text-white rounded-circle shadow"></i>
-                                </div>
-                            </div>
+                                    <th scope="col">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <tr>
+                                    <th scope="row">
+                                        #122344
+                                    </th>
+                                    <td>
+                                        SunGlass
+                                    </td>
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        #3,450
+                                    </td>
+                                    <td>
+                                        Pending
+                                    </td>
+                                    <td>
+                                        12/3/2019
+                                    </td>
+                                    <td>
+                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
+                                    </td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        #164344
+                                    </th>
+                                    <td>
+                                        Glass Frame
+                                    </td>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        Delivered
+                                    </td>
+                                    <td>
+                                        12/3/2019
+                                    </td>
+                                    <td>
+                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        #127554
+                                    </th>
+                                    <td>
+                                        SunGlass
+                                    </td>
+                                    <td>
+                                        5
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        #7,450
+                                    </td>
+                                    <td>
+                                        Cancelled
+                                    </td>
+                                    <td>
+                                        12/3/2019
+                                    </td>
+                                    <td>
+                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        #876543
+                                    </th>
+                                    <td>
+                                        Case
+                                    </td>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        #2,000
+                                    </td>
+                                    <td>
+                                        Pending
+                                    </td>
+                                    <td>
+                                        12/3/2019
+                                    </td>
+                                    <td>
+                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        #994633
+                                    </th>
+                                    <td>
+                                        SunGlass
+                                    </td>
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        #1,450
+                                    </td>
+                                    <td>
+                                        #3,450
+                                    </td>
+                                    <td>
+                                        Regected
+                                    </td>
+                                    <td>
+                                        12/3/2019
+                                    </td>
+                                    <td>
+                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="row align-items-center justify-content-xl-between">
+                    <div class="col-xl-6">
+                        <div class="copyright text-center text-xl-left text-muted">
+                            &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">New Users</h5>
-                                    <span class="h2 font-weight-bold mb-0">357</span>
-                                    <i class="ni ni-user-run float-right icon icon-shape bg-warning text-white rounded-circle shadow"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            </footer>
         </div>
-        <div class="container">
-            <div class="row align-items-center mt-3 bg-dark">
-                <div class="col">
-                    <h3 class="mb-0 text-white">Recent Orders</h3>
-                </div>
-                <div class="text-right">
-                    <a class="btn btn-sm btn-dark text-white">
-                        See All Orders
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Item</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Price Per Item</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <tr>
-                                <th scope="row">
-                                    #122344
-                                </th>
-                                <td>
-                                    SunGlass
-                                </td>
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    #3,450
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                                <td>
-                                    <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    #164344
-                                </th>
-                                <td>
-                                    Glass Frame
-                                </td>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    Delivered
-                                </td>
-                                <td>
-                                    <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    #127554
-                                </th>
-                                <td>
-                                    SunGlass
-                                </td>
-                                <td>
-                                    5
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    #7,450
-                                </td>
-                                <td>
-                                    Cancelled
-                                </td>
-                                <td>
-                                    <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    #876543
-                                </th>
-                                <td>
-                                    Case
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    #2,000
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                                <td>
-                                    <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    #994633
-                                </th>
-                                <td>
-                                    SunGlass
-                                </td>
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    #1,450
-                                </td>
-                                <td>
-                                    #3,450
-                                </td>
-                                <td>
-                                    Regected
-                                </td>
-                                <td>
-                                    <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-            <div class="col-xl-6">
-                <div class="copyright text-center text-xl-left text-muted">
-                    &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    </div>
     </div>
     <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
