@@ -1,15 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Roboto');
 @import url('https://fonts.googleapis.com/css?family=Arvo|Roboto');
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script")
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 14px;
+
+    box-sizing: border-box;
+    background: #fff9f9;
 }
 
 hr {
     color: #40283E;
+}
+
+.see-all{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 2rem;
+    padding: 5px;
+    border: solid 1px #010122;
+    color: #fff;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.see-all:hover {
+    background: #0D0D0D;
+    color: #F2958D;
+    border: solid 1px #807d7d;
 }
 
 header nav {
@@ -18,7 +41,8 @@ header nav {
 header .navbar-brand {
     font-weight: bold;
     color: #F2958D;
-    font-family: 'Arvo', serif;
+
+    font-family: "Kaushan Script", cursive;
 }
 
 div.dropdown-menu {
@@ -72,20 +96,23 @@ header ul li .btn-outline-signup {
     font-size: 0.8rem;
     border: solid 1px #F2958D;
     color: #ccc;
+    
 }
 
 header ul li .btn-outline-signup:hover {
-    border: none;
     background: #F2958D;
     color: #fff;
+    transition: all 0.5 s ease-in-out;
 }
+
+
 
 .input-group {
     width: 100%;
 }
 
-form .form-control {
-    display: block;
+.input-group .form-control {
+
 }
 
 form .form-inline{
@@ -99,11 +126,17 @@ form .input-group-text{
 
 form input[type="text"] {
     font-size: 0.8rem;
+
+    background-color: #0D0D0D;
+    border: solid 1px #F2958D;
+    color: #fff;
 }
 
 
 .carousel-item{
     height: 500px;
+
+    font-family: "Kaushan Script", cursive;
 } 
 .carousel-item img{
     height: 500px;
@@ -114,13 +147,37 @@ form input[type="text"] {
  }
 
  .btn-outline-inf {
-     border: solid 1px #8C2E26;
+
+     border: solid 2px #0D0D0D;
+     padding: 5 20px;
      color: #000;
+     font-weight: bold;
+     text-transform: uppercase;
+ }
+ .btn-outline-inf:hover {
+   background: #0D0D0D;
+   color: #F2958D;
+   transition: all 0.9s ease-in-out;
+}
+
+.btn-outline-buy {
+    border: solid 2px #0D0D0D;
+    background: #0D0D0D;
+    padding: 5 20px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn-outline-buy:hover {
+  background: #0D0D0D;
+  color: #F2958D;
+  transition: all 0.9s ease-in-out;
  }
  .btn-outline-inf:hover {
     background: #8C2E26;
     border: solid 1px #8C2E26;
     color: #fff;
+
 }
 
 .featured-product .carousel-item{
@@ -130,6 +187,8 @@ form input[type="text"] {
     height: 400px;
 }
  .carousel-caption h3 {
+    font-family: "Kaushan Script", cursive;
+
     color: #0D0D0D;
     font-weight: bold;
  }
@@ -139,6 +198,8 @@ form input[type="text"] {
 .featured-product .featured-title h2{
     margin-top: 5rem;
     font-size: 1.5rem;
+
+    font-weight: bold;
 }
 .featured-product a {
     color: #0D0D0D;
@@ -146,6 +207,243 @@ form input[type="text"] {
 }
 
 .product-card {
+
+    position: relative;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width:;
+    height: 380px;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.product-card  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 1s ease-in-out;
+    padding: 1.5rem;
+}
+.product-card img:hover{
+    transform: scale(1.2);
+}
+
+.product-title {
+    padding: 5px;
+    font-size: 1rem;
+}
+.product-card del {
+    color: #ff0000;
+}
+
+.product-card .add-to-cart {
+    position: absolute;
+    background: #0D0D0D;
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 5px;
+    bottom: 10px;
+    right: 0;
+}
+
+.product-card .add-to-cart:hover {
+    opacity: 0.9;
+    transition: all 0.5s ease-in-out;
+}
+
+
+/* BreadCrumbs
+=========================================*/
+
+.view-product ul.breadcrumb {
+    margin-top: 5rem;
+    padding: 10px 16px;
+    list-style: none;
+    background: transparent;
+  }
+  
+  /* Display list items side by side */
+  .view-product ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Add a slash symbol (/) before/behind each list item */
+  .view-product ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Add a color to all links inside the list */
+  .view-product ul.breadcrumb li a {
+    color: #F2958D;
+    text-decoration: none;
+  }
+  
+  /* Add a color on mouse-over */
+  .view-product ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
+
+/* View Product Img
+=========================================*/
+.product-img h2 {
+    /* font-size: 1rem; */
+}
+
+.product-img .view-product-img img{
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    object-fit: fill;
+    margin-bottom: 0.5rem;
+} 
+
+.product-img .img img{
+    display: inline-block;
+    max-width: 98%;
+    height: 300px;
+    width: 45%;
+    margin-left: 2%;
+    object-fit: fill;
+}
+
+.product-img img:hover{
+    opacity: 0.7;
+}
+
+.product-details  .prod{
+    text-align: center;
+}
+
+.product-details h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.product-img p{
+    font-size: 1.2rem;
+}
+
+ 
+
+.product-details .price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.product-details form{
+    margin-top:
+}
+
+/* Color & Size styling
+=========================================*/
+.product-details form select{
+    width: 6rem;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #F2958D;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.product-details select option{
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.product-details select option:active{
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #F2958D;
+}
+
+/*  Social Links
+==============================*/
+
+.product-details .socail-link{
+    margin-top: 2rem;
+    font-size: 1rem;
+    padding: 2px;
+}
+
+.product-details .socail-link ul li{
+    padding: 10px;
+    display: inline;
+}
+
+.product-details .socail-link ul li a{
+    text-decoration: none;
+    color: #0D0D0D;
+    padding: 3px;
+}
+
+/*  Products Description
+==============================*/
+.product-description {
+    padding: 10px;
+    text-align: center;
+}
+
+.product-description h2{
+    font-weight: bold;
+    font-size: 1rem;
+    background: #0D0D0D;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+
+/*  Products Sugestion
+==============================*/
+.product-sugestion .sugestion-title h2{
+    font-size: 1rem;
+}
+
+/* News Letter
+=========================================*/
+footer .form-container {
+    margin-bottom: 5rem;
+}
+footer .input-group {
+    margin: 20px auto;
+    width: 100%;
+}
+footer input.btn.btn-lg {
+    width: 60%;
+    height: 40px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: solid 1px #F2958D;
+    color: #fff;
+}
+
+footer button.btn {
+    background: #F2958D;
+    color: #0D0D0D;
+    font-weight: bold;
+    font-size: 0.8rem;
+    width: 30%;
+    height: 40px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+footer input[type="text"]{
+    outline: none;
+=======
     width: 40vh;
     margin-bottom: 2rem;
     box-shadow: 0 8px 6px -3px #ebe9e9;
@@ -192,6 +490,7 @@ form input[type="text"] {
     background: #0D0D0D;
     color: #fff;
     border: none;
+
 }
 
 /* Products Ads Card
@@ -212,7 +511,9 @@ form input[type="text"] {
 ======================================*/
 
 .bg-footer{
-    min-height: 50vh;
+
+    margin-top: 2rem;
+    min-height: 30vh;
     color: #0000ff;
     padding: 5rem;
     background: #0D0D0D;
@@ -222,8 +523,10 @@ form input[type="text"] {
     background: #F2958D;
 }
 .bg-small p {
-    margin-top: 10px;
+    margin-top: px;
     color: #0D0D0D;
+    padding: 10px;
+
     padding-left: 3rem;
 }
 
@@ -274,6 +577,47 @@ footer h5 {
   
 }
 
+
+
+
+
+
+/* Extra small devices (portrait phones, less than 576px)*/
+@media only screen and (max-width: 575.98px) { 
+    .input-group .form-control {
+        display: block;
+      
+    }
+
+    .product-img .view-product-small{
+        display: inline;
+        width: 10%;
+        height: auto;
+    }
+ }
+
+/* Small devices (landscape phones, less than 768px)*/
+@media only screen and (max-width: 767.98px) {
+    .input-group .form-control {
+        display: block;
+        width: 21rem;
+    }
+}
+
+/* Medium devices (tablets, less than 992px)*/
+@media only screen and (min-width: 991.98px) {
+    .input-group .form-control {
+        display: block;
+        width: 30rem;
+    }
+}
+
+/* Large devices (desktops, less than 1200px)*/
+@media only screen and (max-width: 1199.98px) {
+    .input-group .form-control {
+        display:;
+        width: 21rem;
+=======
 footer .company {
   color: #d8bd63;
   font-size: 1.9rem;
@@ -301,5 +645,6 @@ footer span img{
 @media only screen and (max-width : 360px) {
     .featured-product .featured-title {
         font-size: 1rem;
+
     }
 }
