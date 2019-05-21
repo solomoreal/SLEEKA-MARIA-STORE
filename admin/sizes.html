@@ -91,7 +91,7 @@
                     </li>
                     <div class="collapse container" id="collapseProducts">
                         <li class="nav-item">
-                            <a class="nav-link active" href="products.html">
+                            <a class="nav-link" href="products.html">
                                 All Products
                             </a>
                         </li>
@@ -116,7 +116,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sizes.html">
+                            <a class="nav-link active" href="sizes.html">
                                 Sizes
                             </a>
                         </li>
@@ -173,7 +173,7 @@
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                 <div class="container-fluid">
-                    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Ladies Sexy Cat Eye Frames</a>
+                    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Products Size</a>
                     <!-- User -->
                     <ul class="navbar-nav align-items-center d-none d-md-flex">
                         <li class="nav-item dropdown">
@@ -221,106 +221,175 @@
             </div>
         </div>
         <div class="container">
-            <div class="row mt-3">
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="assets/img/brand/item.jpg" class="img-fluid">
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="productCoverImage">Change Product Cover Image</label>
-                                <input type="file" class="form-control-file" id="productCoverImage">
-                            </div>
-                        </form>
-                    </div>
+            <div class="input-group mt-3 mb-3">
+                <input type="text" class="form-control" placeholder="Size Name...">
+                <select id="category" class="form-control">
+                    <option selected>Category</option>
+                    <option value="SunGlasses">SunGlasses</option>
+                    <option value="Wrist Watch">Wrist Watch</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">Add Size</button>
                 </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="assets/img/brand/item.jpg" class="img-fluid">
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="productSideImage">Change Product Side Image</label>
-                                <input type="file" class="form-control-file" id="productSideImage">
-                            </div>
-                        </form>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    1
+                                </th>
+                                <td>
+                                    Small
+                                </td>
+                                <td>
+                                    Shirts
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Edit Size
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Small</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="input mt-3 mb-3">
+                                                        <input type="text" class="form-control" placeholder="Size Name...">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>Category</option>
+                                                            <option value="SunGlasses">SunGlasses</option>
+                                                            <option value="Wrist Watch">Wrist Watch</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a href="category.html" type="button" class="btn btn-primary">Save changes</a>
+                                                    <a href="category.html" type="button" class="btn btn-danger">Delete Size</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    1
+                                </th>
+                                <td>
+                                    Small
+                                </td>
+                                <td>
+                                    Shirts
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Edit Size
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Small</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="input mt-3 mb-3">
+                                                        <input type="text" class="form-control" placeholder="Size Name...">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>Category</option>
+                                                            <option value="SunGlasses">SunGlasses</option>
+                                                            <option value="Wrist Watch">Wrist Watch</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a href="category.html" type="button" class="btn btn-primary">Save changes</a>
+                                                    <a href="category.html" type="button" class="btn btn-danger">Delete Size</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    1
+                                </th>
+                                <td>
+                                    Small
+                                </td>
+                                <td>
+                                    Shirts
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Edit Size
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Small</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="input mt-3 mb-3">
+                                                        <input type="text" class="form-control" placeholder="Size Name...">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>Category</option>
+                                                            <option value="SunGlasses">SunGlasses</option>
+                                                            <option value="Wrist Watch">Wrist Watch</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a href="category.html" type="button" class="btn btn-primary">Save changes</a>
+                                                    <a href="category.html" type="button" class="btn btn-danger">Delete Size</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="assets/img/brand/item.jpg" class="img-fluid">
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="productFrontImage">Change Product Front Image</label>
-                                <input type="file" class="form-control-file" id="productFrontImage">
-                            </div>
-                        </form>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="row align-items-center justify-content-xl-between">
+                <div class="col-xl-6">
+                    <div class="copyright text-center text-xl-left text-muted">
+                        &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
                     </div>
                 </div>
             </div>
-            <form>
-                <div class="form-row mt-3">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Product Name</label>
-                        <input value="Ladies Sexy Cat Eye Frames" type="text" class="form-control" id="inputEmail4" placeholder="">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Price</label>
-                        <input value="#1,890" type="text" class="form-control" id="inputPassword4" placeholder="">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="category">Category</label>
-                        <select id="category" class="form-control">
-                            <option selected>SunGlasses</option>
-                            <option value="Wrist Watch">Wrist Watch</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="subcategory">Sub-Category</label>
-                        <select id="subcategory" class="form-control">
-                            <option selected>Ladies Glasses</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" value="3" class="form-control" id="quantity">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="category">Color</label>
-                        <select id="category" class="form-control" multiple="">
-                            <option selected>Blue</option>
-                            <option value="Red">Red</option>
-                            <option value="Red">Yellow</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" rows="5" id="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium, magni, tempore. Iure doloremque nemo saepe quod sapiente, tempore nihil incidunt modi ipsam amet animi recusandae quia, facere quo veniam, nobis.
-                        </textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Update Product</button>
-                <button type="submit" class="btn btn-danger float-right">Delete this Product</button>
-            </form>
-        </div>
-    </div>
-    <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-            <div class="col-xl-6">
-                <div class="copyright text-center text-xl-left text-muted">
-                    &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
     </div>
     </div>
     <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
