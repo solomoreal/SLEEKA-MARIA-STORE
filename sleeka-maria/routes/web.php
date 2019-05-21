@@ -19,3 +19,4 @@ Route::resource('/products', 'ProductController');
 Route::resource('/colours', 'ColourController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/subcategories', 'SubcategoryController');
+Route::resource('/sizes', 'SizeController');

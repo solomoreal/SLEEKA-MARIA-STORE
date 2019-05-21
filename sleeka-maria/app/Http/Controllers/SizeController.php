@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Size;
+use App\Category;
 use Illuminate\Http\Request;
 
 class SizeController extends Controller
@@ -14,7 +15,10 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
+        //$sizes = SIze::latest()->get();
+        $sizes = Size::find(1);
+
+        return $sizes->category;
     }
 
     /**
@@ -35,7 +39,20 @@ class SizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'size' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $size = new Size();
+        $size->size = $request->size;
+        $size->category_id = $category_id;
+        $category->sizes()->save($size);
+        return $size;
+
+
     }
 
     /**
@@ -46,7 +63,7 @@ class SizeController extends Controller
      */
     public function show(Size $size)
     {
-        //
+        return $size;
     }
 
     /**
@@ -57,7 +74,7 @@ class SizeController extends Controller
      */
     public function edit(Size $size)
     {
-        //
+        return $size;
     }
 
     /**
@@ -69,7 +86,18 @@ class SizeController extends Controller
      */
     public function update(Request $request, Size $size)
     {
-        //
+        $this->validate($request, [
+            'size' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $size->size = $request->size;
+        $size->category_id = $category_id;
+        $category->sizes()->update($size);
+        return $size;
+
     }
 
     /**
@@ -80,6 +108,7 @@ class SizeController extends Controller
      */
     public function destroy(Size $size)
     {
-        //
+        $size->delete();
+        return $size;
     }
 }
