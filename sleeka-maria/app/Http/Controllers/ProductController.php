@@ -17,8 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return $products;
-
+             return $products;
     }
 
     /**
@@ -39,6 +38,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request,[
             'product_name' => 'required|string',
             'description' => 'required|string',
@@ -82,7 +82,9 @@ class ProductController extends Controller
             'shipment_price' => $request->shipment_price * 100,
             'image_url' => $image_url,
             'side_url' => $side_url,
-            'front_url' => $front_url
+            'front_url' => $front_url,
+            'category_id' => $request->category_id,
+            'colour_id' => $request->colour_id
         ]);
         $product->save();
         return $product;

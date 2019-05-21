@@ -14,8 +14,6 @@ class AddColourIdAndCategoryIdToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('colour_id')->nullable();
-            $table->foreign('colour_id')->references('id')->on('colours')->onDelete('cascade');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
@@ -29,7 +27,7 @@ class AddColourIdAndCategoryIdToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('colour_id');
+            $table->dropForeign(['category_id']);
             $table->dropColumn('category_id');
         });
     }

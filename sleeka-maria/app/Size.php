@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Colour extends Model
+class Size extends Model
 {
-    
+    //
 }
