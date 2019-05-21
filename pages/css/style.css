@@ -302,7 +302,7 @@ header form input[type="text"] {
 /* BreadCrumbs
 =========================================*/
 
-.view-product ul.breadcrumb {
+ ul.breadcrumb {
     margin-top: 5rem;
     padding: 10px 16px;
     list-style: none;
@@ -310,28 +310,39 @@ header form input[type="text"] {
   }
   
   /* Display list items side by side */
-  .view-product ul.breadcrumb li {
+ ul.breadcrumb li {
     display: inline;
-    font-size: 18px;
+    font-size: 0.5;
+    font-weight: bold;
   }
   
   /* Add a slash symbol (/) before/behind each list item */
-  .view-product ul.breadcrumb li+li:before {
+ul.breadcrumb li+li:before {
     padding: 8px;
     color: black;
     content: "/\00a0";
   }
   
   /* Add a color to all links inside the list */
-  .view-product ul.breadcrumb li a {
+  ul.breadcrumb li a {
     color: #F2958D;
     text-decoration: none;
   }
   
   /* Add a color on mouse-over */
-  .view-product ul.breadcrumb li a:hover {
+ ul.breadcrumb li a:hover {
     color: #01447e;
     text-decoration: underline;
+  }
+  .checkout {
+      background: #fdfafa;
+  }
+
+  .checkout .checkout-table {
+      margin-top: 5rem;
+  }
+  .checkout-form {
+      margin-top: 5rem;
   }
 
 /* View Product Img
