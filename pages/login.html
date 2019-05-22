@@ -63,10 +63,10 @@
                                             id="list-item">1</span> items)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link login" href="#">login<span class="sr-only">(current)</span></a>
+                                <a class="nav-link login" href="login.html">login<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn-outline-signup" href="#">signup<span
+                                <a class="nav-link btn-outline-signup" href="signup.html">signup<span
                                         class="sr-only">(current)</span></a>
                             </li>
                         </ul>
@@ -75,130 +75,39 @@
             </nav>
         </header>
 
-        <div class="content-are">
-
-            <div class="checkout container mt-5">
+        <div class="">
+           <div class="login-form">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="container checkout-table">
-                            <!--Breadcrumbs-->
-                            <ul class="breadcrumb">
-                                <li><a href="view.html">view product</a></li>
-                                <li><a href="checkout.html">shiping information</a></li>
-                            </ul>
-                            <table class="table ">
-                                <thead>
-                                    <tr>
-                                        <th scope="">Product Name</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>$228.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>$228.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Total</td>
-                                        <td>$228.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td><b>TOTAL</b></td>
-                                        <td><b>$998.99</b></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
+                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin">
+                      <div class="card-body">
+                        <h5 class="card-title text-center">Sign In</h5>
+                        <form class="form-signin">
+                          <div class="form-label-group">
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                            <label for="inputEmail">Email address</label>
+                          </div>
+            
+                          <div class="form-label-group">
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">Password</label>
+                          </div>
+            
+                          <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                          </div>
+                          <button class="btn btn-lg btn-outline-inf btn-block text-uppercase" type="submit">Sign in</button>
+                          <hr class="my-4">
+                        </form>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="container checkout-form">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5>Contact Information</h5> 
-                                </div>
-                                <div class="col-md-6">
-                                    <p> Already have an account? <a href="#">Login</a></p>
-                                </div>
-                            </div>
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" placeholder="First name (optional)">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" placeholder="Last name">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input type="email" required class="form-control" placeholder="E-mail">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" placeholder="Phone number">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
-                                            Keep me up to date on news and exclusive offers
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <h5 class="mt-md-5">Shipping Address</h5>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apartment, street, or floor">
-                                </div>
-                                <div class="form-group">
-                                    <select id="inputState" required class="form-control">
-                                        <option selected>Country/Region</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" placeholder="City">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose State</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" required type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
-                                            <p>I have read and agree to the <a href="#">Terms & Conditions</a></p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-outline-inf">Place Order</button>
-                            </form>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
-
+              </div>
+            </body>
+           </div>
         </div>
 
 
@@ -207,9 +116,6 @@
                 <div class="col-sm-2">
                     <h6>HELP</h6>
                     <ul class="ul-list">
-                        <li>
-                            <a href="about.html">ABOUT US</a>
-                        </li>
                         <li>
                             <a href="index.html">HELP | FAQ's</a>
                         </li>
@@ -231,7 +137,7 @@
                             <a href="index.html">DELIVERY & RETURN POLICY</a>
                         </li>
                         <li>
-                            <a href="condition.html">TERMS & CONDITIONS</a>
+                            <a href="about.html">TERMS & CONDITIONS</a>
                         </li>
                         <li>
                             <a href="service.html">PRIVACY</a>
