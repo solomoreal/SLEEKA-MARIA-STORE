@@ -9,6 +9,56 @@ use Cloudder;
 
 class ProductController extends Controller
 {
+
+    
+    public function addToCart(Request $request, $id){
+        $product = Products::findOrFail($id);
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return json_encode($request->session()->get('cart'));
+    }
+
+    public function reduceItemByOne($id, Request $request){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        Session::put('cart', $cart);
+        return json_encode($request->session()->get('cart'));
+        
+    }
+
+    public function removeItem(Request $request, $id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        Session::put('cart', $cart);
+        return json_encode($request->session()->get('cart'));
+    }
+
+    public function emptyCart(){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        Session::forget('cart');
+        $cart = null;
+
+      return json_encode(Session::get('cart'));
+   }
+
+    public function getCart(Request $request){
+        //dd(request()->session()->get('cart'));
+        if(!Session::has('cart')){
+            return view('products.test_cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $product = $cart->items;
+        $totalPrice = $cart->totalPrice;
+        $totalQty = $cart->totalQty;
+        return view('products.test_cart', compact('product','totalPrice','totalQty'));
+    }
     /**
      * Display a listing of the resource.
      *
