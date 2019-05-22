@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Colour;
+use App\Size;
+use App\Category;
 use Illuminate\Http\Request;
 
-class ColourController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,10 @@ class ColourController extends Controller
      */
     public function index()
     {
-        $colours = Colour::all();
-        return $colours;
+        //$sizes = SIze::latest()->get();
+        $sizes = Size::find(1);
+
+        return $sizes->category;
     }
 
     /**
@@ -36,67 +39,76 @@ class ColourController extends Controller
      */
     public function store(Request $request)
     {
-        
         $this->validate($request, [
-            'colour_name' => 'required|string'
+            'size' => 'required',
+            'category_id' => 'required'
         ]);
 
-        $colour = new Colour();
-        $colour->colour_name = $request->colour_name;
-        $colour->save();
-        return $colour;
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $size = new Size();
+        $size->size = $request->size;
+        $size->category_id = $category_id;
+        $category->sizes()->save($size);
+        return $size;
+
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Colour  $colour
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function show(Colour $colour)
+    public function show(Size $size)
     {
-        //
+        return $size;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Colour  $colour
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function edit(Colour $colour)
+    public function edit(Size $size)
     {
-        return $colour;
+        return $size;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Colour  $colour
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Colour $colour)
+    public function update(Request $request, Size $size)
     {
         $this->validate($request, [
-            'colour_name' => 'required|string'
+            'size' => 'required',
+            'category_id' => 'required'
         ]);
 
-        $colour->colour_name = $request->colour_name;
-        $colour->updatr();
-        return $colour;
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $size->size = $request->size;
+        $size->category_id = $category_id;
+        $category->sizes()->update($size);
+        return $size;
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Colour  $colour
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Colour $colour)
+    public function destroy(Size $size)
     {
-        $colour->delete();
-        return $colour;
+        $size->delete();
+        return $size;
     }
 }
