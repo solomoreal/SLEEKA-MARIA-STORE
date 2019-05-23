@@ -147,6 +147,7 @@ header form input[type="text"] {
      color: #000;
      font-weight: bold;
      text-transform: uppercase;
+     background: none;
  }
  .btn-outline-inf:hover {
    background: #0D0D0D;
@@ -697,33 +698,8 @@ footer input[type="text"]{
     padding: 2px;
     box-shadow: 0 8px 6px -3px #ebe9e9;
 }
-/* 
-.modalx {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.1);
-    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-  }
-  
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ebe5e5;
-    padding: 1rem 1.5rem;
-    width: 40rem;
-    border-radius: 0.5rem;
-  }
-  .modal-content h4 {
-    text-align: center;
-  } */
+
+
 
   :root {
     --input-padding-x: 1.5rem;
@@ -832,6 +808,136 @@ footer input[type="text"]{
     color: white;
     background-color: #3b5998;
   }
+
+
+  .modalx {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ebe5e5;
+    padding: 1rem 1.5rem;
+    width: 40rem;
+    border-radius: 0.5rem;
+  }
+  .modal-content h4 {
+    text-align: center;
+  }
+  
+  .close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: #F2958D;
+  }
+  
+  .show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  }
+  .trigger {
+    text-decoration: none;
+      border: solid 2px var(--button-color);
+      box-shadow: var(--box-shadow);
+      padding: 0.6em 1.3em;
+      color: #000;
+      margin-top: 1rem;
+  }
+
+  .modal-content form select{
+    width: 6rem;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #F2958D;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-content select option{
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-content select option:active{
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #F2958D;
+}
+
+.value-button {
+    display: inline-block;
+    border: 1px solid rgb(192, 185, 185);
+    margin: 0px;
+    width: 40px;
+    height: 47px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 11px 0;
+    background: #F2958D;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .value-button:hover {
+    cursor: pointer;
+  }
+  
+  form #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  form #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  form #input-wrap {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  input#number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #F2958D;
+    border-bottom: 1px solid #F2958D;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
   
 
 
@@ -907,8 +1013,20 @@ footer h5 {
 
 
 
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media only screen and (max-width: 575.98px) { 
+    
+
+    
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20rem;
+  }
+
+
     .input-group .form-control {
         display: block;
       
