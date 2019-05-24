@@ -17,7 +17,7 @@
     <div class="wrapper">
         <header>
             <nav class="navbar navbar-expand-lg fixed-top">
-                <div class="container-fluid">
+                <div class="container">
                     <a class="navbar-brand" href="index.html">SLEEKA-MARIA</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle"
                         aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,56 +62,92 @@
                                         class="fas fa-shopping-cart"></i><span class="cart">Cart(<span
                                             id="list-item">1</span> items)</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link login" href="login.html">login<span
-                                        class="sr-only">(current)</span></a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-user"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="edit_profile.html">Edit Account</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="reset_password.html">Reset password</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="index.html">Logout</a>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link btn-outline-signup" href="sign_up.html">signup<span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </nav>
         </header>
 
         <div class="content-area">
-            <div class="login-form container">
-                <div class="row">
-                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                        <div class="card card-signin">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Sign In</h5>
-                                <form class="form-signin">
-                                    <div class="form-label-group">
-                                        <input type="email" id="inputEmail" class="form-control"
-                                            placeholder="Email address" required autofocus>
-                                        <label for="inputEmail">Email address</label>
+            <div class="user-profile container">
+                <div class="row justify-content-center">
+                    <div class="col-md-3 mb-md-3 mx-auto">
+                        <div class="user-nav">
+                            <ul>
+                                <li><a href="profile.html">My Orders</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="edit_profile.html" class="active">Edit Account</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="reset_password.html">Reset password</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a href="index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="profile-header">
+                            <h2>Edit Profile</h2>
+                        </div>
+                        <div class="edit-profile container">
+                            <form class="mt-5">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" required class="form-control" placeholder="First name">
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" required class="form-control" placeholder="Last name">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="email" required class="form-control" placeholder="E-mail">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" required class="form-control" placeholder="Phone number">
+                                    </div>
+                                </div>
 
-                                    <div class="form-label-group">
-                                        <input type="password" id="inputPassword" class="form-control"
-                                            placeholder="Password" required>
-                                        <label for="inputPassword">Password</label>
+                                <h5 class="mt-md-5">Personal Address</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Apartment, street, or floor">
+                                </div>
+                                <div class="form-group">
+                                    <select id="inputState" required class="form-control">
+                                        <option selected>Country/Region</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" required class="form-control" placeholder="City">
                                     </div>
-
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Remember
-                                            password</label>
+                                    <div class="form-group col-md-6">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Choose State</option>
+                                            <option>...</option>
+                                        </select>
                                     </div>
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <a href="#">Forget password</a>
-                                    </div>
-                                    <button class="btn btn-lg btn-outline-inf btn-block text-uppercase"
-                                        type="submit">Sign in</button>
-                                    <hr class="my-4">
-                                </form>
-                            </div>
+                                </div>
+                                <button type="submit" class="btn btn-outline-inf">Send</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <hr>
             </div>
         </div>
 
@@ -122,7 +158,7 @@
                     <h6>HELP</h6>
                     <ul class="ul-list">
                         <li>
-                            <a href="index.html">HELP | FAQ's</a>
+                            <a href="about.html">ABOUT US</a>
                         </li>
                         <li>
                             <a href="about.html">RETURN POLICY</a>

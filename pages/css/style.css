@@ -747,6 +747,11 @@ footer input[type="text"]{
     height: auto;
     border-radius: 2rem;
   }
+
+  .form-group input {
+    height: auto;
+    border-radius: 2rem;
+  }
   
   .form-label-group>input,
   .form-label-group>label {
@@ -945,9 +950,16 @@ footer input[type="text"]{
 /* Profile Page
 ======================================*/
 .user-profile {
-    
     margin-top: 8rem;
 }
+
+.profile-header {
+    padding: 10px;
+    color: #0D0D0D;
+    background: #fff5f5;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
 .user-profile h2 {
     font-size: 1.5rem;
     font-weight: bold;
