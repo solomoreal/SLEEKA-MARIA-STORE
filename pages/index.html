@@ -59,14 +59,15 @@
                                 </div>
                             </li>
                             <li><a class="nav-link" href="shop.html" id="card-info"><i
-                                        class="fas fa-shopping-cart"></i><span class="cart">Cart(<span
-                                            id="list-item">1</span> items)</span></a>
+                                        class="fas fa-shopping-cart"></i><span class="cart">:(<span
+                                            id="list-item"><span class="badge badge-light">0</span></span> items)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link login" href="login.html">login<span class="sr-only">(current)</span></a>
+                                <a class="nav-link login" href="login.html">login<span
+                                        class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn-outline-signup" href="signup">signup<span
+                                <a class="nav-link btn-outline-signup" href="sign_up.html">signup<span
                                         class="sr-only">(current)</span></a>
                             </li>
                         </ul>
@@ -121,7 +122,7 @@
                                     </a>
                                     <del>$199.99</del>
                                     <p class="price">$299.99</p>
-                                    <button class="add-to-cart">Add to Cart</button>
+                                    <button class="add-to-cart trigger">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -495,7 +496,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="seeall.html class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                    <a href="seeall.html class=" see-all">See All <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
         </div>
@@ -549,6 +550,11 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-payment">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -560,6 +566,32 @@
             </div>
         </div>
     </div>
+
+    <!-- modal -->
+
+    <div class="modalx">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form action="" class="text-center">
+                <select name="" id="">
+                    <option>Colors</option>
+                    <option name="c-1">White</option>
+                    <option name="c-2">Red</option>
+                </select>
+                <select name="" id="">
+                    <option>Size</option>
+                    <option name="c-1">Large</option>
+                    <option name="c-2">Xlarge</option>
+                </select>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 
 
