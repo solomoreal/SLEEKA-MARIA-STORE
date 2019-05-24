@@ -221,12 +221,92 @@
             </div>
         </div>
         <div class="container">
+            <div class="mt-3 mb-3">
+                <div class="">
+                    <p>4 Countries Available
+                        <a class="float-right" href="#" data-toggle="modal" data-target="#countrymodal">
+                            Add Country
+                        </a>
+                    </p>
+                </div>
+                <div class="">
+                    <!-- Modal -->
+                    <div class="modal fade" id="countrymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Country Name</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input mt-3 mb-3">
+                                        <input type="text" class="form-control" placeholder="New Country">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="category.html" type="button" class="btn btn-primary">Add Country</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="">
+                    <p>
+                        <a class="" href="#" data-toggle="modal" data-target="#statemodal">
+                            Add State
+                        </a>
+                    </p>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="statemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">State Name</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input mt-3 mb-3">
+                                    <select id="category" class="form-control">
+                                        <option selected>No Country Selected</option>
+                                        <option>Nigeria</option>
+                                        <option>Togo</option>
+                                        <option>America</option>
+                                    </select>
+                                    <input type="text" class="form-control" placeholder="New State">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="category.html" type="button" class="btn btn-primary">Add State</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="input-group mt-3 mb-3">
-                <input type="text" class="form-control" placeholder="Country">
-                <input type="text" class="form-control" placeholder="State">
+                <select id="category" class="form-control">
+                    <option selected>No Country Selected</option>
+                    <option>Nigeria</option>
+                    <option>Togo</option>
+                    <option>America</option>
+                </select>
+                <select id="category" class="form-control">
+                    <option selected>No State Selected</option>
+                    <option>Rivers State</option>
+                    <option>Lagos State</option>
+                    <option>Abia State</option>
+                </select>
                 <input type="text" class="form-control" placeholder="Shipping Fee">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">Add Shipping Cost</button>
+                    <button class="btn btn-primary" type="button">Add Shipping Fee</button>
                 </div>
             </div>
             <div class="row align-items-center mt-3 bg-dark">
@@ -255,7 +335,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">State</th>
-                                <th scope="col">Cost</th>
+                                <th scope="col">Fee</th>
                                 <th scope="col">Edit</th>
                             </tr>
                         </thead>
@@ -289,8 +369,18 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="input mt-3 mb-3">
-                                                        <input type="text" class="form-control" placeholder="Country">
-                                                        <input type="text" class="form-control" placeholder="State">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No Country Selected</option>
+                                                            <option>Nigeria</option>
+                                                            <option>Togo</option>
+                                                            <option>America</option>
+                                                        </select>
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No State Selected</option>
+                                                            <option>Rivers State</option>
+                                                            <option>Lagos State</option>
+                                                            <option>Abia State</option>
+                                                        </select>
                                                         <input type="text" class="form-control" placeholder="Shipping Fee">
                                                     </div>
                                                 </div>
@@ -333,8 +423,18 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="input mt-3 mb-3">
-                                                        <input type="text" class="form-control" placeholder="Country">
-                                                        <input type="text" class="form-control" placeholder="State">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No Country Selected</option>
+                                                            <option>Nigeria</option>
+                                                            <option>Togo</option>
+                                                            <option>America</option>
+                                                        </select>
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No State Selected</option>
+                                                            <option>Rivers State</option>
+                                                            <option>Lagos State</option>
+                                                            <option>Abia State</option>
+                                                        </select>
                                                         <input type="text" class="form-control" placeholder="Shipping Fee">
                                                     </div>
                                                 </div>
@@ -377,8 +477,18 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="input mt-3 mb-3">
-                                                        <input type="text" class="form-control" placeholder="Country">
-                                                        <input type="text" class="form-control" placeholder="State">
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No Country Selected</option>
+                                                            <option>Nigeria</option>
+                                                            <option>Togo</option>
+                                                            <option>America</option>
+                                                        </select>
+                                                        <select id="category" class="form-control">
+                                                            <option selected>No State Selected</option>
+                                                            <option>Rivers State</option>
+                                                            <option>Lagos State</option>
+                                                            <option>Abia State</option>
+                                                        </select>
                                                         <input type="text" class="form-control" placeholder="Shipping Fee">
                                                     </div>
                                                 </div>
