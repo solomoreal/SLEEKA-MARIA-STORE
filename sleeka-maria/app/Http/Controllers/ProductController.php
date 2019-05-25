@@ -13,9 +13,11 @@ class ProductController extends Controller
     
     public function addToCart(Request $request, $id){
         $product = Products::findOrFail($id);
+        $colour = $request->colour;
+        $size = $request->size;
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
+        $cart->add($product, $product->id, $colour, $size);
 
         $request->session()->put('cart', $cart);
         return json_encode($request->session()->get('cart'));
@@ -49,6 +51,7 @@ class ProductController extends Controller
 
     public function getCart(Request $request){
         //dd(request()->session()->get('cart'));
+        
         if(!Session::has('cart')){
             return view('products.test_cart');
         }
@@ -94,6 +97,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'shipment_price' => 'nullable|integer',
             'price' => 'required|integer',
+            'quantity' => 'integer',
             'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000'
@@ -134,7 +138,8 @@ class ProductController extends Controller
             'side_url' => $side_url,
             'front_url' => $front_url,
             'category_id' => $request->category_id,
-            'colour_id' => $request->colour_id
+            'colour_id' => $request->colour_id,
+            'quantity' => $request->quantity
         ]);
         $product->save();
         return $product;
