@@ -70,7 +70,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-             return $products;
+        return view('admin.products')->withProducts($products);
     }
 
     /**
@@ -80,7 +80,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add_product');
     }
 
     /**
