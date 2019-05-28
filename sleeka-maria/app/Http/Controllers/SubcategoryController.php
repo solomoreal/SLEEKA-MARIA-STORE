@@ -8,36 +8,17 @@ use App\Category;
 
 class SubcategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $subcategories = Subcategory::latest()->get();
-        return $subcategories;
+        $categories = Category::all();
+        $count = 1;
+        return view('admin.subcategory',compact(['subcategories', 'categories', 'count']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
-    {
-        
+    {   
         $this->validate($request,[
             'subcategory_name' => 'required',
             'category_id' => 'required|integer'
@@ -50,62 +31,32 @@ class SubcategoryController extends Controller
         $subcategory->subcategory_name = $request->subcategory_name;
         $subcategory->category_id = $category_id;
         $category->subcategories()->save($subcategory);
-        return $subcategory;
+        return redirect(route('subcategories.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subcategory $subcategory)
+    
+    public function update(Request $request, $id)
     {
-        return $subcategory;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subcategory $subcategory)
-    {
-        return $subcategory;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Subcategory $subcategory)
-    {
+        //dd($request->all());
         $this->validate($request, [
             'subcategory_name' => 'required',
-            'category_id' => 'required'|'integer'
+            'category_id' => 'required|integer'
         ]);
 
+        $subcategory = Subcategory::findOrFail($request->subcategory_id);
         $category_id = $request->category_id;
         $category = Category::findOrFail($category_id);
         $subcategory->subcategory_name = $request->subcategory_name;
         $subcategory->category_id = $category_id;
-        $category->subcategories()->update($subcategory);
-        return $subcategory;
+        $category->subcategories()->save($subcategory);
+        return redirect(route('subcategories.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Subcategory $subcategory)
+    
+    public function destroy(Request $request, $id)
     {
+        $subcategory = Category::findOrFail($request->category_id);
         $subcategory->delete();
-        return $subcategory;
+        return redirect(route('subcategories.index'));
     }
 }
