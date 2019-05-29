@@ -15,10 +15,10 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //$sizes = SIze::latest()->get();
-        $sizes = Size::find(1);
-
-        return $sizes->category;
+        $categories = Category::all();
+        $count = 1;
+        $sizes = Size::latest()->get();
+        return view('admin.sizes', compact(['categories','count','sizes']));
     }
 
     /**
@@ -50,7 +50,7 @@ class SizeController extends Controller
         $size->size = $request->size;
         $size->category_id = $category_id;
         $category->sizes()->save($size);
-        return $size;
+        return redirect(route('sizes.index'));
 
 
     }
@@ -84,31 +84,29 @@ class SizeController extends Controller
      * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, $id)
     {
+        //dd($request->all());
         $this->validate($request, [
             'size' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required|integer'
         ]);
 
+        $size = Size::findOrFail($request->size_id);
         $category_id = $request->category_id;
         $category = Category::findOrFail($category_id);
         $size->size = $request->size;
         $size->category_id = $category_id;
-        $category->sizes()->update($size);
-        return $size;
-
+        $category->sizes()->save($size);
+        return redirect(route('sizes.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Size $size)
+    
+    public function destroy(Request $request, $id)
     {
+        
+        $size = Size::findOrFail($request->size_id);
         $size->delete();
-        return $size;
+        return redirect(route('sizes.index'));
     }
 }

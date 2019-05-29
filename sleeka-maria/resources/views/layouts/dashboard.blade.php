@@ -29,6 +29,10 @@
                 var cat_name = button.data("cat_name");
                 var subcat_name = button.data("subcat_name");
                 var subcat_id = button.data("subcat_id");
+                var size = button.data("size");
+                var size_id = button.data("size_id");
+                var colour = button.data("colour");
+                
         
                 var modal = $(this);
                 //modal.find(".modal-title").text("New message to " + recipient);
@@ -38,6 +42,10 @@
                 modal.find(".modal-body #edit_cat").val(cat_name);
                 modal.find(".modal-body #subcat_id").val(subcat_id);
                 modal.find(".modal-body #subcat_name").val(subcat_name);
+                modal.find(".modal-body #size").val(size);
+                modal.find(".modal-body #size_id").val(size_id);
+                modal.find(".modal-footer #size_id").val(size_id);
+                modal.find(".modal-body #colour").val(colour);
             });
       </script>
         
