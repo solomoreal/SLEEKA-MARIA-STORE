@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Category;
+use App\Size;
+use App\Subcategory;
+use App\Colour;
 use Cloudder;
 
 
@@ -80,7 +84,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.add_product');
+        $categories = Category::latest()->get();
+        $colours = Colour::latest()->get();
+
+        return view('admin.add_product', compact(['categories','colours']));
     }
 
     /**
@@ -138,13 +145,17 @@ class ProductController extends Controller
             'side_url' => $side_url,
             'front_url' => $front_url,
             'category_id' => $request->category_id,
-            'colour_id' => $request->colour_id,
             'quantity' => $request->quantity
         ]);
         $product->save();
         return $product;
         }
-    
+    public function fetchCategories(Request $request){
+        $category_id = $request->category_id;
+        $category = Category::findOrFail($category_id);
+        $categoryRelation = ['subcategories' => $category->subcategories, 'sizes' => $category->sizes];
+        return response()->json(['category' => $categoryRelation]);
+    }
 
     /**
      * Display the specified resource.

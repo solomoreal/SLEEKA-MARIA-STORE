@@ -11,7 +11,7 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
+                                        <img alt="Image placeholder" src="{{asset('img/theme/team-4-800x800.jpg')}}">
                                     </span>
                                     <div class="media-body ml-2 d-none d-lg-block">
                                         <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
@@ -54,203 +54,208 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-sm-4">
-                    <form>
+                <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
                         <div class="form-group">
                             <label for="productCoverImage">Add Cover Image for Product </label>
-                            <input type="file" class="form-control-file" id="productCoverImage">
+                            <input type="file" name="image" class="form-control-file" id="productCoverImage">
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="col-sm-4">
-                    <form>
+                    
                         <div class="form-group">
                             <label for="productCoverImage">Add Front Image for Product</label>
-                            <input type="file" class="form-control-file" id="productCoverImage">
+                            <input type="file" name="front_view" class="form-control-file" id="productCoverImage">
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="col-sm-4">
-                    <form>
+                    
                         <div class="form-group">
                             <label for="productCoverImage">Add Side Image for Product</label>
-                            <input type="file" class="form-control-file" id="productCoverImage">
+                            <input type="file" class="form-control-file" id="productCoverImage" name="side_view">
                         </div>
-                    </form>
+                    
                 </div>
             </div>
-            <form>
+            
                 <div class="form-row mt-3">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Product Name</label>
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Product Name">
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Product Name" name="product_name">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Price</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Product Price">
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Product Price" name="price">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="category">Category</label>
-                        <select id="category" class="form-control">
+                    <select id="cat" data-route="{{route('fetchCategories')}}" class="form-control" name="category_id">
                             <option selected>No Category Selected</option>
-                            <option>SunGlasses</option>
-                            <option>Wrist Watchs</option>
-                            <option>Bracelets</option>
+                            @if($categories)
+                                @foreach($categories as $category)
+                        <option   value="{{$category->id}}">{{$category->category_name}}</option>
+                                @endforeach
+                            @endif
                         </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCenter">
                             New Category
                         </a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Category Name</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input mt-3 mb-3">
-                                            <input type="text" class="form-control" placeholder="New Category">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <a href="category.html" type="button" class="btn btn-primary">Add Category</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="form-group col-md-6">
                         <label for="subcategory">Sub-Category</label>
-                        <select id="subcategory" class="form-control">
-                            <option selected>No Category Selected</option>
-                            <option>Ladies Glasses</option>
-                            <option>Men Glasses</option>
-                            <option>Children Glasses</option>
-                        </select>
+                        <select id="subcat" class="form-control" name="subcategory_id">
+                            </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCente">
                             New Sub-Category
                         </a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Sub-Category Name</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input mt-3 mb-3">
-                                            <input type="text" class="form-control" placeholder="New Sub-Category">
-                                            <div class="input-group-prepend">
-                                                <select id="category" class="form-control">
-                                                    <option selected>SunGlasses</option>
-                                                    <option value="Wrist Watch">Wrist Watch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <a href="category.html" type="button" class="btn btn-primary">Add Sub-Category</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="quantity">
+                        <input type="number" class="form-control" id="quantity" name="quantity">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="size">Sizes</label>
-                        <select id="size" class="form-control" multiple="">
-                            <option selected>No Size Selected</option>
-                            <option>small</option>
-                            <option>medium</option>
-                            <option>Large</option>
+                        <select id="size" class="form-control" multiple="" name="size_id[]">
+                             
                         </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCen">
                             New Size
                         </a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Size Name</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input mt-3 mb-3">
-                                            <input type="text" class="form-control" placeholder="New Size">
-                                            <div class="input-group-prepend">
-                                                <select id="category" class="form-control">
-                                                    <option selected>SunGlasses</option>
-                                                    <option value="Wrist Watch">Wrist Watch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <a href="category.html" type="button" class="btn btn-primary">Add Size</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="category">Color</label>
-                        <select id="category" class="form-control" multiple="">
-                            <option selected>Blue</option>
-                            <option value="Red">Red</option>
-                            <option value="Red">Yellow</option>
+                        <label for="colour">Color</label>
+                        <select id="colour" class="form-control" multiple="" name="colour_id[]">
+                            <option selected>Black</option>
+                        @if($colours)
+                            @foreach($colours as $colour)
+                               <option value="{{$colour->id}}">{{$colour->colour_name}} <span style="display: block; width: 20px; height: 20px; background-color: {{$colour->colour}}"></span></option>
+                             @endforeach
+                        @endif
                         </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCent">
                             New Color
                         </a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">New Color</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mt-3 mb-3">
-                                            <input type="text" class="form-control" placeholder="Color Name">
-                                            <input type="color" class="form-control col-md-1">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <a href="category.html" type="button" class="btn btn-primary">Add Color</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" id="description"></textarea>
+                    <textarea class="form-control" rows="5" id="description" name="description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Product</button>
             </form>
         </div>
     </div>
+    <!--Category Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Category Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input mt-3 mb-3">
+                            <input type="text" class="form-control" placeholder="New Category">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="category.html" type="button" class="btn btn-primary">Add Category</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--SubCategory Modal -->
+    <div class="modal fade" id="exampleModalCente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Sub-Category Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input mt-3 mb-3">
+                            <input type="text" class="form-control" placeholder="New Sub-Category">
+                            <div class="input-group-prepend">
+                                <select id="category" class="form-control">
+                                    <option selected>SunGlasses</option>
+                                    <option value="Wrist Watch">Wrist Watch</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="category.html" type="button" class="btn btn-primary">Add Sub-Category</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Colour Modal -->
+        <div class="modal fade" id="exampleModalCent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">New Color</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mt-3 mb-3">
+                                <input type="text" class="form-control" placeholder="Color Name">
+                                <input type="color" class="form-control col-md-1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="category.html" type="button" class="btn btn-primary">Add Color</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Size Modal -->
+            <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Size Name</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input mt-3 mb-3">
+                                    <input type="text" class="form-control" placeholder="New Size">
+                                    <div class="input-group-prepend">
+                                        <select id="category" class="form-control">
+                                            <option selected>SunGlasses</option>
+                                            <option value="Wrist Watch">Wrist Watch</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="category.html" type="button" class="btn btn-primary">Add Size</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     @endsection

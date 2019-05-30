@@ -1,8 +1,13 @@
 @extends('layouts.dashboard')
+
+
+
 @section('content')
-    
-    <div class="main-content">
+
+    <div class="    main-content">
+
         <div class="container">
+                
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                 <div class="container-fluid">
                     <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Products Color</a>
@@ -52,6 +57,7 @@
             <div class="header bg-gradient-primary pt-md-7">
             </div>
         </div>
+        @include('inc.messages')
         <div class="container">
             <form action="{{route('colours.store')}}" method="POST">
                 {{ csrf_field() }}

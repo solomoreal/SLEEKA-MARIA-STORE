@@ -77,7 +77,7 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col">#</th>
                             <th scope="col">Product</th>
                             <th scope="col">Category</th>
                             <th scope="col">Quantity</th>

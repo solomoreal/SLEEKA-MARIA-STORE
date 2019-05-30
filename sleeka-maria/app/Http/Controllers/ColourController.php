@@ -27,7 +27,7 @@ class ColourController extends Controller
         $colour->colour_name = $request->colour_name;
         $colour->colour = $request->colour;
         $colour->save();
-        return redirect(route('colours.index'));
+        return redirect(route('colours.index'))->with('success', 'New Colour Added');
 
     }
 
@@ -37,7 +37,7 @@ class ColourController extends Controller
         $colour->colour = $request->colour;
         $colour->colour_name = $request->colour_name;
         $colour->update();
-        return redirect(route('colours.index'));
+        return redirect(route('colours.index'))->with('success', 'Colour Updated');
     }
 
     
@@ -46,6 +46,6 @@ class ColourController extends Controller
         
         $colour = Colour::findOrFail($request->colour_id);
         $colour->delete();
-        return redirect(route('colours.index'));
+        return redirect(route('colours.index'))->with('success', 'Deleted');
     }
 }

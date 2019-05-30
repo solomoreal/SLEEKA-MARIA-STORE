@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/products', 'ProductController');
+Route::get('/fetchCategories','ProductController@fetchCategories')->name('fetchCategories');
 Route::resource('/colours', 'ColourController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/subcategories', 'SubcategoryController');
