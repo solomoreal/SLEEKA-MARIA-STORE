@@ -97,7 +97,7 @@
                             <option selected>No Category Selected</option>
                             @if($categories)
                                 @foreach($categories as $category)
-                        <option   value="{{$category->id}}">{{$category->category_name}}</option>
+                        <option value="{{$category->id}}">{{$category->category_name}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -109,7 +109,7 @@
                     <div class="form-group col-md-6">
                         <label for="subcategory">Sub-Category</label>
                         <select id="subcat" class="form-control" name="subcategory_id">
-                            </select>
+                        </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCente">
                             New Sub-Category
                         </a>
@@ -134,10 +134,9 @@
                     <div class="form-group col-md-3">
                         <label for="colour">Color</label>
                         <select id="colour" class="form-control" multiple="" name="colour_id[]">
-                            <option selected>Black</option>
                         @if($colours)
                             @foreach($colours as $colour)
-                               <option value="{{$colour->id}}">{{$colour->colour_name}} <span style="display: block; width: 20px; height: 20px; background-color: {{$colour->colour}}"></span></option>
+                               <option value="{{$colour->id}}" style="display: block; width: 100%; height: 10px; background-color: {{$colour->colour}}">{{$colour->colour_name}}  </option>
                              @endforeach
                         @endif
                         </select>

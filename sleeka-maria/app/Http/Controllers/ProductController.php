@@ -98,6 +98,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         
         $this->validate($request,[
             'product_name' => 'required|string',
@@ -145,10 +146,13 @@ class ProductController extends Controller
             'side_url' => $side_url,
             'front_url' => $front_url,
             'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
             'quantity' => $request->quantity
         ]);
         $product->save();
-        return $product;
+        $product->colours()->sync($request->colour_id, false);
+        $product->sizes()->sync($request->size_id, false);
+        return redirect(route('products.index'));
         }
     public function fetchCategories(Request $request){
         $category_id = $request->category_id;
