@@ -38,7 +38,7 @@
                                 </div>
                             <form action="{{route('addToCart')}}" class="text-center" method="POST">
                                 {{ csrf_field() }}
-                            <input type="text" name="product_id" value="{{$product->id}}">
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <select name="colour" id="">
                                         <option>Select Color</option>
                                         @if($colours)
