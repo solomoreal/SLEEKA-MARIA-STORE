@@ -8,24 +8,73 @@ use App\Size;
 use App\Subcategory;
 use App\Colour;
 use App\Cart;
+use Session;
 
 
 class PagesController extends Controller
 {
     public function index(){
+        //category display in the nav bar
+        $categories = category::all();
         $currency = '$'; 
+        //Adult frame subcategory and products on index page
+        $glass_cat = $this->subcategoryQuery('Adult Frames');
+        $category = $glass_cat->first();
+        $glasses = $category->products->take(4);
+        //Kid Frames Subcategory and products
+        $kids_frame_cats = $this->subcategoryQuery('Kids Frames');
+        //dd($kids_frame_cats);
+        $k_frame_cat = $kids_frame_cats->first();
+        $kFrames = $k_frame_cat->products->take(4);
+        $products = Product::all()->where('promote', 1)->take(8);
+        return view('pages.index', compact(['products','currency','category','glasses','categories','kFrames','k_frame_cat']));
+    }
+    public function subcategoryQuery($subcategroy){
+        $allSubcats = Subcategory::where('subcategory_name', $subcategroy)->get();
+        //$subcats = $allSubcats->take(4);
+        //$subcat = $subcats->first();
         
-        $products = Product::all()->take(8);
-        return view('pages.index', compact(['products','currency']));
+        return $allSubcats;
+    }
+
+    public function categoryQuery($categroy){
+        $allCats = category::where('category_name', $categroy);
+        //$cats= $allCats->take(4);
+        //$cat = $allCats->first();
+        
+        return $allCats;
     }
 
     public function viewProduct($id){
+        $categories = category::all();
         $product = Product::findOrFail($id);
         $price = $product->price/100;
         $colours = $product->colours;
         $sizes = $product->sizes;
-        return view('pages.view', compact(['price','colours','sizes']))->withProduct($product);
+        return view('pages.view', compact(['price','colours','sizes','categories']))->withProduct($product);
     }
+
+    
+
+    public function profile(){
+        $categories = category::all();
+        return view('pages.profile',compact(['categories']));
+    }
+    public function viewByCategory($id){
+        $categories = category::all();
+        $category = Category::findOrFail($id);
+        $products = $category->products->take(4);
+        return view('pages.see_all',compact(['category','products','categories']));
+    }
+
+    public function viewBySubcategory($id){
+        $categories = Category::all();
+        $category = Subcategory::findOrFail($id);
+        $products = $category->products->take(4);
+        return view('pages.see_all',compact(['category','products','categories']));
+    }
+
+    
 
     public function addToCart(Request $request){
         //dd($request->all());
@@ -39,7 +88,7 @@ class PagesController extends Controller
         $cart->add($product, $product->id, $colour, $size, $qty);
 
         $request->session()->put('cart', $cart);
-        return redirect(route('index'));
+        return back();
     }
 
     public function reduceItemByOne($id, Request $request){
@@ -65,11 +114,11 @@ class PagesController extends Controller
         Session::forget('cart');
         $cart = null;
 
-      return json_encode(Session::get('cart'));
+      return redirect(route('index'));
    }
 
     public function getCart(Request $request){
-        //dd(request()->session()->get('cart'));
+        dd(request()->session()->get('cart'));
         
         if(!Session::has('cart')){
             return view('products.test_cart');

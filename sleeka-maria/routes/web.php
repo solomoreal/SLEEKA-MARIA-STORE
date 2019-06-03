@@ -22,8 +22,19 @@ Route::group(['prefix' => '/'], function () {
     //Pages
     Route::get('', 'PagesController@index')->name('index');
     Route::get('viewProduct/{id}', 'PagesController@viewProduct')->name('viewProduct');
+    Route::get('viewByCategory/{id}', 'PagesController@viewByCategory')->name('viewByCategory');
+    Route::get('viewBySubcategory/{id}', 'PagesController@viewBySubcategory')->name('viewBySubcategory');
+    Route::view('about','pages.about')->name('about');
+    //auth Routes
+    Route::get('profile', 'PagesController@profile')->name('profile');
+    
+    
+
     //Cart
     Route::post('cart', 'PagesController@addToCart')->name('addToCart');
+    Route::get('getCart', 'PagesController@getCart')->name('getCart');
+    Route::get('emptyCart', 'PagesController@emptyCart')->name('emptyCart');
+
 });
 
 Auth::routes();

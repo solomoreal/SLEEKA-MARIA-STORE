@@ -28,20 +28,16 @@
                             Categories
                         </a>
                         <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="seeall.html">Kids frames</a>
+                            @if($categories)
+                            @foreach($categories as $category)
+                                <a class="dropdown-item" href="{{route('viewByCategory', ['id' => $category->id])}}">{{$category->category_name}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="seeall.html">Adult frames</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Wrist Watches</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Foot wears</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Nigeria Tailored wears</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Cars</a>
+                            @endforeach
+                            @endif
+                            
                         </div>
                     </li>
-                    <li><a class="nav-link" href="shop.html" id="card-info"><i
+                <li><a class="nav-link" href="{{route('getCart')}}" id="card-info"><i
                                 class="fas fa-shopping-cart"></i><span class="cart">:(<span id="list-item"><span
                                 class="badge badge-light">{{Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span></span> items)</span></a>
                     </li>

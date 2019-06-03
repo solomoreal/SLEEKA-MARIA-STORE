@@ -15,62 +15,9 @@ class ProductController extends Controller
 {
 
     
-    public function addToCart(Request $request, $id){
-        $product = Products::findOrFail($id);
-        $colour = $request->colour;
-        $size = $request->size;
-        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->id, $colour, $size);
+    
 
-        $request->session()->put('cart', $cart);
-        return json_encode($request->session()->get('cart'));
-    }
-
-    public function reduceItemByOne($id, Request $request){
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->reduceByOne($id);
-        Session::put('cart', $cart);
-        return json_encode($request->session()->get('cart'));
-        
-    }
-
-    public function removeItem(Request $request, $id){
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->removeItem($id);
-        Session::put('cart', $cart);
-        return json_encode($request->session()->get('cart'));
-    }
-
-    public function emptyCart(){
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        Session::forget('cart');
-        $cart = null;
-
-      return json_encode(Session::get('cart'));
-   }
-
-    public function getCart(Request $request){
-        //dd(request()->session()->get('cart'));
-        
-        if(!Session::has('cart')){
-            return view('products.test_cart');
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        $product = $cart->items;
-        $totalPrice = $cart->totalPrice;
-        $totalQty = $cart->totalQty;
-        return view('products.test_cart', compact('product','totalPrice','totalQty'));
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $products = Product::latest()->get();
@@ -90,12 +37,7 @@ class ProductController extends Controller
         return view('admin.add_product', compact(['categories','colours']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //dd($request->all());
@@ -136,7 +78,7 @@ class ProductController extends Controller
 
             $front_url = Cloudder::show(Cloudder::getPublicId());
         }
-
+    
         $product = new Product([
             'product_name' => $request->product_name,
             'description' => $request->description,
@@ -147,7 +89,8 @@ class ProductController extends Controller
             'front_url' => $front_url,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'quantity' => $request->quantity
+            'quantity' => $request->quantity,
+            'promote' => 0
         ]);
         $product->save();
         $product->colours()->sync($request->colour_id, false);

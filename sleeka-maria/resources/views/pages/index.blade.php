@@ -52,8 +52,8 @@
                                         </a>
                                        <!-- <del>$199.99</del> -->
                                     <p class="price">{{$currency}} {{$product->price/100}}</p>
-                                    <button class="add-to-cart" data-toggle="modal" data-target="#cart">Add to Cart</button>
-                                    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$product->id}}">Add to Cart</button>
+                                    <div class="modal fade" id="cart{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -99,79 +99,78 @@
                       @endforeach 
                 </div> 
                     @endforeach
-                    <a href="seeall.html" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+            
                 </div>
                     @endif
             </div>
-                    
-                    
-                
-        
-
-            <!--Wrist Watches-->
+              @if($category)      <!--Adult Frames-->
             <div class="featured-product">
                 <div class="featured-title container">
-                    <h2>ADULT FRAMES</h2>
+                <h2>{{$category->subcategory_name}}</h2>
                     <hr>
                 </div>
                 <div class="container">
+                    @foreach ($glasses->chunk(4) as $glassesChunk)
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
+                        @foreach ($glassesChunk as $glass)
+                             <div class="col-lg-3 col-sm-6">
                             <div class="container">
                                 <div class="product-card">
                                     <a href="view.html">
-                                        <img src="img/watches/wrist1.0.jpg">
-                                        <h1 class="product-title">Unisex Wristwatch</h1>
+                                    <img src="{{$glass->image_url}}">
+                                    <h1 class="product-title">{{$glass->product_name}}</h1>
                                     </a>
-                                    <del>$199.99</del>
-                                    <p class="price">$299.99</p>
-                                    <button class="add-to-cart" href="#">Add to Cart</button>
+                                   <!-- <del>$199.99</del> -->
+                                <p class="price">{{$currency}}{{ $glass->price/100}}</p>
+                                <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>
+                                <div class="modal fade" id="cart{{$glass->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <form action="{{route('addToCart')}}" class="text-center" method="POST">
+                                                            {{ csrf_field() }}
+                                                    <input type="hidden" name="product_id" id="product_id" value="{{$glass->id}}">
+                                                                <select name="colour" id="">
+                                                                    <option>Any Colour</option>
+                                                                @if($glass->colours)
+                                                                    @foreach ($glass->colours as $colour)
+                                                                        <option value="{{$colour->colour_name}}">{{$colour->colour_name}}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                                </select>
+                                                                <select name="size" id="">
+                                                                    <option>Size</option>
+                                                                    @if ($glass->sizes)
+                                                                       @foreach ($glass->sizes as $size)
+                                                                <option value="{{$size->size}}">{{$size->size}}</option>
+                                                                       @endforeach 
+                                                                    @endif
+                                                                </select>
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-md-6">
+                                                                        <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/watch1/1.jpg">
-                                        <h1 class="product-title"> Steel Men's Wrist</h1>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/watch1/2.jpg">
-                                        <p class="product-title">Unisex Bracelet Wristwatch</p>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img//watches/watch1/rea.jpg">
-                                        <div class="product-text">
-                                            <h1 class="product-title">Watch For Women- Brown</h1>
-                                            <del>$199.99</del>
-                                            <p class="price">$299.99</p>
-                                            <button class="add-to-cart" href="#">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="seeall.html" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                @endforeach 
+            </div> 
+                @endforeach
+                <a href="{{route('viewBySubcategory', ['id' => $category->id])}}" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                
+        </div>
+        @endif
                 </div>
             </div>
 
@@ -190,70 +189,38 @@
             </div>
 
             <!--Footer Wears-->
+            @if($kFrames)
             <div class="featured-product">
-                <div class="featured-title container">
-                    <h2>KID FRAMES</h2>
-                    <hr>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/footwears/1 (2).jpg">
-                                        <h1 class="product-title">Fashion Foot Wear</h1>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/footwears/1.jpg">
-                                        <h1 class="product-title">Casual Loafers Shoe</h1>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/footwears/1 (2).jpg">
-                                        <h1 class="product-title">Fashion Foot Wear</h1>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="container">
-                                <a href="">
-                                    <div href="#" class="product-card">
-                                        <img src="img/watches/footwears/1.jpg">
-                                        <h1 class="product-title">Men Casual Loafers Shoe</h1>
-                                        <del>$199.99</del>
-                                        <p class="price">$299.99</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="featured-title container">
+                    <h2>{{$k_frame_cat->subcategory_name}}</h2>
+                        <hr>
                     </div>
-                    <a href="seeall.html" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                    <div class="container">
+                        @foreach ($kFrames->chunk(4) as $kidFrameChunk)
+                        <div class="row">
+                            @foreach ($kidFrameChunk as $glass)
+                                 <div class="col-lg-3 col-sm-6">
+                                <div class="container">
+                                    <div class="product-card">
+                                        <a href="view.html">
+                                        <img src="{{$glass->image_url}}">
+                                        <h1 class="product-title">{{$glass->product_name}}</h1>
+                                        </a>
+                                       <!-- <del>$199.99</del> -->
+                                    <p class="price">{{$currency }}{{ $glass->price}}</p>
+                                        <button class="add-to-cart" href="#">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endforeach
+                    
+                        <a href="{{route('viewBySubcategory', ['id' => $k_frame_cat->id])}}" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                    </div>
                 </div>
-            </div>
-
+    @endif
+                
             
     <!-- modal -->
 

@@ -4,7 +4,7 @@
             <h6>HELP</h6>
             <ul class="ul-list">
                 <li>
-                    <a href="about.html">ABOUT US</a>
+                <a href="{{route('about')}}">ABOUT US</a>
                 </li>
                 <li>
                     <a href="about.html">RETURN POLICY</a>
