@@ -78,7 +78,38 @@
     });
 
 
- </script>       
+ </script> 
+
+<script>
+        $(document).ready(function(){
+       $("#searcher").on("keyup", function(){
+           console.log('seach me');
+           var route = $(this).data("route")
+           if($(this).val().length > 2){
+               $.ajax({
+                   url: route,
+                   data:{name:$(this).val()},
+                   type:'get',
+               }).done(function(data){
+                   var products = data.products;
+                   console.log(products);
+                   $('#search_results').html('');
+                   $('#search_results').append('<table class="table">');
+                   products.map((product,index,products)=>{
+                       // $('#search_results').append("<p>"+student.first_name+" "+student.last_name+"</p>");
+                        $('#search_results').append("<tr><td>"+product.product_name+' '+product.price+ "</td><td> <a class='btn btn-info' href='/products/"+products.id+"'>pay</a></tr>");
+                       
+                   });
+                   $('#search_results').append('</table>');
+               });
+           }
+       });
+   
+   
+   });
+   </script>
+
+
         
     
 </body>

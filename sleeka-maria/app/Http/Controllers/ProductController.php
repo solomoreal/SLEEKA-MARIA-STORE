@@ -9,39 +9,40 @@ use App\Size;
 use App\Subcategory;
 use App\Colour;
 use Cloudder;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
 
-    
-    
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function index()
     {
+        if(Auth::user()->role = 'Admin'){
         $products = Product::latest()->get();
         return view('admin.products')->withProducts($products);
     }
+}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $categories = Category::latest()->get();
-        $colours = Colour::latest()->get();
+        public function create()
+    { 
+        if(Auth::user()->role = 'Admin'){
+            $categories = Category::latest()->get();
+            $colours = Colour::latest()->get();
 
-        return view('admin.add_product', compact(['categories','colours']));
+            return view('admin.add_product', compact(['categories','colours']));
+        }
+        
     }
 
     
     public function store(Request $request)
     {
         //dd($request->all());
-        
+        if(Auth::user()->role = 'Admin'){
         $this->validate($request,[
             'product_name' => 'required|string',
             'description' => 'required|string',
@@ -97,19 +98,17 @@ class ProductController extends Controller
         $product->sizes()->sync($request->size_id, false);
         return redirect(route('products.index'));
         }
+    }            
     public function fetchCategories(Request $request){
+        if(Auth::user()->role = 'Admin'){
         $category_id = $request->category_id;
         $category = Category::findOrFail($category_id);
         $categoryRelation = ['subcategories' => $category->subcategories, 'sizes' => $category->sizes];
         return response()->json(['category' => $categoryRelation]);
     }
+}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Product $product)
     {
         return $product;
@@ -126,15 +125,10 @@ class ProductController extends Controller
         return $product;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Product $product)
     {
+        if(Auth::user()->role = 'Admin'){
         $this->validate($request,[
             'product_name' => 'required|string',
             'description' => 'required|string',
@@ -204,16 +198,12 @@ class ProductController extends Controller
         return $product;
         
     }
+}
     
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
+        if(Auth::user()->role = 'Admin'){
         //extracts the public id for image_url and use it to delete the image from cloudinary server 
         $url_id = $product->image_url;
         $url_arr = explode("/",$url_id);
@@ -240,4 +230,5 @@ class ProductController extends Controller
         $product->delete();
         return $product;
     }
+}
 }

@@ -9,10 +9,12 @@ use App\Subcategory;
 use App\Colour;
 use App\Cart;
 use Session;
-
+use DB;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    
     public function index(){
         //category display in the nav bar
         $categories = category::all();
@@ -46,19 +48,24 @@ class PagesController extends Controller
     }
 
     public function viewProduct($id){
-        $categories = category::all();
+        $categories = Category::all();
         $product = Product::findOrFail($id);
         $price = $product->price/100;
         $colours = $product->colours;
         $sizes = $product->sizes;
-        return view('pages.view', compact(['price','colours','sizes','categories']))->withProduct($product);
+        $relatedId = $product->category_id;
+        $relatedCategory = Category::findOrfail($relatedId);
+        $relatedProducts = $relatedCategory->products->take(4);
+        return view('pages.view', compact(['price','colours','sizes','categories','relatedProducts','relatedId']))->withProduct($product);
     }
 
     
 
     public function profile(){
-        $categories = category::all();
+        if(Auth::user()){
+        $categories = Category::all();
         return view('pages.profile',compact(['categories']));
+        }
     }
     public function viewByCategory($id){
         $categories = category::all();
@@ -74,7 +81,12 @@ class PagesController extends Controller
         return view('pages.see_all',compact(['category','products','categories']));
     }
 
-    
+    public function searchProduct(Request $request){
+        $name = $request->name;
+         $searchProducts = DB::table('products')->where('product_name','like',"%$name%" )->get();
+        return response()->json(['products'=> $searchProducts]);
+    }
+
 
     public function addToCart(Request $request){
         //dd($request->all());
@@ -118,17 +130,14 @@ class PagesController extends Controller
    }
 
     public function getCart(Request $request){
-        dd(request()->session()->get('cart'));
-        
-        if(!Session::has('cart')){
-            return view('products.test_cart');
-        }
-        $oldCart = Session::get('cart');
+        //dd(request()->session()->get('cart'));
+        $categories = Category::all();
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $product = $cart->items;
         $totalPrice = $cart->totalPrice;
         $totalQty = $cart->totalQty;
-        return ;
+        return  view('pages.cartView', compact(['categories','product','totalPrice','totalQty']));
     }
     
 }

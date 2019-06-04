@@ -20,15 +20,19 @@ class Cart
 
     public function add($item, $id, $colour, $size, $qty = 0){
         $storedItem = ['qty' => $qty, 'price' => ($item->price/100), 'item' => $item, 'colour' => $colour, 'size' => $size];
+        $qtyPerItem = $storedItem['qty'];
         if($this->items){
             if(array_key_exists($id, $this->items)){ 
                 $this->items[$id]['qty'] += $storedItem['qty'];
                 $storedItem = $this->items[$id];
             }
         }
+
         $storedItem['price'] = ($item->price/100) * $storedItem['qty'];
+        //$this->totalQty += $storedItem['qty'];
         $this->items[$id] = $storedItem;
-        $this->totalQty += $this->items[$id]['qty'];
+        //$this->totalQty += $this->items[$id]['qty'];
+        $this->totalQty += $qtyPerItem;
         $this->totalPrice += ($item->price/100);
     }
 

@@ -10,11 +10,15 @@
             <div class="collapse navbar-collapse" id="navbartoggle">
                 <form class="form-inline m-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products"
+                    <input type="text" class="form-control" id="searcher" data-route="{{route('searchProducts')}}" placeholder="Search for products"
                             aria-label="Search" aria-describedby="basic-addon1" width="200%">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="fas fa-search"></i></span>
+                                    <div class='col-md-12' >
+                                            <table class='table' id='search_results'>
+                                            </table>
+                                        </div>
                         </div>
                     </div>
                 </form>
@@ -28,12 +32,12 @@
                             Categories
                         </a>
                         <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                            @if($categories)
-                            @foreach($categories as $category)
-                                <a class="dropdown-item" href="{{route('viewByCategory', ['id' => $category->id])}}">{{$category->category_name}}</a>
+                           @if($categories) 
+                            @foreach($categories as $category) 
+                              <a class="dropdown-item" href="{{route('viewByCategory', ['id' => $category->id])}}">{{$category->category_name}}</a> 
                             <div class="dropdown-divider"></div>
                             @endforeach
-                            @endif
+                            @endif 
                             
                         </div>
                     </li>
@@ -41,16 +45,38 @@
                                 class="fas fa-shopping-cart"></i><span class="cart">:(<span id="list-item"><span
                                 class="badge badge-light">{{Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span></span> items)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link login" href="login.html">login<span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-signup" href="sign_up.html">signup<span
-                                class="sr-only">(current)</span></a>
-                    </li>
+                    @guest
+                            <li class="nav-item">
+                                <a class="nav-link login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link btn-outline-signup" href="{{ route('register') }}">{{ __('Signup') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+    

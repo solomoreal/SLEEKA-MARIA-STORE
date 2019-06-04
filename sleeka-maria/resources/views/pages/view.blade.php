@@ -79,163 +79,82 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <ul class="comment-section">
-
-                                        <li class="comment user-comment">
-
-                                            <div class="info">
-                                                <a href="#">Anie Silverston</a>
-                                                <span>4 hours ago</span>
-                                            </div>
-
-                                            <a class="avatar" href="#">
-                                                <img src="img/avatar_user_1.jpg" width="35" alt="Profile Avatar"
-                                                    title="Anie Silverston" />
-                                            </a>
-
-                                            <p>Suspendisse gravida sem?</p>
-
-                                        </li>
-
-                                        <li class="comment author-comment">
-
-                                            <div class="info">
-                                                <a href="#">Jack Smith</a>
-                                                <span>3 hours ago</span>
-                                            </div>
-
-                                            <a class="avatar" href="#">
-                                                <img src="img/avatar_author.jpg" width="35" alt="Profile Avatar"
-                                                    title="Jack Smith" />
-                                            </a>
-
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                                gravida sem sit amet molestie portitor.</p>
-
-                                        </li>
-
-                                        <li class="comment user-comment">
-
-                                            <div class="info">
-                                                <a href="#">Bradley Jones</a>
-                                                <span>1 hour ago</span>
-                                            </div>
-
-                                            <a class="avatar" href="#">
-                                                <img src="img/avatar_user_2.jpg" width="35" alt="Profile Avatar"
-                                                    title="Bradley Jones" />
-                                            </a>
-
-                                            <p>Suspendisse gravida sem sit amet molestie portitor?</p>
-
-                                        </li>
-
-                                        <li class="comment author-comment">
-
-                                            <div class="info">
-                                                <a href="#">Jack Smith</a>
-                                                <span>1 hour ago</span>
-                                            </div>
-
-                                            <a class="avatar" href="#">
-                                                <img src="img/avatar_author.jpg" width="35" alt="Profile Avatar"
-                                                    title="Jack Smith" />
-                                            </a>
-
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisee
-                                                gravida sem sit amet molestie porttitor.</p>
-
-                                        </li>
-
-                                        <li class="write-new">
-
-                                            <form action="#" method="post">
-
-                                                <textarea placeholder="Write your comment here"
-                                                    name="comment"></textarea>
-
-                                                <div>
-                                                    <img src="img/avatar_user_2.jpg" width="35"
-                                                        alt="Profile of Bradley Jones" title="Bradley Jones" />
-                                                    <button type="submit">Submit</button>
-                                                </div>
-
-                                            </form>
-
-                                        </li>
-
-                                    </ul>
-                                </div> -->
+                                
                             </div>
                         </div>
                     </div>
                     <div class="featured-product">
                         <div class="featured-title container">
-                            <h2>Products you met like</h2>
+                            <h2>You May also like this Products </h2>
                             <hr>
                         </div>
                         <div class="container">
+                            @if($relatedProducts)
+                            @foreach($relatedProducts->chunk(4) as $relatedProductsChunk)
                             <div class="row">
+                                @foreach($relatedProductsChunk as $relatedProduct)
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/footwears/1 (2).jpg">
-                                                <h1 class="product-title">Fashion Foot Wear</h1>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
+                                            <div  class="product-card">
+                                            <img src="{{$relatedProduct->image_url}}">
+                                            <h1 class="product-title">{{$relatedProduct->product_name}}</h1>
+                                            <del></del>
+                                            <p class="price">{{$relatedProduct->price/100}}</p>
+                                            <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button>
+                                            <div class="modal fade" id="cart{{$relatedProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                                <form action="{{route('addToCart')}}" class="text-center" method="POST">
+                                                                        {{ csrf_field() }}
+                                                                <input type="hidden" name="product_id" id="product_id" value="{{$relatedProduct->id}}">
+                                                                            <select name="colour" id="">
+                                                                                <option>Any Colour</option>
+                                                                            @if($relatedProduct->colours)
+                                                                                @foreach ($relatedProduct->colours as $colour)
+                                                                                    <option value="{{$colour->colour_name}}">{{$colour->colour_name}}</option>
+                                                                                @endforeach
+                                                                            @endif
+                                                                            </select>
+                                                                            <select name="size" id="">
+                                                                                <option>Size</option>
+                                                                                @if ($relatedProduct->sizes)
+                                                                                   @foreach ($relatedProduct->sizes as $size)
+                                                                            <option value="{{$size->size}}">{{$size->size}}</option>
+                                                                                   @endforeach 
+                                                                                @endif
+                                                                            </select>
+                                                                            <div class="row justify-content-center">
+                                                                                <div class="col-md-6">
+                                                                                    <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/footwears/1.jpg">
-                                                <h1 class="product-title">Casual Loafers Shoe</h1>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/footwears/1 (2).jpg">
-                                                <h1 class="product-title">Fashion Foot Wear</h1>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/footwears/1.jpg">
-                                                <h1 class="product-title">Men Casual Loafers Shoe</h1>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="seeall.html" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                            @endforeach 
+                        </div> 
+                            
                         </div>
+                        @endforeach
+                    <a href="{{route('viewByCategory',['id' => $relatedId])}}" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
+                        </div>
+                        
+                    @endif
                     </div>
                 </div>
             </div>
-        </div>
+        
 
 
         

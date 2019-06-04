@@ -15,6 +15,12 @@ hr {
     color: #40283E;
 }
 
+#price {
+    border-top: solid 2px #000;
+    border-bottom: solid 2px #000;
+    width: 50px;
+}
+
 .see-all{
     text-align: center;
     font-weight: bold;
@@ -895,11 +901,11 @@ footer input[type="text"]{
     display: inline-block;
     border: 1px solid rgb(192, 185, 185);
     margin: 0px;
-    width: 40px;
-    height: 47px;
+    width: 20px;
+    height: 35px;
     text-align: center;
     vertical-align: middle;
-    padding: 11px 0;
+    padding: 4px 0;
     background: #F2958D;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -934,8 +940,8 @@ footer input[type="text"]{
     border-top: 1px solid #F2958D;
     border-bottom: 1px solid #F2958D;
     margin: 0px;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 30px;
     font-weight: bold;
   }
   
@@ -1077,7 +1083,46 @@ footer h5 {
 
 /* Extra small devices (portrait phones, less than 576px)*/
 @media only screen and (max-width: 575.98px) { 
+
+
+    .value-button {
+        display: inline-block;
+        border: 1px solid rgb(192, 185, 185);
+        margin: 0px;
+        width: 20px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        padding:2px 0;
+        background: #F2958D;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
     
+    form #decrease {
+        margin-right: -4px;
+        border-radius: 4px 0 0 4px;
+      }
+      
+      form #increase {
+        margin-left: -4px;
+        border-radius: 0 4px 4px 0;
+      }
+
+    input#number {
+        text-align: center;
+        border: none;
+        border-top: 1px solid #F2958D;
+        border-bottom: 1px solid #F2958D;
+        margin: 0px;
+        width: 20px;
+        height: 23px;
+        font-weight: bold;
+      }
     
 .product-img .view-product-img img{
     width: 100%;
