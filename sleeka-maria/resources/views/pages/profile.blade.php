@@ -31,7 +31,7 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Order Action</th>
+                                        <th scope="col">Order Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>

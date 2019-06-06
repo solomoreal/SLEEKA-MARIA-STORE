@@ -21,6 +21,7 @@ class Cart
     public function add($item, $id, $colour, $size, $qty = 0){
         $storedItem = ['qty' => $qty, 'price' => ($item->price/100), 'item' => $item, 'colour' => $colour, 'size' => $size];
         $qtyPerItem = $storedItem['qty'];
+        $currentPrice =($storedItem['price']);
         if($this->items){
             if(array_key_exists($id, $this->items)){ 
                 $this->items[$id]['qty'] += $storedItem['qty'];
@@ -29,17 +30,16 @@ class Cart
         }
 
         $storedItem['price'] = ($item->price/100) * $storedItem['qty'];
-        //$this->totalQty += $storedItem['qty'];
         $this->items[$id] = $storedItem;
         //$this->totalQty += $this->items[$id]['qty'];
         $this->totalQty += $qtyPerItem;
-        $this->totalPrice += ($item->price/100);
+        $this->totalPrice +=  $currentPrice * $qtyPerItem;
     }
 
     public function reduceByOne($id){
         $this->items[$id]['qty']--;
         
-       $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+       $this->items[$id]['price'] -= $this->items[$id]['item']['price']/100;
        if($this->totalQty <= 0){
         $this->totalQty = 0;
        }else{
@@ -48,7 +48,7 @@ class Cart
        if($this->totalPrice <= 0){
            $this->totalPrice = 0;
        }else{
-        $this->totalPrice -= $this->items[$id]['item']['price'];
+        $this->totalPrice -= $this->items[$id]['item']['price']/100;
        }
         if($this->items[$id]['qty'] <= 0){
             unset($this->items[$id]);

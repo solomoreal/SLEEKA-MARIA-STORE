@@ -18,72 +18,43 @@
                                         <th scope="col">Size</th>
                                         <th scope="col">Color</th>
                                         <th scope="col">Price</th>
-                                        <th scope="col">Delete</th>
+                                        <th scope="col">Remove Item</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(Session::has('cart'))
+                                    @foreach($products as $product)
                                     <tr>
-                                        <td><img src="img/img2.jpg" width="50px" height="50px"> Bag</td>
+                                    <td><img src="{{$product['item']['image_url']}}" width="50px" height="50px"> {{$product['item']['product_name']}}</td>
                                         <td>
-                                            <form>
-                                                <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                                    value="Decrease Value"><b>-</b></div>
-                                                <input type="number" id="number" value="0" />
-                                                <div class="value-button" id="increase" onclick="increaseValue()"
-                                                    value="Increase Value"><b>+</b></div>
+                                            <form action="{{route('addToCart')}}" method="POST">
+                                                        {{ csrf_field() }}
+                                            <a href="{{route('reduceByOne',['id' =>$product['item']['id']])}}" class="value-button" id="decrease" onclick="decreaseValue()"
+                                                    value="Decrease Value"><b>-</b></a>
+                                            <input type="number" id="number" value="{{$product['qty']}}" />
+                                            
+                                            <input type="hidden" name="product_id" value="{{$product['item']['id']}}">
+                                            <button class="value-button" id="increase" type="submit" onclick="increaseValue()"
+                                                    value="Increase Value"><b>+</b></button>
                                             </form>
                                         </td>
                                         <td>
-                                            <select name="" id="">
-                                                <option>Size</option>
-                                                <option name="c-1">Large</option>
-                                                <option name="c-2">Xlarge</option>
-                                            </select>
+                                            <strong>{{$product['size']}}</strong>
                                         </td>
                                         <td>
-                                            <select name="" id="">
-                                                <option><b>Colors</b></option>
-                                                <option name="c-1">White</option>
-                                                <option name="c-2">Red</option>
-                                            </select>
+                                            <b>{{$product['colour']}}</b>
                                         </td>
-                                        <td>$228.99</td>
-                                        <td><i class="fas fa-trash-alt fa-2x text-danger"></i></td>
+                                    <td>{{$product['price']}}</td>
+                                    <td><a href="{{route('removeItem', ['id' => $product['item']['id']])}}"><i class="fas fa-trash-alt fa-2x text-danger"></i></a></td>
                                     </tr>
-                                    <tr>
-                                        <td><img src="img/img2.jpg" width="50px" height="50px"> Bag</td>
-                                        <td>
-                                            <form>
-                                                <div class="value-button" id="decrease" onclick="decreaseValue()"
-                                                    value="Decrease Value"><b>-</b></div>
-                                                <input type="number" id="number" value="0" />
-                                                <div class="value-button" id="increase" onclick="increaseValue()"
-                                                    value="Increase Value"><b>+</b></div>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <select name="" id="">
-                                                <option>Size</option>
-                                                <option name="c-1">Large</option>
-                                                <option name="c-2">Xlarge</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select name="" id="">
-                                                <option><b>Colors</b></option>
-                                                <option name="c-1">White</option>
-                                                <option name="c-2">Red</option>
-                                            </select>
-                                        </td>
-                                        <td>$228.99</td>
-                                        <td><i class="fas fa-trash-alt fa-2x text-danger"></i></td>
-                                    </tr>
+                                    @endforeach
+                                    @endif
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td><h3><b>Total</b></h3></td>
-                                        <td id="price"><h4>$499.99</h4></td>
+                                    <td id="price"><h4>{{$totalPrice}}</h4></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,9 +66,14 @@
                     <div class="col-lg-3">
                     <a href="{{route('index')}}" class="btn btn-outline-inf btn-md">continue shopping</a>
                     </div>
-                    <div class="col-lg-3">
-                            <a href="#" class="btn btn-outline-buy btn-md">checkout</a>
+                    @if(Session::has('cart') and Session::get('cart')->totalQty != null )
+                    <div class="col-lg-2">
+                    <a href="{{route('emptyCart')}}" class="btn btn-md btn-danger">Empty Cart</a>
                     </div>
+                    <div class="col-lg-3">
+                    <a href="{{route('checkout')}}" class="btn btn-outline-buy btn-md">checkout</a>
+                    </div>
+                    @endif
                 </div>
                 <div class="row justify-content-center">
                     <div class="featured-product">

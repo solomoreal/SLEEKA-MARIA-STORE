@@ -15,11 +15,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
                                     class="fas fa-search"></i></span>
-                                    <div class='col-md-12' >
-                                            <table class='table' id='search_results'>
-                                            </table>
-                                        </div>
+                                    
                         </div>
+                        
                     </div>
                 </form>
                 <ul class="navbar-nav ml-auto text-center">
@@ -78,5 +76,10 @@
             </div>
         </div>
     </nav>
+    
 </header>
+<div class='col-md-12' >
+    <table class='table' id='search_results'>
+    </table>
+</div>
     

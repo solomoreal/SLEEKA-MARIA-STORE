@@ -23,9 +23,48 @@
             @yield('messages') 
             @yield('content')
         @include('inc.main_footer') 
-    
+        <script>
+            $(document).ready(function(){
+               console.log('seach me');
+               
+               $("#searcher").on("keyup", function(){
+                var route = $(this).data("route")
+                var text = $(this).val();
+               if($(this).val().length >= 0){
+                   $.ajax({
+                       url: route,
+                       data:{name:$(this).val()},
+                       type:'get',
+                   }).done(function(data){
+                       var products = data.products;
+                       if(text.length === 0){
+                            products = [];
+                           $('#search_results').innerHTML =" " ;
+                        }
 
+                        
+                       console.log(products);
+                    //    if($(this).val.length === 0){
+                    //        products = [];
+                    //        $('#search_results').innerHTML = " ";
+                    //    }
+                       $('#search_results').html('');
+                       $('#search_results').append('<table class="table">');
+                       products.map((product,index,products)=>{
+                            $('#search_results').append("<tr><td>"+product.product_name+' '+(product.price/100)+ "</td><td> <a class='btn btn-info' href='/viewProduct/"+product.id+"'>view</a></tr>");
+                           });
         
+                   $('#search_results').append('</table>');
+                                          
+                   });
+               }
+           });
+            })
+        
+       
+       
+       
+       </script>
     
 </body>
 </html>

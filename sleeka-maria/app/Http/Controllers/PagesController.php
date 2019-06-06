@@ -10,6 +10,8 @@ use App\Colour;
 use App\Cart;
 use Session;
 use DB;
+use App\Order;
+use Paystack;
 use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
@@ -18,7 +20,7 @@ class PagesController extends Controller
     public function index(){
         //category display in the nav bar
         $categories = category::all();
-        $currency = '$'; 
+        $currency = '₦'; 
         //Adult frame subcategory and products on index page
         $glass_cat = $this->subcategoryQuery('Adult Frames');
         $category = $glass_cat->first();
@@ -62,10 +64,10 @@ class PagesController extends Controller
     
 
     public function profile(){
-        if(Auth::user()){
+       // if(Auth::user()){
         $categories = Category::all();
         return view('pages.profile',compact(['categories']));
-        }
+        //}
     }
     public function viewByCategory($id){
         $categories = category::all();
@@ -84,7 +86,7 @@ class PagesController extends Controller
     public function searchProduct(Request $request){
         $name = $request->name;
          $searchProducts = DB::table('products')->where('product_name','like',"%$name%" )->get();
-        return response()->json(['products'=> $searchProducts]);
+        return response()->json(['products' => $searchProducts]);
     }
 
 
@@ -102,22 +104,32 @@ class PagesController extends Controller
         $request->session()->put('cart', $cart);
         return back();
     }
+    public function getCart(Request $request){
+        //dd(request()->session()->get('cart'));
+        $categories = Category::all();
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $products = $cart->items;
+        $totalPrice = $cart->totalPrice;
+        $totalQty = $cart->totalQty;
+        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty']));
+    }
 
     public function reduceItemByOne($id, Request $request){
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->reduceByOne($id);
         Session::put('cart', $cart);
-        return json_encode($request->session()->get('cart'));
+        return back();
         
     }
 
-    public function removeItem(Request $request, $id){
+    public function removeItem($id){
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->removeItem($id);
         Session::put('cart', $cart);
-        return json_encode($request->session()->get('cart'));
+        return back();
     }
 
     public function emptyCart(){
@@ -129,15 +141,61 @@ class PagesController extends Controller
       return redirect(route('index'));
    }
 
-    public function getCart(Request $request){
-        //dd(request()->session()->get('cart'));
-        $categories = Category::all();
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $product = $cart->items;
-        $totalPrice = $cart->totalPrice;
-        $totalQty = $cart->totalQty;
-        return  view('pages.cartView', compact(['categories','product','totalPrice','totalQty']));
+   public function checkout(){
+    $categories = Category::all();
+    $oldCart = Session::has('cart') ? Session::get('cart') : null;
+    $cart = new Cart($oldCart);
+    $products = $cart->items;
+    $totalPrice = $cart->totalPrice;
+    $totalPriceCheckout = $cart->totalPrice*100;
+    $totalQty = $cart->totalQty;
+    return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout']));
+   }
+
+       /**
+     * Redirect the User to Paystack Payment Page
+     * @return Url
+     */
+    public function redirectToGateway()
+    {
+        request()->metadata = json_encode(request()->all());
+        return Paystack::getAuthorizationUrl()->redirectNow();
     }
+
+    /**
+     * Obtain Paystack payment information
+     * @return void
+     */
+    public function handleGatewayCallback()
+    {
+        $paymentDetails = Paystack::getPaymentData();
+
+        dd($paymentDetails);
+        $paymentDetails = Paystack::getPaymentData();
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        if($paymentDetails){
+            $order = new Order();
+            $order->reference_id = $paymentDetails['data']['reference'];
+            $order->amount = $paymentDetails['data']['amount'];
+            $order->state = $paymentDetails['data']['metadata']['state'];
+            $order->address = $paymentDetails['data']['metadata']['address'];
+            $order->fullName = $paymentDetails['data']['metadata']['fullName'];
+            $order->email = $paymentDetails['data']['metadata']['email'];
+            $order->paid_at = $paymentDetails['data']['paidAt'];
+            $order->currency = $paymentDetails['data']['currency'];
+            $order->cart = serialize($cart);
+            $order->status = "Pending";
+            $order->save();
+        }
+        $this->emptyCart();
+
+        // Now you have the payment details,
+        // you can store the authorization_code in your db to allow for recurrent subscriptions
+        // you can then red
+        //redirect or do whatever you want
+    }
+
+    
     
 }
