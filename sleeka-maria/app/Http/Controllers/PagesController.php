@@ -12,12 +12,17 @@ use Session;
 use DB;
 use App\Order;
 use Paystack;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use function Opis\Closure\unserialize;
 
 class PagesController extends Controller
 {
     
     public function index(){
+        //  $order = Order::find(3);
+        //  $cart = unserialize($order->cart);
+        //  dd($cart);
         //category display in the nav bar
         $categories = category::all();
         $currency = '₦'; 
@@ -64,10 +69,17 @@ class PagesController extends Controller
     
 
     public function profile(){
-       // if(Auth::user()){
-        $categories = Category::all();
-        return view('pages.profile',compact(['categories']));
-        //}
+       if(Auth::user()){
+           
+           //dd($user->orders);
+           $orders = Auth::user()->orders;
+           $orders->transform(function($order, $key){
+               $order->cart = unserialize($order->cart);
+               return $order;
+           });
+           $categories = Category::all();
+        return view('pages.profile',compact(['categories','orders']));
+       }
     }
     public function viewByCategory($id){
         $categories = category::all();
@@ -161,6 +173,7 @@ class PagesController extends Controller
         request()->metadata = json_encode(request()->all());
         return Paystack::getAuthorizationUrl()->redirectNow();
     }
+    
 
     /**
      * Obtain Paystack payment information
@@ -170,25 +183,33 @@ class PagesController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-        dd($paymentDetails);
+       //dd($paymentDetails);
         $paymentDetails = Paystack::getPaymentData();
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = Session::get('cart');
+       // $cart = new Cart($oldCart);
         if($paymentDetails){
             $order = new Order();
-            $order->reference_id = $paymentDetails['data']['reference'];
+            $order->order_id = $paymentDetails['data']['reference'];
             $order->amount = $paymentDetails['data']['amount'];
             $order->state = $paymentDetails['data']['metadata']['state'];
             $order->address = $paymentDetails['data']['metadata']['address'];
-            $order->fullName = $paymentDetails['data']['metadata']['fullName'];
+            $order->full_name = $paymentDetails['data']['metadata']['first_name']. " " .$paymentDetails['data']['metadata']['last_name'];
+            $order->country = $paymentDetails['data']['metadata']['country'];
+            $order->city = $paymentDetails['data']['metadata']['city'];
+            $order->quantity = $paymentDetails['data']['metadata']['quantity'];
+            $order->phone = $paymentDetails['data']['metadata']['phone'];
             $order->email = $paymentDetails['data']['metadata']['email'];
             $order->paid_at = $paymentDetails['data']['paidAt'];
             $order->currency = $paymentDetails['data']['currency'];
             $order->cart = serialize($cart);
             $order->status = "Pending";
+            if(Auth::user()){
+                $order->user_id = Auth::user()->id;
+            }
             $order->save();
         }
         $this->emptyCart();
+        return redirect(route('profile'));
 
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions

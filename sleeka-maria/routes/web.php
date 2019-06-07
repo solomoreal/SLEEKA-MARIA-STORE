@@ -47,6 +47,12 @@ Route::group(['prefix' => '/'], function () {
 
 });
 
+//admin
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('allOrders', 'AdminController@allOrders')->name('allOrders');
+    
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

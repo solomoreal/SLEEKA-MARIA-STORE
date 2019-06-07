@@ -31,31 +31,26 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Order Status</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($orders)
+                                    @foreach($orders as $order)
+                                        @foreach($order->cart->items as $cart)
                                     <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>$228.99</td>
-                                        <td>@mdo</td>
-                                        <td><a class="btn btn-sm btn-danger text-white">Cancelled</a></td>
+                            
+                                    <td>{{$cart['item']['product_name']}}</td> 
+                                    <td>{{$cart['qty']}}</td>
+                                    <td>{{$cart['price']}}</td>
+
+                                    <td>{{$order->status}}</td>
+                                        <td><a class="btn btn-sm btn-danger text-white">Cancel Order</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>$228.99</td>
-                                        <td>@fat</td>
-                                        <td><a class="btn btn-sm btn-danger text-white">Cancel</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>$228.99</td>
-                                        <td>Total</td>
-                                        <td><a class="btn btn-sm btn-danger text-white">Cancelled</a></td>
-                                    </tr>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
+                                    
                                 </tbody>
                             </table>
                         </div>

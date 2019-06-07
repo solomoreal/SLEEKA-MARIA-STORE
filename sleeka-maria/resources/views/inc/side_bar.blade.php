@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="all_orders.html">
+                        <a class="nav-link" href="{{route('allOrders')}}">
                                 All Orders
                             </a>
                         </li>

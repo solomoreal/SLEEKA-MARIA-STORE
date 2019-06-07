@@ -10,6 +10,7 @@ use App\Subcategory;
 use App\Colour;
 use Cloudder;
 use Illuminate\Support\Facades\Auth;
+use App\Order;
 
 class ProductController extends Controller
 {
@@ -231,4 +232,7 @@ class ProductController extends Controller
         return $product;
     }
 }
+
+//orders methods
+
 }

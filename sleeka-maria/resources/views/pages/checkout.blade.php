@@ -87,7 +87,7 @@
 
                                 <h5 class="mt-md-5">Shipping Address</h5>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apartment, street, or floor">
+                                    <input type="text" name="address" class="form-control" placeholder="Apartment, street, or floor">
                                 </div>
                                 <div class="form-group">
                                     <select id="inputState" required class="form-control" name="country">
