@@ -105,13 +105,14 @@ class PagesController extends Controller
     public function addToCart(Request $request){
         //dd($request->all());
         $product_id = $request->product_id;
+        $cart_id = $request->id;
         $product = Product::findOrFail($product_id);
         $colour = $request->colour ? $request->colour : "Available";
         $size = $request->size ? $request->size : "normal";
         $qty = $request->quantity ? $request->quantity : 1;
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product, $product->id, $colour, $size, $qty);
+        $cart->add($product, $cart_id, $colour, $size, $qty);
 
         $request->session()->put('cart', $cart);
         return back();

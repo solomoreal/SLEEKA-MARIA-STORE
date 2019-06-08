@@ -37,7 +37,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('reduceByOne/{id}', 'PagesController@reduceItemByOne')->name('reduceByOne');
     Route::get('removeItem/{id}', 'PagesController@removeItem')->name('removeItem');
     Route::get('emptyCart', 'PagesController@emptyCart')->name('emptyCart');
-    Route::get('checkout', 'PagesController@checkout')->name('checkout');
+    Route::get('checkout', 'PagesController@checkout')->middleware('auth')->name('checkout');
 
     //payStack
     Route::post('/pay', 'PagesController@redirectToGateway')->name('pay');
@@ -50,6 +50,7 @@ Route::group(['prefix' => '/'], function () {
 //admin
 Route::group(['prefix' => 'admin'], function () {
     Route::get('allOrders', 'AdminController@allOrders')->name('allOrders');
+    Route::get('pendingOrders', 'AdminController@pendingOrders')->name('pendingOrders');
     
 });
 

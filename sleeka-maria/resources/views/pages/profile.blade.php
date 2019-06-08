@@ -31,7 +31,7 @@
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +45,7 @@
                                     <td>{{$cart['price']}}</td>
 
                                     <td>{{$order->status}}</td>
-                                        <td><a class="btn btn-sm btn-danger text-white">Cancel Order</a></td>
+                                        <td><a class="btn btn-sm btn-danger text-white">View details</a></td>
                                     </tr>
                                     @endforeach
                                     @endforeach

@@ -14,9 +14,9 @@ class AddMoreFieldsToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('paid_at');
+            $table->string('paid_at')->nullable();
             $table->integer('amount');
-            $table->string('currency');
+            $table->string('currency')->nullable();
             $table->integer('quantity');
         });
     }

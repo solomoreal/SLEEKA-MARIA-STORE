@@ -23,17 +23,19 @@
                                 </thead>
                                 <tbody>
                                     @if(Session::has('cart'))
-                                    @foreach($products as $product)
+                                    @foreach($products as $id => $product)
                                     <tr>
                                     <td><img src="{{$product['item']['image_url']}}" width="50px" height="50px"> {{$product['item']['product_name']}}</td>
                                         <td>
                                             <form action="{{route('addToCart')}}" method="POST">
                                                         {{ csrf_field() }}
-                                            <a href="{{route('reduceByOne',['id' =>$product['item']['id']])}}" class="value-button" id="decrease" onclick="decreaseValue()"
+                                            <a href="{{route('reduceByOne',['id' =>$id])}}" class="value-button" id="decrease" onclick="decreaseValue()"
                                                     value="Decrease Value"><b>-</b></a>
                                             <input type="number" id="number" value="{{$product['qty']}}" />
-                                            
+                                            <input type="hidden" name="id" value="{{$id}}">
                                             <input type="hidden" name="product_id" value="{{$product['item']['id']}}">
+                                            <input type="hidden" name="colour" value="{{$product['colour']}}">
+                                            <input type="hidden" name="size" value="{{$product['size']}}">
                                             <button class="value-button" id="increase" type="submit" onclick="increaseValue()"
                                                     value="Increase Value"><b>+</b></button>
                                             </form>
@@ -45,7 +47,7 @@
                                             <b>{{$product['colour']}}</b>
                                         </td>
                                     <td>{{$product['price']}}</td>
-                                    <td><a href="{{route('removeItem', ['id' => $product['item']['id']])}}"><i class="fas fa-trash-alt fa-2x text-danger"></i></a></td>
+                                    <td><a href="{{route('removeItem', ['id' => $id])}}"><i class="fas fa-trash-alt fa-2x text-danger"></i></a></td>
                                     </tr>
                                     @endforeach
                                     @endif

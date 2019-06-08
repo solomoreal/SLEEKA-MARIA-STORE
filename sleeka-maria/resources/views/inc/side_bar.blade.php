@@ -45,8 +45,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pending_orders.html">
-                                Paid Online
+                        <a class="nav-link" href="{{route('pendingOrders')}}">
+                                Pending Orders
                             </a>
                         </li>
                         <li class="nav-item">

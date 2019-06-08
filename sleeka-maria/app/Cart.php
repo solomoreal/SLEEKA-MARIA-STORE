@@ -23,12 +23,16 @@ class Cart
         $qtyPerItem = $storedItem['qty'];
         $currentPrice =($storedItem['price']);
         if($this->items){
-            if(array_key_exists($id, $this->items)){ 
+            if(array_key_exists($id, $this->items) && $this->items[$id]['colour'] == $storedItem['colour'] && $this->items[$id]['size'] === $storedItem['size']){ 
                 $this->items[$id]['qty'] += $storedItem['qty'];
                 $storedItem = $this->items[$id];
             }
-        }
+            else{
+                $number = uniqid();
+                $id = $number;
 
+            }
+        }
         $storedItem['price'] = ($item->price/100) * $storedItem['qty'];
         $this->items[$id] = $storedItem;
         //$this->totalQty += $this->items[$id]['qty'];
@@ -67,4 +71,5 @@ class Cart
         }
     
     }
+    
 }
