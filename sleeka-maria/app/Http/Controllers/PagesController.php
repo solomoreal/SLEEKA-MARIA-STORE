@@ -15,7 +15,10 @@ use Paystack;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use function Opis\Closure\unserialize;
-
+use Mail;
+use Notification;
+use App\Notifications\MailSent;
+use App\Notifications\NewOrder;
 class PagesController extends Controller
 {
     
@@ -37,6 +40,11 @@ class PagesController extends Controller
         $kFrames = $k_frame_cat->products->take(4);
         $products = Product::all()->where('promote', 1)->take(8);
         return view('pages.index', compact(['products','currency','category','glasses','categories','kFrames','k_frame_cat']));
+    }
+
+    public function about(){
+        $categories = category::all();
+        return view('pages.about',compact('categories'));
     }
     public function subcategoryQuery($subcategroy){
         $allSubcats = Subcategory::where('subcategory_name', $subcategroy)->get();
@@ -105,7 +113,12 @@ class PagesController extends Controller
     public function addToCart(Request $request){
         //dd($request->all());
         $product_id = $request->product_id;
-        $cart_id = $request->id;
+        if($request->id){
+            $cart_id = $request->id;
+        }else{
+            $cart_id = $product_id;
+        }
+        
         $product = Product::findOrFail($product_id);
         $colour = $request->colour ? $request->colour : "Available";
         $size = $request->size ? $request->size : "normal";
@@ -125,7 +138,8 @@ class PagesController extends Controller
         $products = $cart->items;
         $totalPrice = $cart->totalPrice;
         $totalQty = $cart->totalQty;
-        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty']));
+        $relatedProducts = Product::all()->take(4);
+        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty','relatedProducts']));
     }
 
     public function reduceItemByOne($id, Request $request){
@@ -208,16 +222,76 @@ class PagesController extends Controller
                 $order->user_id = Auth::user()->id;
             }
             $order->save();
+            $user = User::findOrFail($order->user_id);
+            $user->notify(new NewOrder($order->order_id));
+
         }
         $this->emptyCart();
-        return redirect(route('profile'));
+                return redirect(route('profile'));
 
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then red
         //redirect or do whatever you want
     }
+    public function getContactForm(){
+        
+        return 'contact form';
+    }
 
+    public function postContact(Request $request){
+        $this->validate($request,[
+            'email' => 'required|email',
+            'subject' => 'min:3',
+            'phone' => 'required',
+            'body' => 'string',
+            'name' => 'required'
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'bodyMessage' => $request->body,
+            'name' => $request->name
+        ];
+
+        Mail::send('email.contact', $data, function($message) use ($data){
+            $message->from($data['email']);
+            $message->to('solomoreal@yahoo.com');
+            $message->subject($data['subject']);
+        });
+
+        Notification::route('mail', $request->email)
+            ->notify(new MailSent());
+            return redirect(route('about'));
+    }
     
-    
+    public function postComplain(Request $request){
+        $this->validate($request,[
+            'email' => 'required|email',
+            'subject' => 'min:3',
+            'phone' => 'required',
+            'body' => 'string',
+            'order_id' => 'nullable'
+
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'bodyMessage' => $request->body,
+            'name' => $request->name
+        ];
+
+        Mail::send('emails.contact', $data, function($message) use ($data){
+            $message->from($data['email']);
+            $message->to('solomoreal@yahoo.com');
+            $message->subject($data['subject']);
+        });
+
+        Notification::route('mail', $request->email)
+            ->notify(new MailSent());
+    }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-@endsection
 
     <div class="wrapper">
         <div class="col s12 content-area mt-5">
@@ -75,20 +74,30 @@
                         </div>
                         <div class="col-md-6">
                             <div class="container">
-                                <form>
+                            <form action="{{route('postContact')}}" method="POST">
+                                    {{ csrf_field() }}
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputname">NAME</label>
-                                            <input type="text" class="form-control" id="inputname" placeholder="Name">
+                                            <input type="text" name="name" class="form-control" id="inputname" placeholder="Name">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputemail">EMAIL</label>
-                                            <input type="email" class="form-control" id="inputemail"
+                                            <input type="email" name="email" class="form-control" id="inputemail"
                                                 placeholder="Email">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="exampleFormControlTextarea1">Example textarea</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            <label for="inputsubject">Phone Number</label>
+                                            <input type="text" name="phone" class="form-control" id="inputname" placeholder="Phone Number">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="inputsubject">Subject</label>
+                                            <input name="subject" type="text" class="form-control" id="inputname" placeholder="Subject">
+                                        </div>
+                                        
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleFormControlTextarea1">Body</label>
+                                            <textarea name="body" class="form-control" id="exampleFormControlTextarea1"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -103,4 +112,4 @@
     </div>
 
 
-    
+    @endsection

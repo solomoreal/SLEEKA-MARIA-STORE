@@ -25,10 +25,11 @@ Route::group(['prefix' => '/'], function () {
     Route::get('viewByCategory/{id}', 'PagesController@viewByCategory')->name('viewByCategory');
     Route::get('viewBySubcategory/{id}', 'PagesController@viewBySubcategory')->name('viewBySubcategory');
     Route::get('searchProducts','PagesController@searchProduct')->name('searchProducts');
-    Route::view('about','pages.about')->name('about');
+    Route::get('about','PagesController@about')->name('about');
     //auth Routes
     Route::get('profile', 'PagesController@profile')->name('profile');
-    
+   // Route::get('getContactForm', 'PagesController@getContactForm')->name('getContactForm');
+    Route::post('postContact', 'PagesController@postContact')->name('postContact');    
     
 
     //Cart
@@ -51,6 +52,11 @@ Route::group(['prefix' => '/'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('allOrders', 'AdminController@allOrders')->name('allOrders');
     Route::get('pendingOrders', 'AdminController@pendingOrders')->name('pendingOrders');
+    Route::get('newOrders', 'AdminController@newOrders')->name('newOrders');
+    Route::get('payOnDeliveryOrders', 'AdminController@payOnDeliveryOrders')->name('payOnDeliveryOrders');
+    Route::get('rejectedOrders', 'AdminController@rejectedOrders')->name('rejectedOrders');
+    Route::get('cancelledOrders', 'AdminController@cancelledOrders')->name('cancelledOrders');
+    Route::get('completedOrders', 'AdminController@completedOrders')->name('completedOrders');
     
 });
 

@@ -35,13 +35,13 @@
                     </li>
                     <div class="collapse container" id="collapseOrders">
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.html">
+                            <a class="nav-link" href="{{route('newOrders')}}">
                                 New Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="paid_order.html">
-                                Paid On Delivery
+                            <a class="nav-link" href="{{route('payOnDeliveryOrders')}}">
+                                Pay On Delivery
                             </a>
                         </li>
                         <li class="nav-item">
@@ -50,17 +50,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="rejected_orders.html">
+                            <a class="nav-link" href="{{route('rejectedOrders')}}">
                                 Rejected Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cancelled_orders.html">
+                            <a class="nav-link" href="{{route('cancelledOrders')}}">
                                 Cancelled Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="completed_orders.html">
+                        <a class="nav-link" href="{{route('completedOrders')}}">
                                 Completed Orders
                             </a>
                         </li>

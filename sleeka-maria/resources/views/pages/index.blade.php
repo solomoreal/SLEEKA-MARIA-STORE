@@ -116,7 +116,7 @@
                              <div class="col-lg-3 col-sm-6">
                             <div class="container">
                                 <div class="product-card">
-                                    <a href="view.html">
+                                    <a href="{{route('viewProduct', ['id' =>$glass->id])}}">
                                     <img src="{{$glass->image_url}}">
                                     <h1 class="product-title">{{$glass->product_name}}</h1>
                                     </a>
@@ -202,17 +202,55 @@
                                  <div class="col-lg-3 col-sm-6">
                                 <div class="container">
                                     <div class="product-card">
-                                        <a href="view.html">
+                                        <a href="{{route('viewProduct', ['id' =>$glass->id])}}">
                                         <img src="{{$glass->image_url}}">
                                         <h1 class="product-title">{{$glass->product_name}}</h1>
                                         </a>
                                        <!-- <del>$199.99</del> -->
-                                    <p class="price">{{$currency }}{{ $glass->price}}</p>
-                                        <button class="add-to-cart" href="#">Add to Cart</button>
+                                    <p class="price">{{$currency }}{{ $glass->price/100}}</p>
+                                    <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>
+                                    <div class="modal fade" id="cart{{$glass->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <form action="{{route('addToCart')}}" class="text-center" method="POST">
+                                                                {{ csrf_field() }}
+                                                        <input type="hidden" name="product_id" id="product_id" value="{{$glass->id}}">
+                                                                    <select name="colour" id="">
+                                                                        <option>Any Colour</option>
+                                                                    @if($glass->colours)
+                                                                        @foreach ($glass->colours as $colour)
+                                                                            <option value="{{$colour->colour_name}}">{{$colour->colour_name}}</option>
+                                                                        @endforeach
+                                                                    @endif
+                                                                    </select>
+                                                                    <select name="size" id="">
+                                                                        <option>Size</option>
+                                                                        @if ($glass->sizes)
+                                                                           @foreach ($glass->sizes as $size)
+                                                                    <option value="{{$size->size}}">{{$size->size}}</option>
+                                                                           @endforeach 
+                                                                        @endif
+                                                                    </select>
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col-md-6">
+                                                                            <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                    @endforeach 
                         </div>
                         @endforeach
                     
