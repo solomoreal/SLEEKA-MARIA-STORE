@@ -1,173 +1,7 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.dashboard')
+@section('content')
+    
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sleeka Maria | Dashboard</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">
-</head>
-
-<body>
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand pt-0" href="./index.html">
-                <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-            </a>
-            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                <div class="navbar-collapse-header d-md-none">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="index.html">
-                                <img src="./assets/img/brand/blue.png">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="ni ni-shop text-blue"></i>Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#collapseOrders" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOrders">
-                            <i class="ni ni-delivery-fast text-blue"></i>Orders
-                        </a>
-                    </li>
-                    <div class="collapse container" id="collapseOrders">
-                        <li class="nav-item">
-                            <a class="nav-link" href="orders.html">
-                                New Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="paid_order.html">
-                                Paid Online
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pending_orders.html">
-                                Pending Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="rejected_orders.html">
-                                Rejected Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cancelled_orders.html">
-                                Cancelled Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="completed_orders.html">
-                                Completed Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="all_orders.html">
-                                All Orders
-                            </a>
-                        </li>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#collapseProducts" data-toggle="collapse" aria-expanded="false" aria-controls="collapseProducts">
-                            <i class="ni ni-bag-17 text-blue"></i>Products
-                        </a>
-                    </li>
-                    <div class="collapse container" id="collapseProducts">
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                All Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="add_product.html">
-                                Add Product
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="category.html">
-                                Categories
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="subcategory.html">
-                                Sub-Categories
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="colors.html">
-                                Colors
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sizes.html">
-                                Sizes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="shipping.html">
-                                Shipping
-                            </a>
-                        </li>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#collapseAdmin" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAdmin">
-                            <i class="ni ni-circle-08 text-blue"></i> Manage Admins
-                        </a>
-                    </li>
-                    <div class="collapse container" id="collapseAdmin">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                Add New Admin
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                Edit Admins
-                            </a>
-                        </li>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
-                            <i class="ni ni-single-02 text-blue"></i>Customers
-                        </a>
-                    </li>
-                    <div class="collapse container" id="collapseCustomers">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                Reviews
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                View Customers
-                            </a>
-                        </li>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-button-power text-blue"></i>Log Out
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="main-content">
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -218,62 +52,61 @@
             </nav>
             <div class="header bg-gradient-primary pt-md-7">
             </div>
+            @if($order)
+            <div>
+                Customer name: {{$order->full_name}} <br>
+                Amount: {{$order->amount/100}} <br>
+                Quantity: {{$order->quantity}} <br>
+                Paid At : {{$order->paid_at}} <br>
+                Country: {{$order->country}} <br>
+                State: {{$order->state}} <br>
+                City: {{$order->city}} <br>
+                Delivery Address: {{$order->address}} <br>
+                Current Status : <strong>{{$order->status}} </strong> <br>
+
+            </div>
+            @foreach($cart->items as $item)
             <div class="container">
                 <div class="row mt-3">
                     <div class="col-sm-5">
                       <div class="card">
                         <div class="card-body">
-                          <img src="assets/img/brand/item.jpg" class="img-fluid">
+                        <img src="{{$item['item']['image_url']}}" class="img-fluid">
                         </div>
                       </div>
                     </div>
                 <div class="col-sm-7">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">Order ID: #122344 <br>
-                        Item: SunGlass <br>
-                        Color: Black <br>
-                        Size: Small <br>    
-                        Quantity: 3 <br>
-                        Order Address: Alakahia, Port Harcourt <br>
-                        Price Per Item: #1,000 <br>
-                        Shipping Fee: #350 <br>
-                        Status: Pending <br>
-                        <div class="dropdown">
-                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Change Status
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                              <a class="dropdown-item" href="#">Pending</a>
-                              <a class="dropdown-item" href="#">Delivered</a>
-                              <a class="dropdown-item" href="#">Cancelled</a>
-                              <a class="dropdown-item" href="#">Regected</a>
-                              <a class="dropdown-item" href="#">In Progress</a>
-                            </div>
-                          </div>
+                      <h4 class="card-title">Cart ID: {{$item['item']['id']}} <br>
+                        Item: {{$item['item']['product_name']}} <br>
+                        Color: {{$item['colour']}} <br>
+                        Size: {{$item['size']}} <br>    
+                        Quantity: {{$item['qty']}} <br>
+                        Price : {{$item['price']}} <br>            
+                       
                       </h4>
                       <hr>
-                      <h3> Total Cost: #3,350 </h3>
+                      
                       
                     </div>
                   </div>
-                </div>
-            </div>
-            </div>
-            <footer class="footer">
-                <div class="row align-items-center justify-content-xl-between">
-                    <div class="col-xl-6">
-                        <div class="copyright text-center text-xl-left text-muted">
-                            &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
+                  </div>
+                  @endforeach
+                  <div class="dropdown">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Change Status
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="FilterOrder">
+                          <a class="dropdown-item" href="#">Pending</a>
+                          <a class="dropdown-item" href="#">Delivered</a>
+                          <a class="dropdown-item" href="#">Cancelled</a>
+                          <a class="dropdown-item" href="#">Regected</a>
+                          <a class="dropdown-item" href="#">In Progress</a>
                         </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/argon.js?v=1.0.0"></script>
-</body>
-
-</html>
+                      </div>
+                  @endif
+                
+            </div>
+            </div>
+            @endsection

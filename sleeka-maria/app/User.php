@@ -11,19 +11,28 @@ class User extends Authenticatable
     use Notifiable;
 
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->latest();
     }
 
     public function products(){
         return $this->hasMany('App\Product');
     }
+
+    public function country(){
+        return $this->belongsTo('App\Country');
+    }
+
+    public function state(){
+        return $this->belongsTo('App\State');
+    }
+   
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'name', 'email', 'password','role','first_name','last_name','phone','address','country_id','address','state_id','lga'
     ];
 
     /**

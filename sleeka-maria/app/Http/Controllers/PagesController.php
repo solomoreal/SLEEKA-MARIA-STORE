@@ -13,6 +13,7 @@ use DB;
 use App\Order;
 use Paystack;
 use App\User;
+use App\Country;
 use Illuminate\Support\Facades\Auth;
 use function Opis\Closure\unserialize;
 use Mail;
@@ -78,17 +79,36 @@ class PagesController extends Controller
 
     public function profile(){
        if(Auth::user()){
-           
+        $countries = Country::all(); 
            //dd($user->orders);
            $orders = Auth::user()->orders;
            $orders->transform(function($order, $key){
                $order->cart = unserialize($order->cart);
+
                return $order;
            });
            $categories = Category::all();
-        return view('pages.profile',compact(['categories','orders']));
+           $relatedProducts = Product::latest()->take(8)->get();
+        return view('pages.profile',compact(['categories','orders','relatedProducts','countries']));
        }
     }
+
+    public function editProfile($id){
+        $user = User::findOrFail($id);
+        $categories = Category::all();
+        $countries = Country::all();
+        return view('pages.edit_profile',compact(['user','categories','countries']));
+
+    }
+
+    public function fetchStates(Request $request){
+        
+        $country_id = $request->country_id;
+        $country = Country::findOrFail($country_id);
+        $states = $country->states;
+        return response()->json(['states' => $states]);
+    }
+
     public function viewByCategory($id){
         $categories = category::all();
         $category = Category::findOrFail($id);
@@ -130,6 +150,11 @@ class PagesController extends Controller
         $request->session()->put('cart', $cart);
         return back();
     }
+
+    public function buyNow(Request $request){
+        $this->addToCart($request);
+        return redirect(route('checkout'));
+    }
     public function getCart(Request $request){
         //dd(request()->session()->get('cart'));
         $categories = Category::all();
@@ -142,7 +167,7 @@ class PagesController extends Controller
         return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty','relatedProducts']));
     }
 
-    public function reduceItemByOne($id, Request $request){
+    public function reduceItemByOne($id){
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->reduceByOne($id);
@@ -169,6 +194,8 @@ class PagesController extends Controller
    }
 
    public function checkout(){
+       $user = Auth::user();
+       $countries = Country::all();
     $categories = Category::all();
     $oldCart = Session::has('cart') ? Session::get('cart') : null;
     $cart = new Cart($oldCart);
@@ -176,7 +203,7 @@ class PagesController extends Controller
     $totalPrice = $cart->totalPrice;
     $totalPriceCheckout = $cart->totalPrice*100;
     $totalQty = $cart->totalQty;
-    return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout']));
+    return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout','user','countries']));
    }
 
        /**

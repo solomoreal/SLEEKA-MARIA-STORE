@@ -18,6 +18,9 @@ Route::resource('/colours', 'ColourController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/subcategories', 'SubcategoryController');
 Route::resource('/sizes', 'SizeController');
+//used to pass arrays of countries into the database
+//Route::get('/country' ,'CountryController@store');
+
 Route::group(['prefix' => '/'], function () {
     //Pages
     Route::get('', 'PagesController@index')->name('index');
@@ -28,6 +31,9 @@ Route::group(['prefix' => '/'], function () {
     Route::get('about','PagesController@about')->name('about');
     //auth Routes
     Route::get('profile', 'PagesController@profile')->name('profile');
+    Route::get('editProfile/{id}','PagesController@editProfile')->name('editProfile');
+    Route::put('updateProfile', 'UsersController@update')->name('updateProfile');
+    Route::get('fetchStates','PagesController@fetchStates')->name('fetchStates');
    // Route::get('getContactForm', 'PagesController@getContactForm')->name('getContactForm');
     Route::post('postContact', 'PagesController@postContact')->name('postContact');    
     
@@ -43,6 +49,8 @@ Route::group(['prefix' => '/'], function () {
     //payStack
     Route::post('/pay', 'PagesController@redirectToGateway')->name('pay');
     Route::get('/payment/callback', 'PagesController@handleGatewayCallback');
+    //test routes
+    Route::view('test-form','pages.test-form' );
  
 
 
@@ -57,6 +65,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('rejectedOrders', 'AdminController@rejectedOrders')->name('rejectedOrders');
     Route::get('cancelledOrders', 'AdminController@cancelledOrders')->name('cancelledOrders');
     Route::get('completedOrders', 'AdminController@completedOrders')->name('completedOrders');
+    Route::get('orderItem/{id}', 'AdminController@orderItem')->name('orderItem');
     
 });
 

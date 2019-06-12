@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Category;
 
 class LoginController extends Controller
 {
@@ -26,13 +27,18 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+    public function showLoginForm(){
+        $categories = Category::all();
+        return view('auth.login')->withCategories($categories);
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

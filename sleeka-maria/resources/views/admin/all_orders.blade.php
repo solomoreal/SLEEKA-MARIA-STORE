@@ -97,40 +97,43 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Order ID</th>
-                                    <th scope="col">Item</th>
+                                    {{-- <th scope="col">paid At</th> --}}
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Price Per Item</th>
+                                    {{-- <th scope="col">Price Per Item</th> --}}
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                @if($orders)
+                                @foreach($orders as $order)
+                                
                                 <tr>
                                     <th scope="row">
-                                        #122344
+                                        {{$order->order_id}}
                                     </th>
+                                    
+                                        {{-- {{$order->paid_at}}  --}}
+                                    
                                     <td>
-                                        SunGlass
+                                            {{$order->quantity}} 
+                                    </td>
+                                    {{-- <td> --}}
+                                        {{-- {{$cart['item']['price']/100}} --}}
+                                    {{-- </td> --}}
+                                    <td>
+                                            {{$order->amount/100}}
                                     </td>
                                     <td>
-                                        3
+                                            {{$order->status}}
                                     </td>
                                     <td>
-                                        #1,450
-                                    </td>
-                                    <td>
-                                        #3,450
-                                    </td>
-                                    <td>
-                                        Pending
-                                    </td>
-                                    <td>
-                                        <a href="order_item.html" class="btn btn-sm btn-primary">View Order</a>
-                                    </td>
+                                    <a href="{{route('orderItem', ['id' => $order->id])}}" class="btn btn-sm btn-primary">View Order</a>
+                                    
                                 </tr>
-                                </tr>
+                                @endforeach
+                                @endif
                                
                             </tbody>
                         </table>

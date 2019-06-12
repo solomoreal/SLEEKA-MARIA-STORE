@@ -60,18 +60,18 @@
                             {{ csrf_field() }}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" name="first_name" placeholder="First name ">
+                                    <input type="text" required class="form-control" name="first_name" value="{{$user->first_name}}">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" name="last_name" placeholder="Last name">
+                                    <input type="text" required class="form-control" name="last_name" placeholder="Last name" value="{{$user->last_name}}">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="email" required class="form-control" name="email" placeholder="E-mail">
+                                    <input type="email" value="{{$user->email}}" required class="form-control" name="email" placeholder="E-mail">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" required class="form-control" name="phone" placeholder="Phone number">
+                                    <input value="{{$user->phone}}" type="text" required class="form-control" name="phone" placeholder="Phone number">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -87,22 +87,23 @@
 
                                 <h5 class="mt-md-5">Shipping Address</h5>
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control" placeholder="Apartment, street, or floor">
+                                <input type="text" value="{{$user->address}}" name="address" class="form-control" placeholder="Apartment, street, or floor">
                                 </div>
                                 <div class="form-group">
-                                    <select id="inputState" required class="form-control" name="country">
-                                        <option selected>Country/Region</option>
-                                        <option>...</option>
+                                <select id="country" data-route="{{route('fetchStates')}}"  required  class="form-control" name="country">
+                                        <option selected>{{$user->country->country_name}}</option>
+                                @foreach($countries as $country)
+                                        <option>{{$country->country_name}}</option>
+                                @endforeach
                                     </select>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" required name="city" class="form-control" placeholder="City">
+                                    <input type="text" required name="city" class="form-control" placeholder="City" value="{{$user->lga}}">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <select id="inputState" class="form-control" name="state">
-                                            <option selected>Choose State</option>
-                                            <option>...</option>
+                                        <select id="state" class="form-control" name="state">
+                                        <option selected>{{$user->state->state_name}}</option>
                                         </select>
                                     </div>
                                 </div>

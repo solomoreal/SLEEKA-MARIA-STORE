@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use function Opis\Closure\unserialize;
 
 class AdminController extends Controller
 {
     public function allOrders(){
-        $orders = Order::latest()->get()->sortBy('status');
+        $orders = Order::latest()->paginate(5)->sortBy('status');
         $orders->transform(function($order, $key){
             $order->cart = unserialize($order->cart);
             return $order;
         });
-        dd($orders);
+        //dd($orders);
         return view('admin.all_orders',['orders' => $orders]);
+    }
+
+    public function orderItem($id){
+        $order = Order::findOrfail($id);
+        $cart = unserialize($order->cart);
+        return view('admin.order_item', compact(['order', 'cart']));
     }
     public function generalOrdersQuery($status){
         $orders = Order::where('status', $status)->latest()->get();

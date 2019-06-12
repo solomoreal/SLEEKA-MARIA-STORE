@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -28,17 +30,17 @@ class UsersController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -70,5 +72,22 @@ class UsersController extends Controller
             'role' => 'Admin',
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function update(Request $request){
+        //dd($request->all());
+        $this->validate($request,[
+            'email' => 'required|string|email',
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'phone' => 'nullable',
+            'address' => 'nullable',
+            'country_id' => 'nullable',
+            'state_id' => 'nullable',
+            'lga' => 'nullable',
+        ]);
+        
+        Auth::user()->update($request->all());
+        return redirect(route('profile'));
     }
 }

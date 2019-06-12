@@ -86,9 +86,8 @@
                                                                             <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
                                                                         </div>
                                                                     </div>
-                                                                </form>
-                                                            
-                                                </div>
+                                                            </form>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>

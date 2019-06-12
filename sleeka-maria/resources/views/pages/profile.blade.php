@@ -9,13 +9,22 @@
                     <div class="col-md-3 mb-md-3 mx-auto">
                         <div class="user-nav">
                             <ul>
-                                <li><a href="profile.html" class="active">My Orders</a></li>
+                            <li><a href="{{route('profile')}}" class="active">My Orders</a></li>
                                 <div class="dropdown-divider"></div>
-                                <li><a href="edit_profile.html">Edit Account</a></li>
+                            <li><a href="{{route('editProfile',['id'=> Auth::user()->id
+                                ])}}">Edit Account</a></li>
                                 <div class="dropdown-divider"></div>
                                 <li><a href="reset_password.html">Reset password</a></li>
                                 <div class="dropdown-divider"></div>
-                                <li><a href="#">Logout</a></li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </ul>
                         </div>
                     </div>
@@ -55,76 +64,78 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="featured-product">
-                        <div class="featured-title container">
-                            <h2>Buyers who bought this item also bought:</h2>
-                            <hr>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <div class="product-card">
-                                            <a href="view.html">
-                                                <img src="img/watches/wrist1.0.jpg">
-                                                <h1 class="product-title">Unisex Wristwatch</h1>
-                                            </a>
-                                            <del>$199.99</del>
-                                            <p class="price">$299.99</p>
-                                            <button class="add-to-cart" href="#">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/watch1/1.jpg">
-                                                <h1 class="product-title"> Steel Men's Wrist</h1>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img/watches/watch1/2.jpg">
-                                                <p class="product-title">Unisex Bracelet Wristwatch</p>
-                                                <del>$199.99</del>
-                                                <p class="price">$299.99</p>
-                                                <button class="add-to-cart" href="#">Add to Cart</button>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="container">
-                                        <a href="">
-                                            <div href="#" class="product-card">
-                                                <img src="img//watches/watch1/rea.jpg">
-                                                <div class="product-text">
-                                                    <h1 class="product-title">Watch For Women- Brown</h1>
-                                                    <del>$199.99</del>
-                                                    <p class="price">$299.99</p>
-                                                    <button class="add-to-cart" href="#">Add to Cart</button>
+                </div><div class="row justify-content-center">
+                        <div class="featured-product">
+                            <div class="featured-title container">
+                                <h2>Buyers who bought this item also bought:</h2>
+                                <hr>
+                            </div>
+                            <div class="container">
+                                 @if($orders) 
+                                 @foreach($relatedProducts->chunk(4) as $relatedProductsChunk) 
+                                <div class="row">
+                                     @foreach($relatedProductsChunk as $relatedProduct) 
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="container">
+                                                <div  class="product-card">
+                                                <img src="{{$relatedProduct->image_url}}"> 
+                                                <h1 class="product-title">{{$relatedProduct->product_name}}</h1> 
+                                                <del></del>
+                                                 <p class="price">{{$relatedProduct->price/100}}</p> 
+                                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button> 
+                                                 <div class="modal fade" id="cart{{$relatedProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                 <button type="button" class="close" data-dismiss="modal"aria-label="Close"> 
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                    <form action="{{route('addToCart')}}" class="text-center" method="POST"> 
+                                                                             {{ csrf_field() }} 
+                                                                    <input type="hidden" name="product_id" id="product_id" value="{{$relatedProduct->id}}"> 
+                                                                                <select name="colour" id="">
+                                                                                    <option>Any Colour</option>
+                                                                    ?             @if($relatedProduct->colours) 
+                                                                                    @foreach ($relatedProduct->colours as $colour) 
+                                                                                        <option value="{{$colour->colour_name}}">{{$colour->colour_name}}</option> 
+                                                                                    @endforeach 
+                                                                                 @endif 
+                                                                                </select>
+                                                                                <select name="size" id="">
+                                                                                    <option>Size</option>
+                                                                                     @if ($relatedProduct->sizes) 
+                                                                                       @foreach ($relatedProduct->sizes as $size) 
+                                                                                <option value="{{$size->size}}">{{$size->size}}</option> 
+                                                                                        @endforeach  
+                                                                                     @endif 
+                                                                                </select>
+                                                                                <div class="row justify-content-center">
+                                                                                    <div class="col-md-6">
+                                                                                        <button type="submit" class="btn-btn btn-block btn-outline-inf mt-md-3">Add to cart</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                        </div>
+                                @endforeach  
+                            </div> 
+                                
                             </div>
-                            <a href="seeall.html" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        @endforeach  
+            
+                            </div>
+                            
+                        @endif 
 
+                       
 @endsection
-        
+    
+    
+    

@@ -67,7 +67,7 @@
                                     </div>
                                 </form>
                                     <div class="col-sm-6 col-lg-10 mt-2">
-                                        <a href="checkout.html" class="btn btn-outline-buy btn-block">BUY IT NOW</a>
+                                    <a href="{{route('checkout')}}" class="btn btn-outline-buy btn-block">CHECKOUT</a>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center text-center mt-5">

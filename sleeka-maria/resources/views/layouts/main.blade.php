@@ -65,6 +65,32 @@
        
        
        </script>
+
+       <script>
+           $(document).ready(function(){
+    $("#country").on("change", function(){
+        var route = $(this).data("route")
+        console.log('Country Selected');
+            $.ajax({
+                
+                url: route,
+                data:{country_id:$(this).val()},
+                type:'get',
+            }).done(function(data){
+                var states = data.states;
+                
+                console.log(states);
+                $.each(states, function(key, element) {
+                    $('#states').append(`<option value="${element.id}">` + element.state_name + '</option>');
+                });
+
+                
+                
+            });
+        })
+    });
+
+       </script>
     
 </body>
 </html>
