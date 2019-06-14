@@ -46,7 +46,7 @@
                                         <td>
                                             <b>{{$product['colour']}}</b>
                                         </td>
-                                    <td>{{$product['price']}}</td>
+                                    <td>{{$currency.' '.number_format($product['price'],2)}}</td>
                                     <td><a href="{{route('removeItem', ['id' => $id])}}"><i class="fas fa-trash-alt fa-2x text-danger"></i></a></td>
                                     </tr>
                                     @endforeach
@@ -56,7 +56,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><h3><b>Total</b></h3></td>
-                                    <td id="price"><h4>{{$totalPrice}}</h4></td>
+                                    <td id="price"><h4>{{$currency.''.number_format($totalPrice,2)}}</h4></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,7 +95,7 @@
                                             <img src="{{$relatedProduct->image_url}}"> 
                                             <h1 class="product-title">{{$relatedProduct->product_name}}</h1> 
                                             <del></del>
-                                             <p class="price">{{$relatedProduct->price/100}}</p> 
+                                             <p class="price">{{$currency.' '.number_format(($relatedProduct->price/100),2)}}</p> 
                                              <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button> 
                                              <div class="modal fade" id="cart{{$relatedProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
                                                 <div class="modal-dialog modal-dialog-centered" role="document">

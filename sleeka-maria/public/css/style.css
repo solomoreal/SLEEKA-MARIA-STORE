@@ -15,6 +15,97 @@ hr {
     color: #40283E;
 }
 
+h1 {
+    font-size: 1.5rem;
+}
+
+.recipt {
+    
+    margin: 5% 5%; 
+    border-radius: 5px;
+    position: relative;
+}
+.recipt-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    background: linear-gradient(to right, #b7d3eb , #00a2ff);
+    padding: 10px;
+}
+.recipt-header .logo h1{
+    text-align: center;
+    padding-top: 2rem;
+    font-weight: bolder;
+}
+
+.invoice-id {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #5a5858;
+}
+.invoice-id h6 {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.invoice-id p {
+    font-size: 0.9rem;
+}
+.order-id {
+    line-height: 0.5rem;
+    margin-right: 0.7rem;
+}
+.invoice-id .date {
+    line-height: 0.5rem;
+}
+
+.invoice h1 {
+    font-weight: bolder;
+    color: #ea4335;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
+}
+.btn-print {
+    border: none;
+    border-radius: 5px;
+    background: none;
+    background: #00a2ff;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+.back-button {
+    margin-left: 10rem;
+    margin-top: 10px;
+}
+
+.body-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 10%;
+}
+.body-title h6 {
+    text-align: center;
+    font-weight: bold; 
+}
+.comp ul {
+    list-style: none;
+}
+.billed ul {
+    list-style: none;
+}
+.receipt-footer .total{
+    padding: 10px 2rem;
+    text-align: end; 
+    font-size: 1.5rem;
+    margin-right: 6rem;
+}
+.total h3 {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
 #price {
     border-top: solid 2px #000;
     border-bottom: solid 2px #000;
@@ -399,8 +490,20 @@ ul.breadcrumb li+li:before {
     text-align: center;
 }
 
-.product-details form{
-    margin-top:
+textarea {
+    resize: none;
+}
+
+#product-card {
+    position: relative;
+
+    max-width: 100%;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+#product-card img {
+    max-width: 100%;
+    max-height: 300px;
 }
 
 /* Comment Section

@@ -55,7 +55,7 @@
             <div class="container">
                 <div class="row align-items-center mt-3">
                     <div class="col">
-                        <h3 class="mb-0 h2">Completed</h3>
+                        <h3 class="mb-0 h2">In Progress</h3>
                     </div>
                     <div class="col text-right">
                         <div class="dropdown">
@@ -75,7 +75,7 @@
             <div class="container">
                 <div class="row align-items-center mt-3 bg-dark">
                     <div class="col">
-                        <h3 class="mb-0 text-white">Completed Orders</h3>
+                        <h3 class="mb-0 text-white">In Progress</h3>
                     </div>
                     <div class="col text-right">
                         <div class="dropdown">

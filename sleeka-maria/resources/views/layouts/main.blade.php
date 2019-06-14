@@ -49,7 +49,7 @@
                     //        $('#search_results').innerHTML = " ";
                     //    }
                        $('#search_results').html('');
-                       $('#search_results').append('<table class="table">');
+                       $('#search_results').append('<table class="table mt-20">');
                        products.map((product,index,products)=>{
                             $('#search_results').append("<tr><td>"+product.product_name+' '+(product.price/100)+ "</td><td> <a class='btn btn-info' href='/viewProduct/"+product.id+"'>view</a></tr>");
                            });

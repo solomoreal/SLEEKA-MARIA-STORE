@@ -27,8 +27,8 @@
                                     <tr>
                                         <td>{{$product['item']['product_name']}}</td>
                                         <td>{{$product['qty']}}</td>
-                                        <td>{{$product['item']['price']/100}}</td>
-                                        <td>{{$product['price']}}</td>
+                                        <td>{{$currency.''.number_format(($product['item']['price']/100),2)}}</td>
+                                        <td>{{$currency.''.number_format($product['price'],2)}}</td>
                                     
                                     </tr>
                                     @endforeach
@@ -39,7 +39,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>TOTAL</b></td>
-                                    <td><b>{{$totalPrice}}</b></td>
+                                    <td><b>{{$currency.''.number_format($totalPrice,2)}}</b></td>
                                     </tr>
 
                                 </tbody>

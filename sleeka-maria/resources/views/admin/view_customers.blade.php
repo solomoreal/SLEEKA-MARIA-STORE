@@ -6,7 +6,7 @@
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                 <div class="container-fluid">
-                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Orders</a>
+                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Customers</a>
                     <!-- User -->
                     <ul class="navbar-nav align-items-center d-none d-md-flex">
                         <li class="nav-item dropdown">
@@ -55,81 +55,56 @@
             <div class="container">
                 <div class="row align-items-center mt-3">
                     <div class="col">
-                        <h3 class="mb-0 h2">Completed</h3>
+                        <h3 class="mb-0 h2">LIST OF CUSTOMERS</h3>
                     </div>
-                    <div class="col text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                                <a class="dropdown-item" href="#">Last Month</a>
-                                <a class="dropdown-item" href="#">3 months Ago</a>
-                                <a class="dropdown-item" href="#">6 months Ao</a>
-                                <a class="dropdown-item" href="#">Last Year</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   
             </div>
             <div class="container">
                 <div class="row align-items-center mt-3 bg-dark">
                     <div class="col">
-                        <h3 class="mb-0 text-white">Completed Orders</h3>
+                        <h3 class="mb-0 text-white">CUSTOMERS</h3>
                     </div>
-                    <div class="col text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                                <a class="dropdown-item" href="#">Pending</a>
-                                <a class="dropdown-item" href="#">Delivered</a>
-                                <a class="dropdown-item" href="#">Cancelled</a>
-                                <a class="dropdown-item" href="#">Regected</a>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-dark">
                             <thead>
                                 <tr>
-                                    <th scope="col">Order ID</th>
-                                    {{-- <th scope="col">paid At</th> --}}
-                                    <th scope="col">Quantity</th>
-                                    {{-- <th scope="col">Price Per Item</th> --}}
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone NO.</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">State</th>
                                     <th scope="col">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($orders)
-                                @foreach($orders as $order)
+                                @if($customers)
+                                @foreach($customers as $customer)
                                 
                                 <tr>
                                     <th scope="row">
-                                        {{$order->order_id}}
+                                        @if($customer->first_name)
+                                        {{$customer->first_name. " " .$customer->last_name}} 
+                                        @else
+                                        {{$customer->name}}
+                                        @endif
                                     </th>
-                                    
-                                        {{-- {{$order->paid_at}}  --}}
-                                    
                                     <td>
-                                            {{$order->quantity}} 
-                                    </td>
-                                    {{-- <td> --}}
-                                        {{-- {{$cart['item']['price']/100}} --}}
-                                    {{-- </td> --}}
-                                    <td>
-                                            {{$order->amount/100}}
+                                            {{$customer->phone}} 
                                     </td>
                                     <td>
-                                            {{$order->status}}
+                                            {{$customer->email}}
                                     </td>
                                     <td>
-                                    <a href="{{route('orderItem', ['id' => $order->id])}}" class="btn btn-sm btn-primary">View Order</a>
+                                            {{$customer->country}}
+                                    </td>
+                                    <td>
+                                        {{$customer->state}}
+                                </td>
+                                    <td>
+                                    <a href="#" class="btn btn-sm btn-primary">View Details</a>
                                     
                                 </tr>
                                 @endforeach

@@ -21,9 +21,9 @@
                     </div>
                 </form>
                 <ul class="navbar-nav ml-auto text-center">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="{{route('index')}}">Home<span class="sr-only">(current)</span></a>
-                    </li>
+                    {{-- <li class="nav-item active"> --}}
+                    {{-- <a class="nav-link" href="{{route('index')}}">Home<span class="sr-only">(current)</span></a> --}}
+                    {{-- </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,16 +43,16 @@
                                 class="fas fa-shopping-cart"></i><span class="cart">:(<span id="list-item"><span
                                 class="badge badge-light">{{Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span></span> items)</span></a>
                     </li>
+                    @if (Route::has('about'))
+                    <li class="nav-item">
+                    <a class="nav-link " href="{{route('about')}}#contact">{{ __('Contact') }}</a>
+                    </li>
+                @endif
                     @guest
                             <li class="nav-item">
                                 <a class="nav-link login" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link btn-outline-signup" href="{{ route('register') }}">{{ __('Signup') }}</a>
-                                </li>
-                            @endif
-                        @else
+                                                    @else
                         
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

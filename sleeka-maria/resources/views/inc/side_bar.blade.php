@@ -39,28 +39,28 @@
                                 New Orders
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('payOnDeliveryOrders')}}">
-                                Pay On Delivery
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="{{route('inProgress',['status' => 'In Progress'])}}">
+                                In Progress
                             </a>
-                        </li>
+                        </li> 
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('pendingOrders')}}">
+                        <a class="nav-link" href="{{route('pendingOrders',['status' => 'Pending'])}}">
                                 Pending Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('rejectedOrders')}}">
+                            <a class="nav-link" href="{{route('rejectedOrders',['status' => 'Rejected'])}}">
                                 Rejected Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('cancelledOrders')}}">
+                            <a class="nav-link" href="{{route('cancelledOrders',['status' => 'Cancelled'])}}">
                                 Cancelled Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('completedOrders')}}">
+                        <a class="nav-link" href="{{route('completedOrders',['status' => 'Complete'])}}">
                                 Completed Orders
                             </a>
                         </li>
@@ -141,7 +141,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                        <a class="nav-link" href="{{route('viewCustomers')}}">
                                 View Customers
                             </a>
                         </li>

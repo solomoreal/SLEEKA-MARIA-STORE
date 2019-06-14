@@ -102,7 +102,7 @@
                                 {{$product->quantity}}
                             </td>
                             <td>
-                                <a href="product_item.html" class="btn btn-sm btn-primary">Edit Product</a>
+                            <a href="{{route('admin.viewProduct',['id' => $product->id])}}" class="btn btn-sm btn-primary">View Details</a>
                             </td>
                         </tr>
                         @endforeach

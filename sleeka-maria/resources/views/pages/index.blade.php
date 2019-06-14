@@ -51,7 +51,7 @@
                                         <h1 class="product-title">{{$product->product_name}}</h1>
                                         </a>
                                        <!-- <del>$199.99</del> -->
-                                    <p class="price">{{$currency}} {{$product->price/100}}</p>
+                                    <p class="price">{{$currency}} {{number_format(($product->price/100))}}</p>
                                     <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$product->id}}">Add to Cart</button>
                                     <div class="modal fade" id="cart{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -120,7 +120,7 @@
                                     <h1 class="product-title">{{$glass->product_name}}</h1>
                                     </a>
                                    <!-- <del>$199.99</del> -->
-                                <p class="price">{{$currency}}{{ $glass->price/100}}</p>
+                                <p class="price">{{$currency}}{{ number_format(($glass->price/100))}}</p>
                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>
                                 <div class="modal fade" id="cart{{$glass->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -206,7 +206,7 @@
                                         <h1 class="product-title">{{$glass->product_name}}</h1>
                                         </a>
                                        <!-- <del>$199.99</del> -->
-                                    <p class="price">{{$currency }}{{ $glass->price/100}}</p>
+                                    <p class="price">{{$currency }}{{ number_format(($glass->price/100))}}</p>
                                     <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>
                                     <div class="modal fade" id="cart{{$glass->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">

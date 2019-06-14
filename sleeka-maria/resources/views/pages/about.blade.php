@@ -12,7 +12,7 @@
                                 <img src="./img/img.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-sm-block">
                                     <h3>About SLEEKA-MARIA</h3>
-                                    <a href="index.html" class="btn btn-outline-inf">Explore</a>
+                                    <a href="#contact" class="btn btn-outline-inf">Contact Us</a>
                                 </div>
                             </div>
                         </div>
@@ -36,13 +36,13 @@
                                 quidem quibusdam cupiditate exercitationem numquam quisquam quod vero necessitatibus
                                 sunt voluptatum atque quas corrupti commodi non? Mollitia, earum aspernatur tempore
                                 beatae?</p>
-                            <a href="index.html" class="btn btn-outline-inf">Explore</a>
+                            <a href="{{route('index')}}" class="btn btn-outline-inf">Explore</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="container py-md-5">
                             <div class="img-border">
-                                <img src="img/img.jpg" alt="">
+                                <img src="{{asset('img/img.jpg')}}" alt="">
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="cantact-form container mt-5">
+                <div class="cantact-form container mt-5" id="contact">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="container">

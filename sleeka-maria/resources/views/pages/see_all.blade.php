@@ -20,12 +20,12 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="container">
                                 <div href="#" class="product-card">
-                                    <a href="view.html">
+                                    <a href="{{route('viewProduct', ['id' =>$product->id])}}">
                                     <img class="img" src="{{$product->image_url}}">
                                     <h1 class="product-title">{{$product->product_name}}</h1>
                                     </a>
                                     <!--<del>$199.99</del> -->
-                                <p class="price">{{$product->price/100}}</p>
+                                <p class="price">{{$currency.''.number_format(($product->price/100),2)}}</p>
                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$product->id}}">Add to Cart</button>
                                 <div class="modal fade" id="cart{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">

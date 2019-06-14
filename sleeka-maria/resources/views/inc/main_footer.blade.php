@@ -13,7 +13,7 @@
                     <a href="service.html">HOW TO SHOP</a>
                 </li>
                 <li>
-                    <a href="shop.html">CONTACT US</a>
+                    <a href="{{route('about')}}#contact">CONTACT US</a>
                 </li>
             </ul>
         </div>

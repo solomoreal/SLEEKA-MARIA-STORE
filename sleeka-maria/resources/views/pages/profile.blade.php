@@ -14,7 +14,7 @@
                             <li><a href="{{route('editProfile',['id'=> Auth::user()->id
                                 ])}}">Edit Account</a></li>
                                 <div class="dropdown-divider"></div>
-                                <li><a href="reset_password.html">Reset password</a></li>
+                                {{-- <li><a href="reset_password.html">Reset password</a></li> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -36,7 +36,7 @@
                             <table class="table ">
                                 <thead>
                                     <tr>
-                                        <th scope="">Product Name</th>
+                                        <th scope="">Order Id</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Status</th>
@@ -46,17 +46,17 @@
                                 <tbody>
                                     @if($orders)
                                     @foreach($orders as $order)
-                                        @foreach($order->cart->items as $cart)
+                                    
                                     <tr>
                             
-                                    <td>{{$cart['item']['product_name']}}</td> 
-                                    <td>{{$cart['qty']}}</td>
-                                    <td>{{$cart['price']}}</td>
+                                    <td>{{$order->order_id}}</td> 
+                                    <td>{{$order->quantity}}</td>
+                                    <td>{{$currency .' '. number_format(($order->amount/100),2)}}</td>
 
                                     <td>{{$order->status}}</td>
-                                        <td><a class="btn btn-sm btn-danger text-white">View details</a></td>
+                                    <td><a href="{{route('orderDetails',['id' => $order->id])}}" class="btn btn-sm btn-danger text-white">View details</a></td>
                                     </tr>
-                                    @endforeach
+                                
                                     @endforeach
                                     @endif
                                     
@@ -78,8 +78,10 @@
                                     <div class="col-lg-3 col-sm-6">
                                         <div class="container">
                                                 <div  class="product-card">
+                                                <a href="{{route('viewProduct', ['id' =>$relatedProduct->id])}}">
                                                 <img src="{{$relatedProduct->image_url}}"> 
                                                 <h1 class="product-title">{{$relatedProduct->product_name}}</h1> 
+                                                </a>
                                                 <del></del>
                                                  <p class="price">{{$relatedProduct->price/100}}</p> 
                                                  <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button> 

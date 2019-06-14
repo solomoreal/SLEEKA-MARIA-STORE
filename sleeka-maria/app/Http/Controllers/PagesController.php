@@ -64,6 +64,7 @@ class PagesController extends Controller
     }
 
     public function viewProduct($id){
+        $currency = '₦';
         $categories = Category::all();
         $product = Product::findOrFail($id);
         $price = $product->price/100;
@@ -72,7 +73,7 @@ class PagesController extends Controller
         $relatedId = $product->category_id;
         $relatedCategory = Category::findOrfail($relatedId);
         $relatedProducts = $relatedCategory->products->take(4);
-        return view('pages.view', compact(['price','colours','sizes','categories','relatedProducts','relatedId']))->withProduct($product);
+        return view('pages.view', compact(['price','colours','sizes','categories','relatedProducts','relatedId','currency']))->withProduct($product);
     }
 
     
@@ -87,9 +88,10 @@ class PagesController extends Controller
 
                return $order;
            });
+           $currency = '₦';
            $categories = Category::all();
            $relatedProducts = Product::latest()->take(8)->get();
-        return view('pages.profile',compact(['categories','orders','relatedProducts','countries']));
+        return view('pages.profile',compact(['categories','orders','relatedProducts','countries','currency']));
        }
     }
 
@@ -101,6 +103,14 @@ class PagesController extends Controller
 
     }
 
+    public function orderDetails($id){
+        $currency = '₦';
+        $order = Order::findOrfail($id);
+        $cart = unserialize($order->cart);
+        $categories = Category::all();
+        return view('pages.order_details', compact(['order', 'cart','categories', 'currency']));
+    }
+
     public function fetchStates(Request $request){
         
         $country_id = $request->country_id;
@@ -110,17 +120,19 @@ class PagesController extends Controller
     }
 
     public function viewByCategory($id){
+        $currency = '₦';
         $categories = category::all();
         $category = Category::findOrFail($id);
         $products = $category->products->take(4);
-        return view('pages.see_all',compact(['category','products','categories']));
+        return view('pages.see_all',compact(['category','products','categories','currency']));
     }
 
     public function viewBySubcategory($id){
+        $currency = '₦';
         $categories = Category::all();
         $category = Subcategory::findOrFail($id);
         $products = $category->products->take(4);
-        return view('pages.see_all',compact(['category','products','categories']));
+        return view('pages.see_all',compact(['category','products','categories','currency']));
     }
 
     public function searchProduct(Request $request){
@@ -151,12 +163,9 @@ class PagesController extends Controller
         return back();
     }
 
-    public function buyNow(Request $request){
-        $this->addToCart($request);
-        return redirect(route('checkout'));
-    }
     public function getCart(Request $request){
         //dd(request()->session()->get('cart'));
+        $currency = '₦';
         $categories = Category::all();
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
@@ -164,7 +173,7 @@ class PagesController extends Controller
         $totalPrice = $cart->totalPrice;
         $totalQty = $cart->totalQty;
         $relatedProducts = Product::all()->take(4);
-        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty','relatedProducts']));
+        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty','relatedProducts','currency']));
     }
 
     public function reduceItemByOne($id){
@@ -195,6 +204,7 @@ class PagesController extends Controller
 
    public function checkout(){
        $user = Auth::user();
+       $currency = '₦';
        $countries = Country::all();
     $categories = Category::all();
     $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -203,7 +213,7 @@ class PagesController extends Controller
     $totalPrice = $cart->totalPrice;
     $totalPriceCheckout = $cart->totalPrice*100;
     $totalQty = $cart->totalQty;
-    return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout','user','countries']));
+    return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout','user','countries','currency']));
    }
 
        /**
@@ -309,10 +319,11 @@ class PagesController extends Controller
             'subject' => $request->subject,
             'phone' => $request->phone,
             'bodyMessage' => $request->body,
-            'name' => $request->name
+            'name' => $request->name,
+            'order_id' => $request->order_id
         ];
 
-        Mail::send('emails.contact', $data, function($message) use ($data){
+        Mail::send('email.complain', $data, function($message) use ($data){
             $message->from($data['email']);
             $message->to('solomoreal@yahoo.com');
             $message->subject($data['subject']);
@@ -320,5 +331,15 @@ class PagesController extends Controller
 
         Notification::route('mail', $request->email)
             ->notify(new MailSent());
+            return back()->with('success', 'Message Sent');
+    }
+
+    public function customerInvoice($id){
+        $user = Auth::user();
+        $currency = '₦';
+        $order = Order::findOrfail($id);
+        $cart = unserialize($order->cart);
+        return view('pages.customer_invoice', compact(['user','currency','order','cart']));
+
     }
 }

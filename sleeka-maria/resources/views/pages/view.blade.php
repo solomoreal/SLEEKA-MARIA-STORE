@@ -34,7 +34,7 @@
                             <div class="product-details">
                                 <div class="prod mt-mg-5">
                                 <h2>{{$product->product_name}}</h2>
-                                <p class="price">{{$price}}</p>
+                                <p class="price">{{$currency.' '.number_format($price,2)}}</p>
                                 </div>
                             <form action="{{route('addToCart')}}" class="text-center" method="POST">
                                 {{ csrf_field() }}
@@ -59,7 +59,12 @@
                                         value="Decrease Value"><b>-</b></div>
                                     <input type="number" name="quantity" id="number" value="0" />
                                     <div class="value-button" id="increase" onclick="increaseValue()"
-                                        value="Increase Value"><b>+</b></div>
+                                        value="Increase Value"><b>+</b>
+                                
+                                    </div>
+                                    <div>
+                                            <strong><a href="{{route('about')}}#contact">Contact Us For Bulk Purchase</a></strong>
+                                    </div>
                                 
                                 <div class="row justify-content-center text-center">
                                     <div class="col-sm-6 col-lg-10">
@@ -67,7 +72,7 @@
                                     </div>
                                 </form>
                                     <div class="col-sm-6 col-lg-10 mt-2">
-                                    <a href="{{route('checkout')}}" class="btn btn-outline-buy btn-block">CHECKOUT</a>
+                                    <a href="{{route('getCart')}}" class="btn btn-outline-buy btn-block">VIEW CART AND CHECKOUT</a>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center text-center mt-5">
@@ -96,10 +101,12 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="container">
                                             <div  class="product-card">
+                                            <a href="{{route('viewProduct', ['id' =>$relatedProduct->id])}}">
                                             <img src="{{$relatedProduct->image_url}}">
                                             <h1 class="product-title">{{$relatedProduct->product_name}}</h1>
+                                            </a>
                                             <del></del>
-                                            <p class="price">{{$relatedProduct->price/100}}</p>
+                                            <p class="price">{{$currency.' '.number_format(($relatedProduct->price/100),2)}}</p>
                                             <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$relatedProduct->id}}">Add to Cart</button>
                                             <div class="modal fade" id="cart{{$relatedProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">

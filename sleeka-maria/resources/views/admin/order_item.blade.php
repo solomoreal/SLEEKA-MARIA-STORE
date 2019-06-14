@@ -13,10 +13,10 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
+                                    <img alt="Image placeholder" src="{{asset('img/theme/team-4-800x800.jpg')}}">
                                     </span>
                                     <div class="media-body ml-2 d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                                    <span class="mb-0 text-sm  font-weight-bold">{{Auth::user() ? Auth::User()->name : 'Hello There!'}}</span>
                                     </div>
                                 </div>
                             </a>
@@ -53,11 +53,13 @@
             <div class="header bg-gradient-primary pt-md-7">
             </div>
             @if($order)
-            <div>
+            <div class="mt-5">
+                Order Id: {{$order->order_id}} <br>
                 Customer name: {{$order->full_name}} <br>
                 Amount: {{$order->amount/100}} <br>
                 Quantity: {{$order->quantity}} <br>
-                Paid At : {{$order->paid_at}} <br>
+                Paid At : {{date('d/M/Y h:i:s',strtotime($order->paid_at))
+                }} <br>
                 Country: {{$order->country}} <br>
                 State: {{$order->state}} <br>
                 City: {{$order->city}} <br>
@@ -87,9 +89,7 @@
                        
                       </h4>
                       <hr>
-                      
-                      
-                    </div>
+                </div>
                   </div>
                   </div>
                   @endforeach
@@ -98,11 +98,11 @@
                           Change Status
                         </button>
                         <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                          <a class="dropdown-item" href="#">Pending</a>
-                          <a class="dropdown-item" href="#">Delivered</a>
-                          <a class="dropdown-item" href="#">Cancelled</a>
-                          <a class="dropdown-item" href="#">Regected</a>
-                          <a class="dropdown-item" href="#">In Progress</a>
+                        <a class="dropdown-item" href="{{route('changeStatus',['id' =>$order->id, 'status' => 'Pending'])}}">Pending</a>
+                          <a class="dropdown-item" href="{{route('changeStatus',['id' =>$order->id, 'status' => 'Delivered'])}}">Delivered</a>
+                          <a class="dropdown-item" href="{{route('changeStatus',['id' =>$order->id, 'status' => 'Cancelled'])}}">Cancelled</a>
+                          <a class="dropdown-item" href="{{route('changeStatus',['id' =>$order->id, 'status' => 'Rejected'])}}">Rejected</a>
+                          <a class="dropdown-item" href="{{route('changeStatus',['id' =>$order->id, 'status' => 'In Progress'])}}">In Progress</a>
                         </div>
                       </div>
                   @endif

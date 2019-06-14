@@ -14,7 +14,7 @@
                                 <div class="dropdown-divider"></div>
                             <li><a href="{{route('editProfile',['id' => Auth::user()->id])}}" class="active">Edit Account</a></li>
                                 <div class="dropdown-divider"></div>
-                                <li><a href="reset_password.html">Reset password</a></li>
+                                {{-- <li><a href="reset_password.html">Reset password</a></li> --}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
