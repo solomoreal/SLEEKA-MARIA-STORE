@@ -15,13 +15,16 @@
     <link href="{{asset('vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('css/argon.css?v=1.0.0')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link type="text/css" href="{{asset('css/select2.min.css')}}" rel="stylesheet">
 </head>
 <body>
     
         @include('inc.side_bar')
+        
             @yield('messages') 
             @yield('content')
-        @include('inc.footer') 
+        @include('inc.footer')
+        @yield('script') 
     
 
         <script>

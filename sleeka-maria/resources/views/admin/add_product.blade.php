@@ -1,4 +1,8 @@
 @extends('layouts.dashboard')
+@section('style')
+<link type="text/css" href="{{asset('css/select2.min.css')}}" rel="stylesheet">
+  
+@endsection
 @section('content')
     <div class="main-content">
         <div class="container">
@@ -89,6 +93,11 @@
                         <label for="inputPassword4">Price</label>
                         <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Product Price" name="price">
                     </div>
+
+                    <div class="form-group col-md-6">
+                            <label for="inputPassword4">Serial Number</label>
+                            <input type="number" class="form-control" id="inputPassword4" placeholder="Enter Product Serial number" name="serial_number">
+                        </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -123,7 +132,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="size">Sizes</label>
-                        <select id="size" class="form-control" multiple="" name="size_id[]">
+                        <select id="size" class="form-control select2-multi" multiple="" name="size_id[]">
                              
                         </select>
                         <a href="#" data-toggle="modal" data-target="#exampleModalCen">
@@ -133,7 +142,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="colour">Color</label>
-                        <select id="colour" class="form-control" multiple="" name="colour_id[]">
+                        <select id="colour" class="form-control select2-multi" multiple="multiple" name="colour_id[]">
                         @if($colours)
                             @foreach($colours as $colour)
                                <option value="{{$colour->id}}" style="display: block; width: 100%; height: 10px; background-color: {{$colour->colour}}">{{$colour->colour_name}}  </option>
@@ -257,4 +266,10 @@
                         </div>
                     </div>
                 </div>
+    @endsection
+    @section('script')
+    <script src="{{asset('js/select2.min.js')}}"></script> 
+    <script>
+        $('.select2-multi').select2()
+    </script>
     @endsection

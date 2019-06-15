@@ -51,6 +51,7 @@
                                         <h1 class="product-title">{{$product->product_name}}</h1>
                                         </a>
                                        <!-- <del>$199.99</del> -->
+                                    <p class="price">#{{$product->serial_number}}</p>
                                     <p class="price">{{$currency}} {{number_format(($product->price/100))}}</p>
                                     <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$product->id}}">Add to Cart</button>
                                     <div class="modal fade" id="cart{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

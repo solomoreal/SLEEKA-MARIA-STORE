@@ -52,7 +52,8 @@ class ProductController extends Controller
             'quantity' => 'integer',
             'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
-            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000'
+            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'serial_number' => 'nullable|integer',
 
 
         ]);
@@ -92,7 +93,8 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'quantity' => $request->quantity,
-            'promote' => 0
+            'promote' => 0,
+            'serial_number' => $request->serial_number,
         ]);
         $product->save();
         $product->colours()->sync($request->colour_id, false);
@@ -137,7 +139,8 @@ class ProductController extends Controller
             'image' => 'nullable|string',
             'shipment_fee' => 'nullable|integer',
             'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
-            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000'
+            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'serial_number' => 'nullable|integer',
 
         ]);
 

@@ -60,6 +60,14 @@
                             </button>
                             <hr class="my-4">
 
+                            <div class="form-group row mb-0">
+                                    @if (Route::has('register'))
+                                            <a class="btn btn-link" href="{{ route('register') }}">
+                                                {{ __('You don\'t have an account? sign up here') }}
+                                            </a>
+                                        @endif
+                                </div>
+
                     </form>
                 </div>
             </div>

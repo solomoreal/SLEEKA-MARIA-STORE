@@ -73,6 +73,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('changeStatus/{id}/{status}','AdminController@changeStatus' )->name('changeStatus');
     Route::get('viewCustomers','AdminController@viewCustomers')->name('viewCustomers');
     Route::get('admin_viewProduct/{id}', 'AdminController@viewProduct')->name('admin.viewProduct');
+    Route::get('editProduct','AdminController@editProduct')->name('editProduct');
     
 });
 
