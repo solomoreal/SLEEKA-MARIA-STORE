@@ -50,7 +50,7 @@ class SizeController extends Controller
         $size->size = $request->size;
         $size->category_id = $category_id;
         $category->sizes()->save($size);
-        return redirect(route('sizes.index'));
+        return back();
 
 
     }

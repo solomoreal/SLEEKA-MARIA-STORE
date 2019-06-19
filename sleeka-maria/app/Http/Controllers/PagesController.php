@@ -137,7 +137,7 @@ class PagesController extends Controller
 
     public function searchProduct(Request $request){
         $name = $request->name;
-         $searchProducts = DB::table('products')->where('product_name','like',"%$name%" )->get();
+         $searchProducts = DB::table('products')->where('product_name','like',"%$name%" )->orWhere('serial_number','like',"%$name%" )->get();
         return response()->json(['products' => $searchProducts]);
     }
 
@@ -342,4 +342,10 @@ class PagesController extends Controller
         return view('pages.customer_invoice', compact(['user','currency','order','cart']));
 
     }
+
+     
+
+     
+
+
 }

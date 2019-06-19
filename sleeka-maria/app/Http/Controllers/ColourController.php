@@ -27,7 +27,7 @@ class ColourController extends Controller
         $colour->colour_name = $request->colour_name;
         $colour->colour = $request->colour;
         $colour->save();
-        return redirect(route('colours.index'))->with('success', 'New Colour Added');
+        return back()->with('success', 'New Colour Added');
 
     }
 

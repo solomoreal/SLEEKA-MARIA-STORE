@@ -31,7 +31,7 @@ class SubcategoryController extends Controller
         $subcategory->subcategory_name = $request->subcategory_name;
         $subcategory->category_id = $category_id;
         $category->subcategories()->save($subcategory);
-        return redirect(route('subcategories.index'));
+        return back();
     }
 
     
@@ -55,7 +55,7 @@ class SubcategoryController extends Controller
     
     public function destroy(Request $request, $id)
     {
-        $subcategory = Category::findOrFail($request->category_id);
+        $subcategory = Subcategory::findOrFail($request->category_id);
         $subcategory->delete();
         return redirect(route('subcategories.index'));
     }

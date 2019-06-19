@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\User;
 use App\Product;
+use App\Category;
+use App\Colour;
 use function Opis\Closure\unserialize;
 
 class AdminController extends Controller
@@ -90,7 +92,19 @@ class AdminController extends Controller
         return view('admin.view_product',compact('product'));
     }
 
-    public function editProduct(){
-        return view('admin.edit_product');
+    public function editProduct($id){
+        $product = Product::findOrfail($id);
+        $categories = Category::all();
+        $colours = Colour::all();
+
+        return view('admin.edit_product',compact(['product','categories','colours']));
     }
+
+    public function promoteProduct($id){
+        $product = Product::findOrFail($id);
+        $product->promote == 1 ? $product->promote = 0 : $product->promote = 1;
+        
+        $product->update();
+        return back();
+     }
 }

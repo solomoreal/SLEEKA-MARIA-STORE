@@ -61,6 +61,7 @@ Route::group(['prefix' => '/'], function () {
 
 //admin
 Route::group(['prefix' => 'admin'], function () {
+    //orders
     Route::get('allOrders', 'AdminController@allOrders')->name('allOrders');
     Route::get('generalOrdersQuery/{status}', 'AdminController@generalOrdersQuery')->name('orders');
     Route::get('pendingOrders/{status}', 'AdminController@pendingOrders')->name('pendingOrders');
@@ -71,9 +72,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('completedOrders/{status}', 'AdminController@completedOrders')->name('completedOrders');
     Route::get('orderItem/{id}', 'AdminController@orderItem')->name('orderItem');
     Route::get('changeStatus/{id}/{status}','AdminController@changeStatus' )->name('changeStatus');
+    //customers
     Route::get('viewCustomers','AdminController@viewCustomers')->name('viewCustomers');
+    //products
     Route::get('admin_viewProduct/{id}', 'AdminController@viewProduct')->name('admin.viewProduct');
-    Route::get('editProduct','AdminController@editProduct')->name('editProduct');
+    Route::get('editProduct/{id}','AdminController@editProduct')->name('editProduct');
+    Route::get('promote/{id}', 'AdminController@promoteProduct')->name('promote');
     
 });
 

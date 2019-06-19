@@ -6,7 +6,7 @@
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                 <div class="container-fluid">
-                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">SunGlasses - #122344</a>
+                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">SunGlasses - #{{$product->serial_number}}</a>
                     <!-- User -->
                     <ul class="navbar-nav align-items-center d-none d-md-flex">
                         <li class="nav-item dropdown">
@@ -57,21 +57,21 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                            <img src="{{$product->image_url}}" class="img-fluid">
+                            <img src="{{asset('storage/products/'.$product->image_url)}}" class="img-fluid">
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                            <img src="{{$product->side_url}}" class="img-fluid">
+                            <img src="{{asset('storage/products/'.$product->side_url)}}" class="img-fluid">
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                            <img src="storage/products/{{$product->image_url}}" class="img-fluid">
+                            <img src="{{asset('storage/products/'.$product->front_url)}}" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                 Available Quantity: <span class="float-right"> {{$product->quantity}} </span><hr>
                             Product Price: <span class="float-right">{{$product->price}}</span>  <hr>
                             Category:  <span class="float-right">{{$product->category->category_name}}</span><hr>
-                            Sub-Category: <span class="float-right">{{$product->subcategory->subcategory_name}}</span><hr>
+                            Sub-Category: <span class="float-right">{{$product->subcategory ?$product->subcategory->subcategory_name : " "}}</span><hr>
                             Description: <span class="float-right">{{$product->description}}</span>  <hr>
                             </div>
                         </div>
@@ -100,19 +100,26 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    
-                                    <button class="btn btn-success ">
-                                            Promote Product
-                                    </button>
+                                    @if($product->promote)
+                                    <a href="{{route('promote',['id'=> $product->id])}}" class="btn btn-success">
+                                        Remove From featured Section
+                                    </a>
+                                    @else
+                                    <a href="{{route('promote',['id' =>$product->id])}}" class="btn btn-success ">
+                                            Add To Featured section
+                                    </a>
+                                    @endif
                                     <form action="{{route('products.destroy',['id' =>$product->id])}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-primary float-right">
+                                        <button type="submit" class="btn btn-warning float-right">
                                             delete
                                     </button>
  
                                     </form>
-                                                                       <hr>
+                                    <a href="{{route('editProduct',['id' =>$product->id])}}" class="btn btn-success mt-5">
+                                        Edit
+                                </a>                           <hr>
                                 </h4>
                             </div>
                         </div>

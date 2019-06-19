@@ -24,7 +24,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->category_name = $request->category_name; 
         $category->save();
-        return redirect(route('categories.index'));
+        return back();
 
     }
 
@@ -34,7 +34,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($request->category_id); 
         $category->category_name = $request->category_name;
         $category->update();
-        return redirect(route('categories.index'));
+        return back();
     }
 
     
@@ -43,6 +43,6 @@ class CategoryController extends Controller
         
         $category = Category::findOrFail($request->category_id);
         $category->delete();
-        return redirect(route('categories.index'));
+        return back();
     }
 }

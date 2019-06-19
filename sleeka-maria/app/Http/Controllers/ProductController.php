@@ -67,7 +67,7 @@ class ProductController extends Controller
             $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
             //get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
-            $title = $request->title;
+            $title = $request->product_name;
             //file name to store
             $image_url = $title.'_'.time().'.'.$extension;
             //upload image
@@ -85,7 +85,7 @@ class ProductController extends Controller
             $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
             //get just extension
             $extension = $request->file('side_view')->getClientOriginalExtension();
-            $title = $request->title;
+            $title = $request->product_name;
             //file name to store
             $side_url = $title.'_'.time().'.'.$extension;
             //upload image
@@ -102,7 +102,7 @@ class ProductController extends Controller
             $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
             //get just extension
             $extension = $request->file('front_view')->getClientOriginalExtension();
-            $title = $request->title;
+            $title = $request->product_name;
             //file name to store
             $front_url = $title.'_'.time().'.'.$extension;
             //upload image
@@ -160,80 +160,102 @@ class ProductController extends Controller
 
 
     public function update(Request $request, Product $product)
-    {
+    {   //dd($request->all());
         if(Auth::user()->role = 'Admin'){
+            //dd($request->all());   
         $this->validate($request,[
             'product_name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|integer',
             'image' => 'nullable|string',
-            'shipment_fee' => 'nullable|integer',
-            'side_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
-            'front_view' => 'nullable|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            //'shipment_fee' => 'nullable|integer',
+            'side_view' => 'nullable|string',
+            'front_view' => 'nullable|string',
             'serial_number' => 'nullable|integer',
 
         ]);
+       // dd($request->all());
 
         if($request->hasFile('image')){
-            $image = $request->file('image')->getRealPath();
-
-            Cloudder::upload($image, null);
-
-            $image_url = Cloudder::show(Cloudder::getPublicId());
+            //get file name with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            //get just extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $title = $request->product_name;
+            //file name to store
+            $image_url = $title.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('image')->storeAs('public/products', $image_url);
+            if($product->image_url != 'noimage.jpg'){
+                Storage::delete('public/products/'.$product->image_url);
+                $product->image_url = $image_url;
+            }
         }
+
+            
+    
+        
 
         if($request->hasFile('side_view')){
-            $side_view = $request->file('side_view')->getRealPath();
-
-            Cloudder::upload($side_view, null);
-
-            $side_url = Cloudder::show(Cloudder::getPublicId());
+            //get file name with extension
+            $fileNameWithExt = $request->file('side_view')->getClientOriginalName();
+            //get just file name
+            $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            //get just extension
+            $extension = $request->file('side_view')->getClientOriginalExtension();
+            $title = $request->product_name;
+            //file name to store
+            $side_url = $title.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('side_view')->storeAs('public/products', $side_url);
+            
+            if($product->side_url != 'noimage.jpg'){
+                Storage::delete('public/products/'.$product->side_url);
+                $product->side_url = $side_url;
         }
-
+        }
+        
+        
         if($request->hasFile('front_view')){
-            $front_view = $request->file('front_view')->getRealPath();
+            //get file name with extension
+            $fileNameWithExt = $request->file('front_view')->getClientOriginalName();
+            //get just file name
+            $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            //get just extension
+            $extension = $request->file('front_view')->getClientOriginalExtension();
+            $title = $request->product_name;
+            //file name to store
+            $front_url = $title.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('front_view')->storeAs('public/products', $front_url);
+            
 
-            Cloudder::upload($front_view, null);
-
-            $front_url = Cloudder::show(Cloudder::getPublicId());
+            if($product->front_url != 'noimage.jpg'){
+                Storage::delete('public/products/'.$product->front_url);
+                $product->front_url = $front_url;
+        }
         }
 
-    //simply delete the former image before updating it with the new one on the server to save space
-        if($request->hasFile('image')){
-            $url_id = $product->image_url;
-            $url_arr = explode("/",$url_id);
-            $url_last = count($url_arr)-1;
-            $url_last_id = explode(".", $url_arr[$url_last]);
-            $publicId = $url_last_id[0];
-            Cloudder::destroyImage($publicId);
-            $product->image_url = $image_url;
-        }
-        if($request->hasFile('side_view')){
-            $url_id = $product->side_url;
-            $url_arr = explode("/",$url_id);
-            $url_last = count($url_arr)-1;
-            $url_last_id = explode(".", $url_arr[$url_last]);
-            $publicId = $url_last_id[0];
-            Cloudder::destroyImage($publicId);
-            $product->side_url = $side_url;
-        }
-
-        if($request->hasFile('front_view')){
-            $url_id = $product->front_url;
-            $url_arr = explode("/",$url_id);
-            $url_last = count($url_arr)-1;
-            $url_last_id = explode(".", $url_arr[$url_last]);
-            $publicId = $url_last_id[0];
-            Cloudder::destroyImage($publicId);
-            $product->front_url = $front_url;
-        }
-        $product->promote = 0;
-        $product_all = $request->all();
-        $product->fill($product_all)->update();
-        return $product;
+            $product->promote = 0;
+            $product->product_name = $request->product_name;
+            $product->description = $request->description;
+            $product->price = $product->price == $request->price ? $request->price : $request->price * 100;
+            $request->shipment_price = $request->shipment_price * 100;
+            $product->category_id = $request->category_id;
+            $product->subcategory_id = $request->subcategory_id;
+            $product->quantity = $request->quantity;
+            $product->serial_number = $request->serial_number;
+    //dd($request->all());
+        $product->update();
+        isset($request->colour_id) ? $product->colours()->sync($request->colour_id) : $product->colours()->sync([]) ;
+        isset($request->size_id) ? $product->sizes()->sync($request->size_id) : $product->sizes()->sync([]);
+        return back();
 
     }
 }
+
 
 
     public function destroy(Product $product)
@@ -255,6 +277,5 @@ class ProductController extends Controller
     }
 }
 
-//orders methods
 
 }

@@ -173,15 +173,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form action="{{route('categories.store')}}" method="POST">
+                            @csrf
                     <div class="modal-body">
                         <div class="input mt-3 mb-3">
-                            <input type="text" class="form-control" placeholder="New Category">
+                            <input type="text" name="category_name" class="form-control" placeholder="New Category">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="category.html" type="button" class="btn btn-primary">Add Category</a>
+                        <button type="submit" class="btn btn-primary">Add Category</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -195,21 +198,28 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form action="{{route('subcategories.store')}}" method="POST">
+                            {{ csrf_field() }}                
                     <div class="modal-body">
                         <div class="input mt-3 mb-3">
-                            <input type="text" class="form-control" placeholder="New Sub-Category">
+                            <input type="text" name="subcategory_name" class="form-control" placeholder="New Sub-Category">
                             <div class="input-group-prepend">
-                                <select id="category" class="form-control">
-                                    <option selected>SunGlasses</option>
-                                    <option value="Wrist Watch">Wrist Watch</option>
-                                </select>
+                                    @if(count($categories) > 0)
+                                    <select id="category" class="form-control" name="category_id" >
+                                        <option selected>Select Category</option>
+                                        @foreach($categories as $category)
+                                    <option name="category_id" value="{{$category->id}}">{{$category->category_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="category.html" type="button" class="btn btn-primary">Add Sub-Category</a>
+                        <button type="submit" class="btn btn-primary">Add Sub-Category</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -224,16 +234,19 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form action="{{route('colours.store')}}" method="POST">
+                                {{ csrf_field() }}
                         <div class="modal-body">
                             <div class="input-group mt-3 mb-3">
-                                <input type="text" class="form-control" placeholder="Color Name">
-                                <input type="color" class="form-control col-md-1">
+                                <input type="text" name="colour_name" class="form-control" placeholder="Color Name">
+                                <input type="color" name="colour" class="form-control col-md-1">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="category.html" type="button" class="btn btn-primary">Add Color</a>
+                            <button type="submit" class="btn btn-primary">Add Color</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -248,21 +261,28 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form action="{{route('sizes.store')}}" method="POST">
+                                    {{ csrf_field() }}
                             <div class="modal-body">
                                 <div class="input mt-3 mb-3">
-                                    <input type="text" class="form-control" placeholder="New Size">
+                                    <input type="text" name="size" class="form-control" placeholder="New Size">
                                     <div class="input-group-prepend">
-                                        <select id="category" class="form-control">
-                                            <option selected>SunGlasses</option>
-                                            <option value="Wrist Watch">Wrist Watch</option>
+                                        <select id="category" class="form-control" name="category_id">
+                                            <option selected>select category</option>
+                                            @if($categories)
+                                            @foreach ($categories as $category)    
+                                            <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="category.html" type="button" class="btn btn-primary">Add Size</a>
+                                <button type="submit" class="btn btn-primary">Add Size</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

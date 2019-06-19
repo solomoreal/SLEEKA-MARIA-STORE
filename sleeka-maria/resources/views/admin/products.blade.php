@@ -80,6 +80,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Product</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Details</th>
                         </tr>
@@ -90,14 +91,16 @@
                             
                         <tr>
                             <th scope="row">
-                            <img width="150" height="100" src="storage/products/{{$product->image_url}}" class="img-fluid">
+                            <img width="150" height="100" src="{{asset('storage/products/'.$product->image_url)}}" class="img-fluid">
                             </th>
                             <td>
                                 {{$product->product_name}}
                             </td>
+                       
                             <td>
                                 {{$product->category->category_name}}
                             </td>
+                            <td>{{$product->promote ? 'Featured' : 'Not Featured'}}</td>
                             <td>
                                 {{$product->quantity}}
                             </td>
