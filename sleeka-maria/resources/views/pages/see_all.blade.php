@@ -21,10 +21,11 @@
                             <div class="container">
                                 <div href="#" class="product-card">
                                     <a href="{{route('viewProduct', ['id' =>$product->id])}}">
-                                    <img class="img" src="{{$product->image_url}}">
+                                    <img class="img" src="{{asset('storage/products/'.$product->image_url)}}">
                                     <h1 class="product-title">{{$product->product_name}}</h1>
                                     </a>
                                     <!--<del>$199.99</del> -->
+                                    <p class="price">#{{$product->serial_number}}</p>
                                 <p class="price">{{$currency.''.number_format(($product->price/100),2)}}</p>
                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$product->id}}">Add to Cart</button>
                                 <div class="modal fade" id="cart{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -52,7 +53,7 @@
                                                                     @if ($product->sizes)
                                                                        @foreach ($product->sizes as $size)
                                                                 <option value="{{$size->size}}">{{$size->size}}</option>
-                                                                       @endforeach 
+                                                                       @endforeach
                                                                     @endif
                                                                 </select>
                                                                 <div class="row justify-content-center">
@@ -61,7 +62,7 @@
                                                                     </div>
                                                                 </div>
                                                             </form>
-                                                        
+
                                             </div>
                                         </div>
                                     </div>
@@ -69,12 +70,12 @@
                                 </div>
                             </div>
                         </div>
-                
+
                         @endforeach
                     </div>
                     @endforeach
                 </div>
-                        
+
             <!--New Products Ads Card-->
             <div id="products-ads" class="mt-5">
                 <div class="container">

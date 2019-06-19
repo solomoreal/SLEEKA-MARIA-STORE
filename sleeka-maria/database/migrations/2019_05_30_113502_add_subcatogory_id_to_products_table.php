@@ -27,7 +27,7 @@ class AddSubcatogoryIdToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //$table->dropForeign('subcategory_id');
+            $table->dropForeign('subcategory_id');
             $table->dropColumn('subcategory_id');
         });
     }

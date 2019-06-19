@@ -31,11 +31,11 @@ class PagesController extends Controller
         $categories = category::all();
         $currency = '₦'; 
         //Adult frame subcategory and products on index page
-        $glass_cat = $this->subcategoryQuery('Adult Frames');
+        $glass_cat = $this->categoryQuery('Adult Glass Frames');
         $category = $glass_cat->first();
         $glasses = $category->products->take(4);
         //Kid Frames Subcategory and products
-        $kids_frame_cats = $this->subcategoryQuery('Kids Frames');
+        $kids_frame_cats = $this->categoryQuery('Kids Glass Frames');
         //dd($kids_frame_cats);
         $k_frame_cat = $kids_frame_cats->first();
         $kFrames = $k_frame_cat->products->take(4);
@@ -130,7 +130,7 @@ class PagesController extends Controller
     public function viewBySubcategory($id){
         $currency = '₦';
         $categories = Category::all();
-        $category = Subcategory::findOrFail($id);
+        $category = Category::findOrFail($id);
         $products = $category->products->take(4);
         return view('pages.see_all',compact(['category','products','categories','currency']));
     }

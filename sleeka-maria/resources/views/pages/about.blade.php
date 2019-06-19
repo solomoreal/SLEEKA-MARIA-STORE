@@ -67,9 +67,9 @@
                             <div class="container">
                                 <h2>CONTACT US</h2>
                                 <hr>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, quasi.</p>
-                                <p>Warehouse address in Lagos</p>
-                                <p class="Phone">+234 90764 454 232</p>
+                                <p> <b>The best sales and supply agency.</b> <br/> </p>
+                                <p> mile 2 , third mainland bridge, Lagos</p>
+                                <p class="Phone">+234 90764 454 232, 08065543216</p>
                             </div>
                         </div>
                         <div class="col-md-6">

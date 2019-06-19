@@ -47,7 +47,7 @@
                                 <div class="container">
                                     <div href="#" class="product-card">
                                     <a href="{{route('viewProduct', ['id' =>$product->id])}}">
-                                        <img class="img" src="{{$product->image_url}}">
+                                        <img class="img" src="{{asset('storage/products/'.$product->image_url)}}">
                                         <h1 class="product-title">{{$product->product_name}}</h1>
                                         </a>
                                        <!-- <del>$199.99</del> -->
@@ -106,7 +106,7 @@
               @if($category)      <!--Adult Frames-->
             <div class="featured-product">
                 <div class="featured-title container">
-                <h2>{{$category->subcategory_name}}</h2>
+                <h2>{{$category->category_name}}</h2>
                     <hr>
                 </div>
                 <div class="container">
@@ -117,10 +117,11 @@
                             <div class="container">
                                 <div class="product-card">
                                     <a href="{{route('viewProduct', ['id' =>$glass->id])}}">
-                                    <img src="{{$glass->image_url}}">
+                                    <img src="{{asset('storage/products/'.$glass->image_url)}}">
                                     <h1 class="product-title">{{$glass->product_name}}</h1>
                                     </a>
                                    <!-- <del>$199.99</del> -->
+                                   <p class="price">#{{$glass->serial_number}}</p>
                                 <p class="price">{{$currency}}{{ number_format(($glass->price/100))}}</p>
                                 <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>
                                 <div class="modal fade" id="cart{{$glass->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -192,7 +193,7 @@
             @if($kFrames)
             <div class="featured-product">
                     <div class="featured-title container">
-                    <h2>{{$k_frame_cat->subcategory_name}}</h2>
+                    <h2>{{$k_frame_cat->category_name}}</h2>
                         <hr>
                     </div>
                     <div class="container">
@@ -203,9 +204,10 @@
                                 <div class="container">
                                     <div class="product-card">
                                         <a href="{{route('viewProduct', ['id' =>$glass->id])}}">
-                                        <img src="{{$glass->image_url}}">
+                                        <img src="{{asset('storage/products/'.$glass->image_url)}}"">
                                         <h1 class="product-title">{{$glass->product_name}}</h1>
                                         </a>
+                                        <p class="price">#{{$glass->serial_number}}</p>
                                        <!-- <del>$199.99</del> -->
                                     <p class="price">{{$currency }}{{ number_format(($glass->price/100))}}</p>
                                     <button class="add-to-cart" data-toggle="modal" data-target="#cart{{$glass->id}}">Add to Cart</button>

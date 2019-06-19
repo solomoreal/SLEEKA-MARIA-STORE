@@ -25,7 +25,7 @@
                                     @if(Session::has('cart'))
                                     @foreach($products as $id => $product)
                                     <tr>
-                                    <td><img src="{{$product['item']['image_url']}}" width="50px" height="50px"> {{$product['item']['product_name']}}</td>
+                                    <td><img src="storage/products/{{$product['item']['image_url']}}"  width="50px" height="50px"> {{$product['item']['product_name']}}</td>
                                         <td>
                                             <form action="{{route('addToCart')}}" method="POST">
                                                         {{ csrf_field() }}
@@ -92,7 +92,7 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="container">
                                             <div  class="product-card">
-                                            <img src="{{$relatedProduct->image_url}}"> 
+                                            <img src="{{asset('storage/products/'.$relatedProduct->image_url)}}"> 
                                             <h1 class="product-title">{{$relatedProduct->product_name}}</h1> 
                                             <del></del>
                                              <p class="price">{{$currency.' '.number_format(($relatedProduct->price/100),2)}}</p> 

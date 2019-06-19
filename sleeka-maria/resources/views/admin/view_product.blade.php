@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content')
-    
-@endsection
+
+
     <div class="main-content">
         <div class="container">
             <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -71,7 +71,7 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                            <img src="{{$product->front_url}}" class="img-fluid">
+                            <img src="storage/products/{{$product->image_url}}" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -80,9 +80,14 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                Serial Number: <span class="float-right"> #122344 </span><hr>
+                                Serial Number: <span class="float-right"> #{{$product->serial_number}} </span><hr>
                             Product Name: <span class="float-right">{{$product->product_name}}</span> <hr>
-                                Availabale Colors: <span class="float-right">#wait</span><hr>
+                                Availabale Colors: <span class="float-right">
+                                    @foreach($product->colours as $colour)
+                                        <span class="badge">{{$colour->colour_name}}</span>
+                                    @endforeach
+
+                                </span><hr>
                                 Available Quantity: <span class="float-right"> {{$product->quantity}} </span><hr>
                             Product Price: <span class="float-right">{{$product->price}}</span>  <hr>
                             Category:  <span class="float-right">{{$product->category->category_name}}</span><hr>
@@ -95,33 +100,23 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
+                                    
                                     <button class="btn btn-success ">
                                             Promote Product
-                                        </button>
-                                    <button class="btn btn-primary float-right">
-                                            Edit Product
-                                        </button>
-                                    <hr>
+                                    </button>
+                                    <form action="{{route('products.destroy',['id' =>$product->id])}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-primary float-right">
+                                            delete
+                                    </button>
+ 
+                                    </form>
+                                                                       <hr>
                                 </h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="row align-items-center justify-content-xl-between">
-                    <div class="col-xl-6">
-                        <div class="copyright text-center text-xl-left text-muted">
-                            &copy; 2019 <a href="" class="font-weight-bold ml-1" target="_blank">Sleeka Maria</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/argon.js?v=1.0.0"></script>
-</body>
-
-</html>
+@endsection

@@ -70,7 +70,7 @@
                         <div id="product-card">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="{{$item['item']['image_url']}}" alt="">
+                                    <img src="{{asset('storage/products/'.$item['item']['image_url'])}}"  alt="">
                                 </div>
                                 <div class="col-md-6">
                                     <table class="table ">

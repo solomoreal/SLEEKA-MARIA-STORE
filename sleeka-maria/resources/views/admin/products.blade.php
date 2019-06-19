@@ -90,7 +90,7 @@
                             
                         <tr>
                             <th scope="row">
-                            <img width="150" height="100" src="{{$product->image_url}}" class="img-fluid">
+                            <img width="150" height="100" src="storage/products/{{$product->image_url}}" class="img-fluid">
                             </th>
                             <td>
                                 {{$product->product_name}}

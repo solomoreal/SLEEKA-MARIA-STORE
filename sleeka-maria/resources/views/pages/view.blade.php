@@ -2,7 +2,7 @@
 @section('content')
 @endsection
     <div class="wrapper">
-        
+
         <div class="content-are">
 
             <div class="view-product container">
@@ -16,11 +16,11 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-6 col-md-6">
                             <div class="view-product-img">
-                            <img src="{{$product->image_url}}">
+                            <img src="{{asset('storage/products/'.$product->image_url)}}"">
                             </div>
                             <div class="img">
-                            <img src="{{$product->side_url}}">
-                            <img src="{{$product->front_url}}">
+                            <img src="{{asset('storage/products/'.$product->side_url)}}">
+                            <img src="{{asset('storage/products/'.$product->front_url)}}">
                             </div>
                             <div class="row justify-content-center product-description mt-5">
                                 <div class="col-sm-6 col-lg-10">
@@ -34,6 +34,7 @@
                             <div class="product-details">
                                 <div class="prod mt-mg-5">
                                 <h2>{{$product->product_name}}</h2>
+                                <p class="price">#{{$product->serial_number}}</p>
                                 <p class="price">{{$currency.' '.number_format($price,2)}}</p>
                                 </div>
                             <form action="{{route('addToCart')}}" class="text-center" method="POST">
@@ -51,7 +52,7 @@
                                         <option> Select Size</option>
                                         @if($sizes)
                                             @foreach ($sizes as $size)
-                                                <option value="{{$size->size}}">{{$size->size}}</option>  
+                                                <option value="{{$size->size}}">{{$size->size}}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -60,12 +61,12 @@
                                     <input type="number" name="quantity" id="number" value="0" />
                                     <div class="value-button" id="increase" onclick="increaseValue()"
                                         value="Increase Value"><b>+</b>
-                                
+
                                     </div>
                                     <div>
                                             <strong><a href="{{route('about')}}#contact">Contact Us For Bulk Purchase</a></strong>
                                     </div>
-                                
+
                                 <div class="row justify-content-center text-center">
                                     <div class="col-sm-6 col-lg-10">
                                         <button type="submit" class="btn btn-outline-inf btn-block mt-4">ADD TO CART</button>
@@ -84,7 +85,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -102,7 +103,7 @@
                                     <div class="container">
                                             <div  class="product-card">
                                             <a href="{{route('viewProduct', ['id' =>$relatedProduct->id])}}">
-                                            <img src="{{$relatedProduct->image_url}}">
+                                            <img src="{{asset('storage/products/'.$relatedProduct->image_url)}}">
                                             <h1 class="product-title">{{$relatedProduct->product_name}}</h1>
                                             </a>
                                             <del></del>
@@ -133,7 +134,7 @@
                                                                                 @if ($relatedProduct->sizes)
                                                                                    @foreach ($relatedProduct->sizes as $size)
                                                                             <option value="{{$size->size}}">{{$size->size}}</option>
-                                                                                   @endforeach 
+                                                                                   @endforeach
                                                                                 @endif
                                                                             </select>
                                                                             <div class="row justify-content-center">
@@ -149,19 +150,18 @@
                                             </div>
                                         </div>
                                     </div>
-                            @endforeach 
-                        </div> 
-                            
+                            @endforeach
+                        </div>
+
                         </div>
                         @endforeach
                     <a href="{{route('viewByCategory',['id' => $relatedId])}}" class="see-all">See All <i class="fas fa-angle-double-right"></i></a>
                         </div>
-                        
+
                     @endif
                     </div>
                 </div>
             </div>
-        
 
 
-        
+
