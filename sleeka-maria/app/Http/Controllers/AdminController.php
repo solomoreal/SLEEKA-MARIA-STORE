@@ -8,12 +8,22 @@ use App\User;
 use App\Product;
 use App\Category;
 use App\Colour;
+use DB;
+use Illuminate\Support\Carbon;
 use function Opis\Closure\unserialize;
+use Illuminate\Support\Facades\Auth;
+use Carbon\CarbonPeriod;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function allOrders(){
-        $orders = Order::latest()->paginate(5)->sortBy('status');
+        if(Auth::user()->role = 'Admin'){
+        $orders = Order::latest()->paginate(10);
         $orders->transform(function($order, $key){
             $order->cart = unserialize($order->cart);
             return $order;
@@ -21,90 +31,120 @@ class AdminController extends Controller
         //dd($orders);
         return view('admin.all_orders',['orders' => $orders]);
     }
+    }
+
+    
 
     public function orderItem($id){
+        if(Auth::user()->role = 'Admin'){
         $order = Order::findOrfail($id);
         $cart = unserialize($order->cart);
         return view('admin.order_item', compact(['order', 'cart']));
+        }
     }
     public function generalOrdersQuery($status){
-        $orders = Order::where('status', $status)->latest()->get();
+        if(Auth::user()->role = 'Admin'){
+        $orders = Order::where('status', $status)->latest()->paginate(10);
         $orders->transform(function($order, $key){
             $order->cart = unserialize($order->cart);
             return $order;
         });
 
         return $orders;
-
+    }
         //dd($orders);
     }
 
     public function pendingOrders($status){
+        if(Auth::user()->role = 'Admin'){
         $orders = $this->generalOrdersQuery($status);
        //dd($orders);
         return view('admin.pending_orders', compact('orders'));
+        }
     }
 
     public function completedOrders($status){
+        if(Auth::user()->role = 'Admin'){
         $orders = $this->generalOrdersQuery($status);
         //dd($orders);
         return view('admin.completed_orders', compact('orders'));
+        }
     }
 
     public function cancelledOrders($status){
+        if(Auth::user()->role = 'Admin'){
         $orders = $this->generalOrdersQuery($status);
         //dd($orders);
         return view('admin.cancelled_orders', compact('orders'));
+        }
     }
 
     public function rejectedOrders($status){
+        if(Auth::user()->role = 'Admin'){
         $orders = $this->generalOrdersQuery($status);
         //dd($orders);
         return view('admin.rejected_orders', compact('orders'));
+        }
     }
 
     public function inProgress($status){
+        if(Auth::user()->role = 'Admin'){
         $orders = $this->generalOrdersQuery($status);
         //dd($orders);
         return view('admin.in_progress', compact('orders'));
+        }
     }
 
     public function newOrders(){
-        $orders = $this->generalOrdersQuery('New orders');
-        dd($orders);
-        return view('admin.new_orders', compact('orders'));
+        if(Auth::user()->role = 'Admin'){
+            $todaySales = DB::table('orders')->where('created_at', '>=', Carbon::today())->sum('amount');
+            $currency = '₦';
+            $users = count(User::where('role','Customer')->get());
+        $orders = Order::latest()->paginate(5);
+        return view('admin.index', compact(['orders','users','todaySales','currency']));
+        }
     }
 
     public function changeStatus($id, $status){
+        if(Auth::user()->role = 'Admin'){
         $order = Order::findOrFail($id);
         $order->status = $status;
         $order->update();
         return back();
+        }
     }
 
     public function viewCustomers(){
+        if(Auth::user()->role = 'Admin'){
         $customers = User::where('role','Customer')->latest()->get();
         return view('admin.view_customers',compact(['customers']));
+        }
     }
 
     public function viewProduct($id){
+        if(Auth::user()->role = 'Admin'){
         $product = Product::findOrFail($id);
         return view('admin.view_product',compact('product'));
+        }
     }
 
     public function editProduct($id){
+        if(Auth::user()->role = 'Admin'){
         $product = Product::findOrfail($id);
         $categories = Category::all();
         $colours = Colour::all();
 
         return view('admin.edit_product',compact(['product','categories','colours']));
+        }
     }
 
     public function promoteProduct($id){
+        if(Auth::user()->role = 'Admin'){
         $product = Product::findOrFail($id);
         $product->promote == 1 ? $product->promote = 0 : $product->promote = 1;
         
         $product->update();
         return back();
+        }
      }
 }

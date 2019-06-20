@@ -4,52 +4,37 @@
 
     <div class="main-content">
         <div class="container">
-            <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-                <div class="container-fluid">
-                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Orders</a>
-                    <!-- User -->
-                    <ul class="navbar-nav align-items-center d-none d-md-flex">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="media align-items-center">
-                                    <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
-                                    </span>
-                                    <div class="media-body ml-2 d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                        <div class="container-fluid">
+                            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Orders</a>
+                            <!-- User -->
+                            <ul class="navbar-nav align-items-center d-none d-md-flex">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="media align-items-center">
+                                            <span class="avatar avatar-sm rounded-circle">
+                                                <img alt="Image placeholder" src="{{asset('img/theme/team-4-800x800.jpg')}}">
+                                            </span>
+                                            <div class="media-body ml-2 d-none d-lg-block">
+                                                <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                                        <div class=" dropdown-header noti-title">
+                                            <h6 class="text-overflow m-0">Welcome!</h6>
+                                        </div>
+                                        
+                                        <div class="dropdown-divider"></div>
+                                    <a href="{{route('logout')}}" class="dropdown-item">
+                                            <i class="ni ni-user-run"></i>
+                                            <span>Logout</span>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                                <div class=" dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome!</h6>
-                                </div>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-single-02"></i>
-                                    <span>My profile</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-settings-gear-65"></i>
-                                    <span>Settings</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-calendar-grid-58"></i>
-                                    <span>Activity</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-support-16"></i>
-                                    <span>Support</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-user-run"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
             <div class="header bg-gradient-primary pt-md-7">
             </div>
             <div class="container">
@@ -63,10 +48,11 @@
                                 Filter
                             </button>
                             <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                                <a class="dropdown-item" href="#">Last Month</a>
-                                <a class="dropdown-item" href="#">3 months Ago</a>
-                                <a class="dropdown-item" href="#">6 months Ao</a>
-                                <a class="dropdown-item" href="#">Last Year</a>
+                                <a class="dropdown-item" href="{{route('pendingOrders',['status' => 'Pending'])}}">Pending Orders</a>
+                                <a class="dropdown-item" href="{{route('completedOrders',['status' => 'Delivered'])}}">Completed Orders</a>
+                                <a class="dropdown-item" href="{{route('inProgress',['status' => 'In Progress'])}}">In Progress</a>
+                                <a class="dropdown-item" href="{{route('rejectedOrders',['status' => 'Rejected'])}}">Rejected</a>
+                                <a class="dropdown-item" href="{{route('cancelledOrders',['status' => 'Cancelled'])}}">Cancelled</a>
                             </div>
                         </div>
                     </div>
@@ -75,7 +61,7 @@
             <div class="container">
                 <div class="row align-items-center mt-3 bg-dark">
                     <div class="col">
-                        <h3 class="mb-0 text-white">Orders from 3rd May, 2019</h3>
+                        <h3 class="mb-0 text-white">All Orders</h3>
                     </div>
                     <div class="col text-right">
                         <div class="dropdown">
@@ -137,6 +123,7 @@
                                
                             </tbody>
                         </table>
+                        {{$orders->links()}}
                     </div>
                 </div>
             </div>

@@ -24,9 +24,6 @@ class PagesController extends Controller
 {
     
     public function index(){
-        //  $order = Order::find(3);
-        //  $cart = unserialize($order->cart);
-        //  dd($cart);
         //category display in the nav bar
         $categories = category::all();
         $currency = '₦'; 
@@ -96,19 +93,23 @@ class PagesController extends Controller
     }
 
     public function editProfile($id){
+        if(Auth::user()){
         $user = User::findOrFail($id);
         $categories = Category::all();
         $countries = Country::all();
         return view('pages.edit_profile',compact(['user','categories','countries']));
+        }
 
     }
 
     public function orderDetails($id){
+        if(Auth::user()){
         $currency = '₦';
         $order = Order::findOrfail($id);
         $cart = unserialize($order->cart);
         $categories = Category::all();
         return view('pages.order_details', compact(['order', 'cart','categories', 'currency']));
+        }
     }
 
     public function fetchStates(Request $request){
@@ -203,6 +204,7 @@ class PagesController extends Controller
    }
 
    public function checkout(){
+    if(Auth::user()){
        $user = Auth::user();
        $currency = '₦';
        $countries = Country::all();
@@ -214,6 +216,7 @@ class PagesController extends Controller
     $totalPriceCheckout = $cart->totalPrice*100;
     $totalQty = $cart->totalQty;
     return  view('pages.checkout', compact(['categories','products','totalPrice','totalQty','totalPriceCheckout','user','countries','currency']));
+    }
    }
 
        /**
@@ -222,8 +225,10 @@ class PagesController extends Controller
      */
     public function redirectToGateway()
     {
+        if(Auth::user()){
         request()->metadata = json_encode(request()->all());
         return Paystack::getAuthorizationUrl()->redirectNow();
+        }
     }
     
 
@@ -233,6 +238,7 @@ class PagesController extends Controller
      */
     public function handleGatewayCallback()
     {
+        if(Auth::user()){
         $paymentDetails = Paystack::getPaymentData();
 
        //dd($paymentDetails);
@@ -265,6 +271,7 @@ class PagesController extends Controller
         }
         $this->emptyCart();
                 return redirect(route('profile'));
+    }
 
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions
@@ -305,6 +312,7 @@ class PagesController extends Controller
     }
     
     public function postComplain(Request $request){
+        if(Auth::user()->role = 'Customer'){
         $this->validate($request,[
             'email' => 'required|email',
             'subject' => 'min:3',
@@ -333,13 +341,16 @@ class PagesController extends Controller
             ->notify(new MailSent());
             return back()->with('success', 'Message Sent');
     }
+    }
 
     public function customerInvoice($id){
+        if(Auth::user()->role = 'Customer'){
         $user = Auth::user();
         $currency = '₦';
         $order = Order::findOrfail($id);
         $cart = unserialize($order->cart);
         return view('pages.customer_invoice', compact(['user','currency','order','cart']));
+        }
 
     }
 

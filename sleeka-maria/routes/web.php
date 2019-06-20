@@ -30,15 +30,15 @@ Route::group(['prefix' => '/'], function () {
     Route::get('searchProducts','PagesController@searchProduct')->name('searchProducts');
     Route::get('about','PagesController@about')->name('about');
     //auth Routes
-    Route::get('profile', 'PagesController@profile')->name('profile');
-    Route::get('editProfile/{id}','PagesController@editProfile')->name('editProfile');
-    Route::put('updateProfile', 'UsersController@update')->name('updateProfile');
+    Route::get('profile', 'PagesController@profile')->middleware('auth')->name('profile');
+    Route::get('editProfile/{id}','PagesController@editProfile')->middleware('auth')->name('editProfile');
+    Route::put('updateProfile', 'UsersController@update')->middleware('auth')->name('updateProfile');
     Route::get('fetchStates','PagesController@fetchStates')->name('fetchStates');
-    Route::get('orderDetails/{id}', 'PagesController@orderDetails')->name('orderDetails');
-    Route::get('customerInvoice/{id}', 'pagesController@customerInvoice')->name('customerInvoice');
+    Route::get('orderDetails/{id}', 'PagesController@orderDetails')->middleware('auth')->name('orderDetails');
+    Route::get('customerInvoice/{id}', 'pagesController@customerInvoice')->middleware('auth')->name('customerInvoice');
    // Route::get('getContactForm', 'PagesController@getContactForm')->name('getContactForm');
     Route::post('postContact', 'PagesController@postContact')->name('postContact'); 
-    Route::post('postComplain','PagesController@postComplain')->name('postComplain');  
+    Route::post('postComplain','PagesController@postComplain')->middleware('auth')->name('postComplain');  
     
 
     //Cart
@@ -78,9 +78,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('admin_viewProduct/{id}', 'AdminController@viewProduct')->name('admin.viewProduct');
     Route::get('editProduct/{id}','AdminController@editProduct')->name('editProduct');
     Route::get('promote/{id}', 'AdminController@promoteProduct')->name('promote');
+    Route::get('adminLogin','Auth\AdminLoginController@loginForm');
+    Route::post('adminLogin','Auth\AdminLoginController@login')->name('adminLogin');
     
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

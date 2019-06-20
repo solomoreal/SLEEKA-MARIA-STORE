@@ -13,10 +13,10 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
+                                        <img alt="Image placeholder" src="{{asset('img/theme/team-4-800x800.jpg')}}">
                                     </span>
                                     <div class="media-body ml-2 d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                                        <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
                                     </div>
                                 </div>
                             </a>
@@ -24,24 +24,9 @@
                                 <div class=" dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome!</h6>
                                 </div>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-single-02"></i>
-                                    <span>My profile</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-settings-gear-65"></i>
-                                    <span>Settings</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-calendar-grid-58"></i>
-                                    <span>Activity</span>
-                                </a>
-                                <a href="" class="dropdown-item">
-                                    <i class="ni ni-support-16"></i>
-                                    <span>Support</span>
-                                </a>
+                                
                                 <div class="dropdown-divider"></div>
-                                <a href="" class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -57,19 +42,7 @@
                     <div class="col">
                         <h3 class="mb-0 h2">In Progress</h3>
                     </div>
-                    <div class="col text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                                <a class="dropdown-item" href="#">Last Month</a>
-                                <a class="dropdown-item" href="#">3 months Ago</a>
-                                <a class="dropdown-item" href="#">6 months Ao</a>
-                                <a class="dropdown-item" href="#">Last Year</a>
-                            </div>
-                        </div>
-                    </div>
+                </div>
                 </div>
             </div>
             <div class="container">
@@ -77,19 +50,7 @@
                     <div class="col">
                         <h3 class="mb-0 text-white">In Progress</h3>
                     </div>
-                    <div class="col text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="FilterOrder">
-                                <a class="dropdown-item" href="#">Pending</a>
-                                <a class="dropdown-item" href="#">Delivered</a>
-                                <a class="dropdown-item" href="#">Cancelled</a>
-                                <a class="dropdown-item" href="#">Regected</a>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="row">
                     <div class="table-responsive">
@@ -137,6 +98,7 @@
                                
                             </tbody>
                         </table>
+                        {{$orders->links()}}
                     </div>
                 </div>
             </div>

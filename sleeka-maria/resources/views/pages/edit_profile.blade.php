@@ -62,7 +62,8 @@
                                 @if($countries)
                                 <div class="form-group">
                                     <select id="country" data-route="{{route('fetchStates')}}" name="country_id" required class="form-control">
-                                    <option value="{{$user->country->id}}" selected>{{$user->country->country_name}}</option>
+                                    
+                                    <option value={{ $user->country ? $user->country->id : " " }} selected>{{$user->country ? $user->country->country_name : " "}}</option>
                                     @foreach($countries as $country)
                                     <option value="{{$country->id}}">{{$country->country_name}}</option>
                                     @endforeach
@@ -75,7 +76,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <select id="states" name="state_id" class="form-control">
-                                                <option value="{{$user->state->id}}" selected>{{$user->state->state_name}}</option>
+                                                <option value="{{$user->state ? $user->state->id : " "}}" selected>{{$user->state ? $user->state->state_name : " "}}</option>
                                             
                                         </select>
                                     </div>

@@ -24,10 +24,16 @@
                 </div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{route('newOrders')}}">
                             <i class="ni ni-shop text-blue"></i>Home
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('index')}}">
+                                <i class="ni ni-shop text-blue"></i>view website
+                            </a>
+                        </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#collapseOrders" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOrders">
                             <i class="ni ni-delivery-fast text-blue"></i>Orders
@@ -60,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('completedOrders',['status' => 'Complete'])}}">
+                        <a class="nav-link" href="{{route('completedOrders',['status' => 'Delivered'])}}">
                                 Completed Orders
                             </a>
                         </li>
@@ -112,7 +118,7 @@
                             </a>
                         </li>
                     </div>
-                    <li class="nav-item">
+                <!--    <li class="nav-item">
                         <a class="nav-link" href="#collapseAdmin" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAdmin">
                             <i class="ni ni-circle-08 text-blue"></i> Manage Admins
                         </a>
@@ -128,7 +134,7 @@
                                 Edit Admins
                             </a>
                         </li>
-                    </div>
+                    </div> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
                             <i class="ni ni-single-02 text-blue"></i>Customers
@@ -147,9 +153,17 @@
                         </li>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ni ni-button-power text-blue"></i>Log Out
-                        </a>
+                                <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                 <i class="ni ni-button-power text-blue"></i>{{ __('Logout') }}
+                             </a>
+
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 @csrf
+                             </form>
+                            
+                        
                     </li>
                 </ul>
             </div>
