@@ -178,14 +178,17 @@
             <!--New Products Ads Card-->
             <div id="products-ads" class="mt-5">
                 <div class="container">
+                    @if($ads)
+                    @foreach($ads->chunk(2) as $adsChunk)
                     <div class="row bg-ads">
+                        @foreach($adsChunk as $ad)
                         <div class="col-lg-6 col-sm-6">
-                            <img src="./img/ads/NG_W20_MFL_DOUBLEBANNER6.jpg" alt="" width="100%" height="100%">
+                            <img src="{{asset('storage/ads/'.$ad->image_url)}}" alt="" width="100%" height="100%">
                         </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <img src="./img/ads/NG_Floor-banners-MW-(2).jpg" alt="" width="100%" height="100%">
-                        </div>
+                        @endforeach
                     </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
 

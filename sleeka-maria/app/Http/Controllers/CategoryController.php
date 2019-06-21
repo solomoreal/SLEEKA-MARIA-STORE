@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         if(Auth::user()->role = 'Admin'){
-        $categories = Category::latest()->get();
+        $categories = Category::latest()->paginate(10);
         $count = 1;
         return view('admin.category')->withCategories($categories)->withCount($count);
         }
@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->category_name = $request->category_name; 
         $category->save();
-        return back();
+        return back()->with('success','Category Created');
         }
 
     }
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($request->category_id); 
         $category->category_name = $request->category_name;
         $category->update();
-        return back();
+        return back()->with('success','Category Updated');
         }
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         if(Auth::user()->role = 'Admin'){
         $category = Category::findOrFail($request->category_id);
         $category->delete();
-        return back();
+        return back()->with('success','Category Deleted');
         }
     }
 }

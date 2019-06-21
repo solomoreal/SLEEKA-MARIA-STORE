@@ -16,7 +16,7 @@ class ColourController extends Controller
         public function index()
     {
         if(Auth::user()->role = 'Admin'){
-        $colours = Colour::latest()->get();
+        $colours = Colour::latest()->paginate(10);
         $count = 1;
         return view('admin.colors', compact(['colours', 'count']));
         }

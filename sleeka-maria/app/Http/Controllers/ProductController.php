@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index()
     {
         if(Auth::user()->role = 'Admin'){
-        $products = Product::latest()->get();
+        $products = Product::latest()->paginate(10);
         return view('admin.products')->withProducts($products);
     }
 }
@@ -129,7 +129,7 @@ class ProductController extends Controller
         $product->save();
         $product->colours()->sync($request->colour_id, false);
         $product->sizes()->sync($request->size_id, false);
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('success','Product Added');
         }
     }
     public function fetchCategories(Request $request){
@@ -153,32 +153,31 @@ class ProductController extends Controller
             'product_name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|integer',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image',
             //'shipment_fee' => 'nullable|integer',
-            'side_view' => 'nullable|string',
-            'front_view' => 'nullable|string',
-            'serial_number' => 'nullable|integer',
+            'side_view' => 'nullable|image',
+            'front_view' => 'nullable|image',
+            'serial_number' => 'nullable',
 
         ]);
        // dd($request->all());
 
         if($request->hasFile('image')){
-            //get file name with extension
             $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            //get just file name
             $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
-            //get just extension
             $extension = $request->file('image')->getClientOriginalExtension();
             $title = $request->product_name;
-            //file name to store
             $image_url = $title.'_'.time().'.'.$extension;
-            //upload image
             $path = $request->file('image')->storeAs('public/products', $image_url);
+            
+        }
+        if($request->file('image')){
             if($product->image_url != 'noimage.jpg'){
                 Storage::delete('public/products/'.$product->image_url);
                 $product->image_url = $image_url;
             }
         }
+        
 
             
     
@@ -196,12 +195,13 @@ class ProductController extends Controller
             $side_url = $title.'_'.time().'.'.$extension;
             //upload image
             $path = $request->file('side_view')->storeAs('public/products', $side_url);
-            
-            if($product->side_url != 'noimage.jpg'){
-                Storage::delete('public/products/'.$product->side_url);
-                $product->side_url = $side_url;
+            }
+        if($request->file('side_view')){
+        if($product->side_url != 'noimage.jpg'){
+            Storage::delete('public/products/'.$product->side_url);
+            $product->side_url = $side_url;
         }
-        }
+    }
         
         
         if($request->hasFile('front_view')){
@@ -216,13 +216,14 @@ class ProductController extends Controller
             $front_url = $title.'_'.time().'.'.$extension;
             //upload image
             $path = $request->file('front_view')->storeAs('public/products', $front_url);
-            
+        }
 
-            if($product->front_url != 'noimage.jpg'){
-                Storage::delete('public/products/'.$product->front_url);
-                $product->front_url = $front_url;
+        if($request->file('front_view')){
+        if($product->front_url != 'noimage.jpg'){
+            Storage::delete('public/products/'.$product->front_url);
+            $product->front_url = $front_url;
         }
-        }
+    }
 
             $product->promote = 0;
             $product->product_name = $request->product_name;
@@ -237,7 +238,7 @@ class ProductController extends Controller
         $product->update();
         isset($request->colour_id) ? $product->colours()->sync($request->colour_id) : $product->colours()->sync([]) ;
         isset($request->size_id) ? $product->sizes()->sync($request->size_id) : $product->sizes()->sync([]);
-        return back();
+        return back()->with('success','product updated');
 
     }
 }
@@ -259,7 +260,7 @@ class ProductController extends Controller
         }
         //deletes the particular record from the database
         $product->delete();
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('success', 'Product Deleted');
     }
 }
 

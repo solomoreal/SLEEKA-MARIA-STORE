@@ -39,7 +39,7 @@ class SizeController extends Controller
         $size->size = $request->size;
         $size->category_id = $category_id;
         $category->sizes()->save($size);
-        return back();
+        return back()->with('success','New Size Added');
         }
     }
 
@@ -58,7 +58,7 @@ class SizeController extends Controller
         $size->size = $request->size;
         $size->category_id = $category_id;
         $category->sizes()->save($size);
-        return redirect(route('sizes.index'));
+        return redirect(route('sizes.index'))->with('success','Size Updated');
         }
     }
 
@@ -68,7 +68,7 @@ class SizeController extends Controller
         if(Auth::user()->role = 'Admin'){
         $size = Size::findOrFail($request->size_id);
         $size->delete();
-        return redirect(route('sizes.index'));
+        return redirect(route('sizes.index'))->with('success','Size Removed');
         }
     }
 }

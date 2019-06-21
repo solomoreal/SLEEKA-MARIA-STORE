@@ -83,13 +83,13 @@
                                             {{$customer->email}}
                                     </td>
                                     <td>
-                                            {{$customer->country}}
+                                            {{$customer->country ? $customer->country->country_name : " "}}
                                     </td>
                                     <td>
-                                        {{$customer->state}}
+                                        {{$customer->state ? $customer->state->state_name : " "}}
                                 </td>
                                     <td>
-                                    <a href="#" class="btn btn-sm btn-primary">View Details</a>
+                                    <a href="{{route('viewCustomer',['id' => $customer->id])}}" class="btn btn-sm btn-primary">View Details</a>
                                     
                                 </tr>
                                 @endforeach
@@ -97,6 +97,7 @@
                                
                             </tbody>
                         </table>
+                        {{$customers->links()}}
                     </div>
                 </div>
             </div>

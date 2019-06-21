@@ -42,6 +42,13 @@ class AdminController extends Controller
         return view('admin.order_item', compact(['order', 'cart']));
         }
     }
+
+    public function viewCustomer($id){
+        if(Auth::user()->role = 'Admin'){
+        $customer = User::findOrfail($id);
+        return view('admin.view_customer', compact(['customer']));
+        }
+    }
     public function generalOrdersQuery($status){
         if(Auth::user()->role = 'Admin'){
         $orders = Order::where('status', $status)->latest()->paginate(10);
@@ -110,13 +117,22 @@ class AdminController extends Controller
         $order = Order::findOrFail($id);
         $order->status = $status;
         $order->update();
-        return back();
+        return back()->with('success','Changed');
+        }
+    }
+
+    public function changeUserStatus($id){
+        if(Auth::user()->role = 'Admin'){
+        $user = User::findOrFail($id);
+        $user->status == 1 ? $user->status = 0 : $user->status = 1;
+        $user->update();
+        return back()->with('success','Changed');
         }
     }
 
     public function viewCustomers(){
         if(Auth::user()->role = 'Admin'){
-        $customers = User::where('role','Customer')->latest()->get();
+        $customers = User::where('role','Customer')->latest()->paginate(10);
         return view('admin.view_customers',compact(['customers']));
         }
     }
@@ -144,7 +160,7 @@ class AdminController extends Controller
         $product->promote == 1 ? $product->promote = 0 : $product->promote = 1;
         
         $product->update();
-        return back();
+        return back()->with('success','Product will now appear in featured section');
         }
      }
 }

@@ -41,7 +41,7 @@
                                 {{ csrf_field() }}
                             <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <select name="colour" id="">
-                                        <option>Select Color</option>
+                                        <option>Colour</option>
                                         @if($colours)
                                         @foreach($colours as $colour)
                                     <option value="{{$colour->colour_name}}" name="colour">{{$colour->colour_name}}</option>
@@ -49,7 +49,7 @@
                                         @endif
                                     </select>
                                     <select name="size" id="">
-                                        <option> Select Size</option>
+                                        <option>Size</option>
                                         @if($sizes)
                                             @foreach ($sizes as $size)
                                                 <option value="{{$size->size}}">{{$size->size}}</option>

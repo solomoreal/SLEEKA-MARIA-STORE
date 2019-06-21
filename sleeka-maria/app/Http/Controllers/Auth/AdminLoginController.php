@@ -34,7 +34,7 @@ class AdminLoginController extends Controller
      * @var string
      */
     
-    protected $redirectTo = '/products' ;
+    protected $redirectTo = '/admin/newOrders' ;
 
     /**
      * Create a new controller instance.
@@ -50,6 +50,7 @@ class AdminLoginController extends Controller
     {
         $this->validateLogin($request);
 
+        
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -60,7 +61,14 @@ class AdminLoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+             $this->sendLoginResponse($request);
+             if(auth()->user()->role == 'Customer'){
+
+                return $this->logout($request); 
+            }
+
             return $this->sendLoginResponse($request);
+           
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -87,6 +95,6 @@ class AdminLoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect(route('products.index'));
+                ?: redirect(route('newOrders'));
     }
 }

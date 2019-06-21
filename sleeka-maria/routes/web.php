@@ -72,14 +72,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('completedOrders/{status}', 'AdminController@completedOrders')->name('completedOrders');
     Route::get('orderItem/{id}', 'AdminController@orderItem')->name('orderItem');
     Route::get('changeStatus/{id}/{status}','AdminController@changeStatus' )->name('changeStatus');
+    Route::get('changeUserStatus/{id}','AdminController@changeUserStatus' )->name('changeUserStatus');
     //customers
     Route::get('viewCustomers','AdminController@viewCustomers')->name('viewCustomers');
+    Route::get('viewCustomer/{id}','AdminController@viewCustomer')->name('viewCustomer');
     //products
     Route::get('admin_viewProduct/{id}', 'AdminController@viewProduct')->name('admin.viewProduct');
     Route::get('editProduct/{id}','AdminController@editProduct')->name('editProduct');
     Route::get('promote/{id}', 'AdminController@promoteProduct')->name('promote');
     Route::get('adminLogin','Auth\AdminLoginController@loginForm');
     Route::post('adminLogin','Auth\AdminLoginController@login')->name('adminLogin');
+    //ads
+    Route::resource('ads', 'AdsController');
     
 });
 

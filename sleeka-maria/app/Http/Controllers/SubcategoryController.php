@@ -17,7 +17,7 @@ class SubcategoryController extends Controller
     public function index()
     {
         if(Auth::user()->role = 'Admin'){
-        $subcategories = Subcategory::latest()->get();
+        $subcategories = Subcategory::latest()->paginate(10);
         $categories = Category::all();
         $count = 1;
         return view('admin.subcategory',compact(['subcategories', 'categories', 'count']));
@@ -40,7 +40,7 @@ class SubcategoryController extends Controller
         $subcategory->subcategory_name = $request->subcategory_name;
         $subcategory->category_id = $category_id;
         $category->subcategories()->save($subcategory);
-        return back();
+        return back()->with('success','SubCategory Created');
         }
     }
 
@@ -60,7 +60,7 @@ class SubcategoryController extends Controller
         $subcategory->subcategory_name = $request->subcategory_name;
         $subcategory->category_id = $category_id;
         $category->subcategories()->save($subcategory);
-        return redirect(route('subcategories.index'));
+        return redirect(route('subcategories.index'))->with('success','SubCategory Updated');
         }
     }
 
@@ -70,7 +70,7 @@ class SubcategoryController extends Controller
         if(Auth::user()->role = 'Admin'){
         $subcategory = Subcategory::findOrFail($request->category_id);
         $subcategory->delete();
-        return redirect(route('subcategories.index'));
+        return redirect(route('subcategories.index'))->with('success','SubCategory Removed');
         }
     }
 }

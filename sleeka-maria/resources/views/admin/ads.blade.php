@@ -4,7 +4,7 @@
         <div class="container">
                 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
                         <div class="container-fluid">
-                            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">All Products</a>
+                            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">All Adds</a>
                             <!-- User -->
                             <ul class="navbar-nav align-items-center d-none d-md-flex">
                                 <li class="nav-item dropdown">
@@ -69,34 +69,23 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Details</th>
+                            <th scope="col">Ads Name</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($products) > 0)
-                        @foreach ($products as $product)
+                        @if(count($ads) > 0)
+                        @foreach ($ads as $ad)
                             
                         <tr>
                             <th scope="row">
-                            <img width="150" height="100" src="{{asset('storage/products/'.$product->image_url)}}" class="img-fluid">
+                            <img width="150" height="100" src="{{asset('storage/ads/'.$ad->image_url)}}" class="img-fluid">
                             </th>
                             <td>
-                                {{$product->product_name}}
-                            </td>
-                       
-                            <td>
-                                {{$product->category->category_name}}
-                            </td>
-                            <td>{{$product->promote ? 'Featured' : 'Not Featured'}}</td>
-                            <td>
-                                {{$product->quantity}}
+                                {{$ad->ads_name}}
                             </td>
                             <td>
-                            <a href="{{route('admin.viewProduct',['id' => $product->id])}}" class="btn btn-sm btn-primary">View Details</a>
+                            <a href="{{route('ads.show',['id' => $ad->id])}}" class="btn btn-sm btn-primary">View Details</a>
                             </td>
                         </tr>
                         @endforeach
@@ -105,7 +94,7 @@
                                                   
                     </tbody>
                 </table>
-                {{$products->links()}}
+                {{$ads->links()}}
             </div>
         </div>
     </div>

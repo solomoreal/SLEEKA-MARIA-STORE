@@ -14,18 +14,21 @@ use App\Order;
 use Paystack;
 use App\User;
 use App\Country;
+use App\Ads;
 use Illuminate\Support\Facades\Auth;
 use function Opis\Closure\unserialize;
 use Mail;
 use Notification;
 use App\Notifications\MailSent;
 use App\Notifications\NewOrder;
+
 class PagesController extends Controller
 {
     
     public function index(){
         //category display in the nav bar
         $categories = category::all();
+        $ads = Ads::latest()->take(2)->get();
         $currency = '₦'; 
         //Adult frame subcategory and products on index page
         $glass_cat = $this->categoryQuery('Adult Glass Frames');
@@ -37,7 +40,7 @@ class PagesController extends Controller
         $k_frame_cat = $kids_frame_cats->first();
         $kFrames = $k_frame_cat->products->take(4);
         $products = Product::all()->where('promote', 1)->take(8);
-        return view('pages.index', compact(['products','currency','category','glasses','categories','kFrames','k_frame_cat']));
+        return view('pages.index', compact(['products','ads','currency','category','glasses','categories','kFrames','k_frame_cat']));
     }
 
     public function about(){
@@ -122,18 +125,20 @@ class PagesController extends Controller
 
     public function viewByCategory($id){
         $currency = '₦';
+        $ads = Ads::latest()->take(2)->get();
         $categories = category::all();
         $category = Category::findOrFail($id);
         $products = $category->products->take(4);
-        return view('pages.see_all',compact(['category','products','categories','currency']));
+        return view('pages.see_all',compact(['category','products','categories','currency','ads']));
     }
 
     public function viewBySubcategory($id){
         $currency = '₦';
+        $ads = Ads::latest()->take(2)->get();
         $categories = Category::all();
         $category = Category::findOrFail($id);
         $products = $category->products->take(4);
-        return view('pages.see_all',compact(['category','products','categories','currency']));
+        return view('pages.see_all',compact(['category','products','categories','currency','ads']));
     }
 
     public function searchProduct(Request $request){
@@ -167,6 +172,7 @@ class PagesController extends Controller
     public function getCart(Request $request){
         //dd(request()->session()->get('cart'));
         $currency = '₦';
+        $ads = Ads::latest()->take(2)->get();
         $categories = Category::all();
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
@@ -174,7 +180,7 @@ class PagesController extends Controller
         $totalPrice = $cart->totalPrice;
         $totalQty = $cart->totalQty;
         $relatedProducts = Product::all()->take(4);
-        return  view('pages.cartView', compact(['categories','products','totalPrice','totalQty','relatedProducts','currency']));
+        return  view('pages.cartView', compact(['categories','products','ads','totalPrice','totalQty','relatedProducts','currency']));
     }
 
     public function reduceItemByOne($id){

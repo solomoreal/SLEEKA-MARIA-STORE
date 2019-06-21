@@ -20,8 +20,7 @@
 <body>
     
         @include('inc.side_bar')
-        
-            @yield('messages') 
+        @include('inc.messages')
             @yield('content')
         @include('inc.footer')
         @yield('script') 

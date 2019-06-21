@@ -26,15 +26,23 @@
                                         </div>
                                         
                                         <div class="dropdown-divider"></div>
-                                    <a href="{{route('logout')}}" class="dropdown-item">
-                                            <i class="ni ni-user-run"></i>
-                                            <span>Logout</span>
-                                        </a>
+                                        <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                         <i class="ni ni-button-power text-blue"></i>{{ __('Logout') }}
+                                     </a>
+        
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                         @csrf
+                                     </form>
+                                    
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                    </nav>            <div class="header bg-gradient-primary pt-md-7">
+                    </nav>            
+                    
+                <div class="header bg-gradient-primary pt-md-7">
             </div>
             <div class="container">
                 <div class="row align-items-center mt-3">

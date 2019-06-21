@@ -136,22 +136,37 @@
                         </li>
                     </div> -->
                     <li class="nav-item">
+                            <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
+                                <i class="ni ni-single-02 text-blue"></i>Adverts
+                            </a>
+                        </li>
+                        <div class="collapse container" id="collapseCustomers">
+                            
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{route('ads.create')}}">
+                                    Create New Ads
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{route('ads.index')}}">
+                                            See all adds
+                                    </a>
+                                    </li>
+                        </div>
+                    <li class="nav-item">
                         <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
                             <i class="ni ni-single-02 text-blue"></i>Customers
                         </a>
                     </li>
                     <div class="collapse container" id="collapseCustomers">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                Reviews
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                         <a class="nav-link" href="{{route('viewCustomers')}}">
                                 View Customers
                             </a>
                         </li>
                     </div>
+
                     <li class="nav-item">
                                 <a class="dropdown-item nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

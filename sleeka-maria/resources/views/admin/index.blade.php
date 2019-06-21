@@ -25,15 +25,22 @@
                                         </div>
                                         
                                         <div class="dropdown-divider"></div>
-                                    <a href="{{route('logout')}}" class="dropdown-item">
-                                            <i class="ni ni-user-run"></i>
-                                            <span>Logout</span>
-                                        </a>
+                                        <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                         <i class="ni ni-button-power text-blue"></i>{{ __('Logout') }}
+                                     </a>
+        
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                         @csrf
+                                     </form>
+                                    
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                    </nav><div class="header bg-gradient-primary pt-md-7">
+                    </nav>
+                <div class="header bg-gradient-primary pt-md-7">
                 <div class="h4 mb-0 text-white text-uppercase text-center font-weight-bold">
                     <p>Good Day, {{Auth::user()->name}}.
                         <br>This is what is happening in your Store right now</p>
