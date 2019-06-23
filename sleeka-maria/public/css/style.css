@@ -23,6 +23,10 @@ h1 {
     font-size: 1.5rem;
 }
 
+.fa-facebook-square {
+    color: #030b2e;
+}
+
 .recipt {
     
     margin: 5% 5%; 
@@ -109,6 +113,12 @@ h1 {
     font-size: 1.5rem;
 }
 
+ table {
+    position: static;
+    display: flex;
+
+
+}
 
 #price {
     border-top: solid 2px #000;
@@ -121,7 +131,7 @@ h1 {
     font-size: 1rem;
     margin-left: 2rem;
     padding: 10px;
-    background:  #d15107;
+    background:  #031d35;
     border-radius: 5px;
     color: #fff;
     margin-bottom: 10px;
@@ -168,12 +178,9 @@ header nav a{
     font-weight: 300;
     color: #fff;
 }
-header nav a:hover {
-    color: #d15107;
-}
 
 header .fa-shopping-cart {
-    color: #fff;
+    color: #000;
     font-size: 0.8rem;
 }
 header .fa-shopping-cart {
@@ -239,7 +246,7 @@ header form input[type="text"] {
     height: 500px;
 }
  .carousel-caption h3 {
-    color: #0D0D0D;
+    color:  #fff;
     font-weight: bold;
  }
 

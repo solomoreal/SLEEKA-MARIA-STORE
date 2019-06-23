@@ -10,22 +10,22 @@
                         <div class="carousel-item active" data-interval="20000">
                             <img src="./img/img1.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-sm-block">
-                                <h3>Welcome to SLEEKA-MARIA</h3>
-                                <a href="#" class="btn btn-outline-inf">Explore</a>
+                                <h3 class="text-white">Welcome to SLEEKA-MARIA</h3>
+                            <a href="{{route('index')}}" class="btn see-all">Explore</a>
                             </div>
                         </div>
                         <div class="carousel-item" data-interval="2000">
                             <img src="./img/img.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-sm-block">
                                 <h3>Welcome to SLEEKA-MARIA</h3>
-                                <a href="#" class="btn btn-outline-inf">Explore</a>
+                            <a href="{{route('about')}}#contact" class="see-all">Contact Us</a>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="./img/img2.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-sm-block">
                                 <h3>Welcome to SLEEKA-MARIA</h3>
-                                <a href="#" class="btn btn-outline-inf">Explore</a>
+                            <a href="{{route('about')}}" class="btn see-all">About</a>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     @foreach($products->chunk(4) as $productChunk)
                     <div class="row">
                         @foreach($productChunk as $product)
-                            <div class="col-lg-3 col-sm-6">
+                            <div class="col-lg-3 col-sm-6 mx-auto">
                                 <div class="container">
                                     <div href="#" class="product-card">
                                     <a href="{{route('viewProduct', ['id' =>$product->id])}}">

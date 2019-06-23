@@ -225,7 +225,6 @@ class ProductController extends Controller
         }
     }
 
-            $product->promote = 0;
             $product->product_name = $request->product_name;
             $product->description = $request->description;
             $product->price = $product->price == $request->price ? $request->price : $request->price * 100;

@@ -99,7 +99,7 @@
                             @foreach($relatedProducts->chunk(4) as $relatedProductsChunk)
                             <div class="row">
                                 @foreach($relatedProductsChunk as $relatedProduct)
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-lg-3 col-sm-6 mx-auto">
                                     <div class="container">
                                             <div  class="product-card">
                                             <a href="{{route('viewProduct', ['id' =>$relatedProduct->id])}}">

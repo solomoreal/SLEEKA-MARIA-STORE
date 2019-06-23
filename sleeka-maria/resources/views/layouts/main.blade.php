@@ -29,6 +29,7 @@
                
                $("#searcher").on("keyup", function(){
                 var route = $(this).data("route")
+                var homeUrl = $(this).data()
                 var text = $(this).val();
                if($(this).val().length >= 0){
                    $.ajax({
@@ -49,7 +50,7 @@
                     //        $('#search_results').innerHTML = " ";
                     //    }
                        $('#search_results').html('');
-                       $('#search_results').append('<table class="table mt-20">');
+                       $('#search_results').append('<table>');
                        products.map((product,index,products)=>{
                             $('#search_results').append("<tr class='mt-20'><td>"+product.product_name+' '+(product.price/100)+ "</td><td> <a class='btn btn-info' href='/viewProduct/"+product.id+"'>view</a></tr>");
                            });

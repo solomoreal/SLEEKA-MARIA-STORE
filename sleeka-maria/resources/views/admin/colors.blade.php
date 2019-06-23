@@ -48,7 +48,6 @@
             <div class="header bg-gradient-primary pt-md-7">
             </div>
         </div>
-        @include('inc.messages')
         <div class="container">
             <form action="{{route('colours.store')}}" method="POST">
                 {{ csrf_field() }}

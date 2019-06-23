@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbartoggle">
                 <form class="form-inline m-auto">
                     <div class="input-group">
-                    <input type="text" class="form-control" id="searcher" data-route="{{route('searchProducts')}}" placeholder="Search for products"
+                    <input type="text" class="form-control" id="searcher" data-url ="{{url('/')}}" data-route="{{route('searchProducts')}}" placeholder="Search for products"
                             aria-label="Search" aria-describedby="basic-addon1" width="200%">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
@@ -86,7 +86,7 @@
     
 </header>
 <div class='col-md-12' >
-    <table class='table' id='search_results'>
+    <table class='' id='search_results'>
     </table>
 </div>
     

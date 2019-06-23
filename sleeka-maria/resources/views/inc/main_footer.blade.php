@@ -7,10 +7,7 @@
                 <a href="{{route('about')}}">ABOUT US</a>
                 </li>
                 <li>
-                    <a href="about.html">RETURN POLICY</a>
-                </li>
-                <li>
-                    <a href="service.html">HOW TO SHOP</a>
+                    <a href="help.html">HOW TO SHOP</a>
                 </li>
                 <li>
                     <a href="{{route('about')}}#contact">CONTACT US</a>
@@ -21,16 +18,16 @@
             <h6>POLICIES</h6>
             <ul class="ul-list">
                 <li>
-                    <a href="index.html">DELIVERY & RETURN POLICY</a>
+                    <a href="policy.html">DELIVERY & RETURN POLICY</a>
                 </li>
                 <li>
-                    <a href="about.html">TERMS & CONDITIONS</a>
+                    <a href="policy.html">TERMS & CONDITIONS</a>
                 </li>
                 <li>
-                    <a href="service.html">PRIVACY</a>
+                    <a href="policy.html">PRIVACY</a>
                 </li>
                 <li>
-                    <a href="gallery">SECURITY POLICY</a>
+                    <a href="policy">SECURITY POLICY</a>
                 </li>
             </ul>
         </div>
@@ -56,9 +53,12 @@
 </footer>
 <div class="container-fluid">
     <div class="row bg-small">
-        <p>Powered by
-            <a href="bithubph.com">BitHub</a>
-        </p>
+       <div class="col-md-4 mx-auto">
+            <p>Powered by <a href="bithubph.herokuapp.com">BitHub</a></p>
+       </div>
+       <div class="col-md-4 mx-auto">
+            <p class="text-align-end">Sleeka-Maria &copy; 2019</p>
+       </div>
     </div>
 </div>
 </div>

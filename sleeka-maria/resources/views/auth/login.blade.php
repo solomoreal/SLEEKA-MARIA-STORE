@@ -58,15 +58,12 @@
                         <button type="submit" class="btn btn-lg btn-outline-inf btn-block text-uppercase">
                                 {{ __('Login') }}
                             </button>
-                            <hr class="my-4">
-
-                            <div class="form-group row mb-0">
-                                    @if (Route::has('register'))
+                            @if (Route::has('register'))
+                            You don't have an account?
                                             <a class="btn btn-link" href="{{ route('register') }}">
-                                                {{ __('You don\'t have an account? sign up here') }}
+                                                {{ __('sign up') }}
                                             </a>
                                         @endif
-                                </div>
 
                     </form>
                 </div>

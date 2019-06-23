@@ -136,11 +136,11 @@
                         </li>
                     </div> -->
                     <li class="nav-item">
-                            <a class="nav-link" href="#collapseCustomers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
+                            <a class="nav-link" href="#collapseCustom" data-toggle="collapse" aria-expanded="false" aria-controls="collapseCustomers">
                                 <i class="ni ni-single-02 text-blue"></i>Adverts
                             </a>
                         </li>
-                        <div class="collapse container" id="collapseCustomers">
+                        <div class="collapse container" id="collapseCustom">
                             
                             <li class="nav-item">
                             <a class="nav-link" href="{{route('ads.create')}}">

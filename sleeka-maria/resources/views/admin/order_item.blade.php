@@ -64,7 +64,7 @@
                     <div class="col-sm-5">
                       <div class="card">
                         <div class="card-body">
-                        <img src="{{$item['item']['image_url']}}" class="img-fluid">
+                        <img src="{{asset('storage/products/'.$item['item']['image_url'])}}" class="img-fluid">
                         </div>
                       </div>
                     </div>

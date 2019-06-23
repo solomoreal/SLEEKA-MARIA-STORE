@@ -19,7 +19,7 @@ class SizeController extends Controller
         if(Auth::user()->role = 'Admin'){
         $categories = Category::all();
         $count = 1;
-        $sizes = Size::latest()->get();
+        $sizes = Size::latest()->paginate(8);
         return view('admin.sizes', compact(['categories','count','sizes']));
         }
     }
