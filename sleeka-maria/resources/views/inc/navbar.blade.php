@@ -85,8 +85,7 @@
     </nav>
     
 </header>
-<div class='col-md-12' >
-    <table class='' id='search_results'>
-    </table>
+<div class='col-md-4 m-auto' id='search_results' >
+    
 </div>
     

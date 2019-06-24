@@ -77,13 +77,13 @@
                         </li>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#collapseProducts" data-toggle="collapse" aria-expanded="false" aria-controls="collapseProducts">
+                        <a class="nav-link" href="#collapseProducts" data-toggle="collapse" aria-expanded="false" aria-controls="collapseProducts">
                             <i class="ni ni-bag-17 text-blue"></i>Products
                         </a>
                     </li>
                     <div class="collapse container" id="collapseProducts">
                         <li class="nav-item">
-                        <a class="nav-link active" href="{{route('products.index')}}">
+                        <a class="nav-link" href="{{route('products.index')}}">
                                 All Products
                             </a>
                         </li>
@@ -112,11 +112,11 @@
                                 Sizes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="shipping.html">
                                 Shipping
                             </a>
-                        </li>
+                        </li> --}}  
                     </div>
                 <!--    <li class="nav-item">
                         <a class="nav-link" href="#collapseAdmin" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAdmin">

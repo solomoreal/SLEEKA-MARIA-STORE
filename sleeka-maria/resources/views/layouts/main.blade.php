@@ -43,19 +43,13 @@
                            $('#search_results').innerHTML =" " ;
                         }
 
-                        
-                       console.log(products);
-                    //    if($(this).val.length === 0){
-                    //        products = [];
-                    //        $('#search_results').innerHTML = " ";
-                    //    }
                        $('#search_results').html('');
-                       $('#search_results').append('<table>');
+                       $('#search_results').append('<div class="card card-body mb-1 pt-5">');
                        products.map((product,index,products)=>{
-                            $('#search_results').append("<tr class='mt-20'><td>"+product.product_name+' '+(product.price/100)+ "</td><td> <a class='btn btn-info' href='/viewProduct/"+product.id+"'>view</a></tr>");
+                            $('#search_results').append("<h4 class='text-primary'>"+product.product_name+' ' +' '+'#' +(product.serial_number)+ "<span> <a class='btn btn-default' href='/viewProduct/"+product.id+"'>view</a></span></h4>");
                            });
         
-                   $('#search_results').append('</table>');
+                   $('#search_results').append('</div>');
                                           
                    });
                }

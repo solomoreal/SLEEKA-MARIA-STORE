@@ -29,6 +29,9 @@ Route::group(['prefix' => '/'], function () {
     Route::get('viewBySubcategory/{id}', 'PagesController@viewBySubcategory')->name('viewBySubcategory');
     Route::get('searchProducts','PagesController@searchProduct')->name('searchProducts');
     Route::get('about','PagesController@about')->name('about');
+    Route::get('help','PagesController@helpPage')->name('help');
+    Route::get('policy','PagesController@policy')->name('policy');
+
     //auth Routes
     Route::get('profile', 'PagesController@profile')->middleware('auth')->name('profile');
     Route::get('editProfile/{id}','PagesController@editProfile')->middleware('auth')->name('editProfile');

@@ -64,14 +64,16 @@
                             </table>
                         </div>
                     </div>
-                </div><div class="row justify-content-center">
+                </div>
+                @if(count($orders) > 0)
+                <div class="row justify-content-center">
                         <div class="featured-product">
                             <div class="featured-title container">
                                 <h2>Buyers who bought this item also bought:</h2>
                                 <hr>
                             </div>
                             <div class="container">
-                                 @if($orders) 
+                                  
                                  @foreach($relatedProducts->chunk(4) as $relatedProductsChunk) 
                                 <div class="row">
                                      @foreach($relatedProductsChunk as $relatedProduct) 
@@ -79,7 +81,7 @@
                                         <div class="container">
                                                 <div  class="product-card">
                                                 <a href="{{route('viewProduct', ['id' =>$relatedProduct->id])}}">
-                                                <img src="{{$relatedProduct->image_url}}"> 
+                                                <img src="{{asset('storage/products/'.$relatedProduct->image_url)}}"> 
                                                 <h1 class="product-title">{{$relatedProduct->product_name}}</h1> 
                                                 </a>
                                                 <del></del>
@@ -135,6 +137,10 @@
                             </div>
                             
                         @endif 
+                        </div>
+            </div>
+        </div>
+    </div>
 
                        
 @endsection

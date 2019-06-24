@@ -47,6 +47,16 @@ class PagesController extends Controller
         $categories = category::all();
         return view('pages.about',compact('categories'));
     }
+
+    public function helpPage(){
+        $categories = category::all();
+        return view('pages.help',compact('categories')); 
+    }
+
+    public function policy(){
+        $categories = category::all();
+        return view('pages.policy',compact('categories')); 
+    }
     public function subcategoryQuery($subcategroy){
         $allSubcats = Subcategory::where('subcategory_name', $subcategroy)->get();
         //$subcats = $allSubcats->take(4);

@@ -7,7 +7,7 @@
                 <a href="{{route('about')}}">ABOUT US</a>
                 </li>
                 <li>
-                    <a href="help.html">HOW TO SHOP</a>
+                    <a href="{{route('help')}}">HOW TO SHOP</a>
                 </li>
                 <li>
                     <a href="{{route('about')}}#contact">CONTACT US</a>
@@ -18,16 +18,16 @@
             <h6>POLICIES</h6>
             <ul class="ul-list">
                 <li>
-                    <a href="policy.html">DELIVERY & RETURN POLICY</a>
+                    <a href="{{route('policy')}}#delivery">DELIVERY & RETURN POLICY</a>
                 </li>
                 <li>
-                    <a href="policy.html">TERMS & CONDITIONS</a>
+                    <a href="{{route('policy')}}#t&c">TERMS & CONDITIONS</a>
                 </li>
                 <li>
-                    <a href="policy.html">PRIVACY</a>
+                    <a href="{{route('policy')}}#privacy">PRIVACY</a>
                 </li>
                 <li>
-                    <a href="policy">SECURITY POLICY</a>
+                <a href="{{route('policy')}}#security">SECURITY POLICY</a>
                 </li>
             </ul>
         </div>

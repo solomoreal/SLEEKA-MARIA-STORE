@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="form-group">
                                 <select id="country" data-route="{{route('fetchStates')}}"  required  class="form-control" name="country">
-                                        <option selected>{{$user->country->country_name}}</option>
+                                        <option selected>{{$user->country ? $user->country->country_name : " "}}</option>
                                 @foreach($countries as $country)
                                         <option>{{$country->country_name}}</option>
                                 @endforeach
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <select id="state" class="form-control" name="state">
-                                        <option selected>{{$user->state->state_name}}</option>
+                                        <option selected>{{$user->state ? $user->state->state_name : ' '}}</option>
                                         </select>
                                     </div>
                                 </div>
