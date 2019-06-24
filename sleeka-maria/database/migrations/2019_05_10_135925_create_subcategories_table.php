@@ -17,7 +17,7 @@ class CreateSubcategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('subcategory_name');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
@@ -30,5 +30,7 @@ class CreateSubcategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('subcategories');
+        
+
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Colour extends Model
 {
-    public function product(){
-        $this->belongsTo('App\Product');
+    public function products(){
+        return $this->belongsToMany('App\Product','colours_products');
     }
 }

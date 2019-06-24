@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>SLEEKA-MARIA</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">SLEEKA-MARIA</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartoggle"
+                        aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbartoggle">
+                        <form class="form-inline m-auto">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for products"
+                                    aria-label="Search" aria-describedby="basic-addon1" width="200%">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav ml-auto text-center">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Kids frames</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Adult frames</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Wrist Watches</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Foot wears</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Nigeria Tailored wears</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Cars</a>
+                                </div>
+                            </li>
+                            <li><a class="nav-link" href="shop.html" id="card-info"><i
+                                        class="fas fa-shopping-cart"></i><span class="cart">Cart(<span
+                                            id="list-item">1</span> items)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link login" href="login.html">login<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-outline-signup" href="sign_up.html">signup<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content-area">
+            <div class="login-form container">
+                <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Sign In</h5>
+                                <form class="form-signin">
+                                    <div class="form-label-group">
+                                        <input type="email" id="inputEmail" class="form-control"
+                                            placeholder="Email address" required autofocus>
+                                        <label for="inputEmail">Email address</label>
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        <input type="password" id="inputPassword" class="form-control"
+                                            placeholder="Password" required>
+                                        <label for="inputPassword">Password</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Remember
+                                            password</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <a href="#">Forget password</a>
+                                    </div>
+                                    <button class="btn btn-lg btn-outline-inf btn-block text-uppercase"
+                                        type="submit">Sign in</button>
+                                    <hr class="my-4">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="container-fluid bg-footer">
+            <div class="row">
+                <div class="col-sm-2">
+                    <h6>HELP</h6>
+                    <ul class="ul-list">
+                        <li>
+                            <a href="index.html">HELP | FAQ's</a>
+                        </li>
+                        <li>
+                            <a href="about.html">RETURN POLICY</a>
+                        </li>
+                        <li>
+                            <a href="service.html">HOW TO SHOP</a>
+                        </li>
+                        <li>
+                            <a href="shop.html">CONTACT US</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h6>POLICIES</h6>
+                    <ul class="ul-list">
+                        <li>
+                            <a href="index.html">DELIVERY & RETURN POLICY</a>
+                        </li>
+                        <li>
+                            <a href="about.html">TERMS & CONDITIONS</a>
+                        </li>
+                        <li>
+                            <a href="service.html">PRIVACY</a>
+                        </li>
+                        <li>
+                            <a href="gallery">SECURITY POLICY</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <div class="form-container">
+                        <h6>Be in the know</h6>
+                        <p>Sign up for the latest news, offers and styles</p>
+                        <form action="#">
+                            <div class="input-group">
+                                <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email"
+                                    required>
+                                <button class="btn btn-lg" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="container-fluid">
+            <div class="row bg-small">
+                <p>Powered by
+                    <a href="bithubph.com">BitHub</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

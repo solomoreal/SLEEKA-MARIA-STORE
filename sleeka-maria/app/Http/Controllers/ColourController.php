@@ -4,98 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Colour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ColourController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        $colours = Colour::all();
-        return $colours;
+        $this->middleware('auth');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+        public function index()
     {
-        //
+        if(Auth::user()->role = 'Admin'){
+        $colours = Colour::latest()->paginate(10);
+        $count = 1;
+        return view('admin.colors', compact(['colours', 'count']));
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        if(Auth::user()->role = 'Admin'){
         $this->validate($request, [
-            'colour_name' => 'required|string'
+            'colour_name' => 'required|string',
+            'colour' => 'required'
+
         ]);
 
         $colour = new Colour();
         $colour->colour_name = $request->colour_name;
+        $colour->colour = $request->colour;
         $colour->save();
-        return $colour;
+        return back()->with('success', 'New Colour Added');
+        }
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Colour  $colour
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Colour $colour)
+    public function update(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Colour  $colour
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Colour $colour)
-    {
-        return $colour;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Colour  $colour
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Colour $colour)
-    {
-        $this->validate($request, [
-            'colour_name' => 'required|string'
-        ]);
-
+        if(Auth::user()->role = 'Admin'){
+        $colour = Colour::findOrFail($request->colour_id); 
+        $colour->colour = $request->colour;
         $colour->colour_name = $request->colour_name;
-        $colour->updatr();
-        return $colour;
+        $colour->update();
+        return redirect(route('colours.index'))->with('success', 'Colour Updated');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Colour  $colour
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Colour $colour)
+    
+    public function destroy(Request $request, $id)
     {
+        if(Auth::user()->role = 'Admin'){
+        $colour = Colour::findOrFail($request->colour_id);
         $colour->delete();
-        return $colour;
+        return redirect(route('colours.index'))->with('success', 'Deleted');
+        }
     }
 }

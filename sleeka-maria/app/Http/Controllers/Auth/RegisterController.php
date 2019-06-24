@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Category;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -40,6 +41,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        return view('auth.register',compact(['categories']));
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -52,6 +58,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['nullable'],
+            'first_name' => ['nullable'],
+            'last_name' => ['nullable'],
+            'phone' => ['nullable'],
+            'address' => ['nullable'],
+            'country_id' => ['nullable'],
+            'state_id' => ['nullable'],
+            'lga' => ['nullable'],
         ]);
     }
 
@@ -66,7 +80,12 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => 'Customer',
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    
+
+    
 }
